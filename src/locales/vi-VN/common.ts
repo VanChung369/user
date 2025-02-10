@@ -1,0 +1,16 @@
+export default {
+  'common.textExpand.readMore': 'Xem thêm',
+  'common.text.nodata': 'Không có dữ liệu',
+  'common.text.all': 'Tất cả',
+  'common.textExpand.showLess': 'Show less',
+  'common.text.edition': 'Phiên bản',
+  'common.text.of': 'của',
+  'common.text.no.data': 'Không có dữ liệu',
+  'common.text.delete': 'Xóa',
+  'common.text.cancel': 'Hủy',
+  'common.text.copy.success': 'Sao chép thành công',
+  'common.text.authorizing.account.title': 'Đang xác thực tài khoản của bạn',
+  'common.text.authorizing.account.sub.title': 'Vui lòng chờ chúng tôi xác thực địa chỉ ví của bạn',
+  'common.text.admin': 'Admin',
+  'common.null.text': '---',
+};

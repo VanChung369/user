@@ -1,0 +1,94 @@
+@import "@/styles/variables.scss";
+
+.button {
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  margin-right: 10px;
+
+  &:focus,
+  &:active,
+  &:hover {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+  }
+
+  &--default {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.05em;
+    background-color: transparent;
+    color: $text-color-white;
+    border: 1px solid $color-violet;
+
+    &:focus,
+    &:active,
+    &:hover {
+      color: $text-color-white;
+      opacity: 0.7;
+    }
+  }
+
+  &--link {
+    background-color: $text-color-white;
+    color: $text-color-white;
+
+    &:focus,
+    &:active,
+    &:hover {
+      color: $text-color-white;
+      opacity: 0.7;
+    }
+
+    &:disabled {
+      border: none;
+      color: $text-color-white;
+    }
+  }
+
+  &--primary {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.005em;
+    background-color: $color-violet;
+    color: $text-color-white;
+    border: 1px solid $color-violet;
+
+    &:focus,
+    &:active,
+    &:hover {
+      color: $text-color-white;
+      opacity: 0.7;
+    }
+
+    &:disabled {
+      background-color: $text-color-white;
+      color: $text-color-white;
+      border: 1px solid $text-color-white;
+    }
+  }
+
+  &--secondary {
+    background-color: $text-color-white;
+    color: $text-color-white;
+
+    &:focus,
+    &:active,
+    &:hover {
+      color: $text-color-white;
+      opacity: 0.7;
+    }
+
+    &:disabled {
+      border: none;
+    }
+  }
+}

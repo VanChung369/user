@@ -1,0 +1,201 @@
+@import "@/styles/variables.scss";
+
+.header {
+    background: $color-dark-slate;
+    padding: 8px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 3;
+    height: 80px;
+
+    &__toogle {
+        min-width: 0;
+    }
+
+    .logo {
+        height: 30px;
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        @media screen and (max-width: $breakpoint_small_tablet_max) {
+            padding: 0 20px;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            min-width: 0;
+
+            &__icon {
+                display: flex;
+                align-items: center;
+
+                &_img {
+                    margin-right: 5px;
+                }
+
+                &_title {
+                    font-family: "Amore Dreaming Sans Serif";
+                    text-transform: uppercase;
+                    font-weight: 300;
+                    font-size: 18px;
+                    line-height: 3.125rem;
+                    letter-spacing: 0.1em;
+                    margin-top: 0;
+                    color: $text-color-white;
+                    white-space: nowrap;
+                    text-align: center;
+                    margin-right: 20px;
+                    span {
+                        font-family: "Amore Dreaming Sans Serif";
+                        text-transform: uppercase;
+                        font-weight: 300;
+                        font-size: 18px;
+                        line-height: 3.125rem;
+                        letter-spacing: 0.1em;
+                        margin-top: 0;
+                        color: $color-violet;
+                        white-space: nowrap;
+                        text-align: center;
+                    }
+                }
+            }
+
+            .items {
+                margin-left: 40px;
+                min-width: 600px;
+                display: flex;
+                align-items: baseline;
+                text-transform: uppercase;
+                font-weight: 300;
+                line-height: 13px;
+                padding: 0 5px;
+                gap: 30px;
+
+                @media only screen and (max-width: $breakpoint_laptop_max) {
+                    margin-left: 0px;
+                }
+
+                a {
+                    font-size: 14px;
+                    color: $text-color-white;
+                    font-weight: 300;
+                }
+
+                .collab {
+                    text-transform: capitalize;
+                    font-style: italic;
+                    line-height: 10px;
+                    font-size: 10px;
+                    position: absolute;
+                    top: 20px;
+                }
+
+                .ant-dropdown.app-dropdown {
+                    text-transform: capitalize;
+                }
+            }
+
+            .items .ant-space-item {
+                font-size: 13px;
+                font-weight: 300;
+                line-height: 13px;
+            }
+
+            .app-header__collab-icon {
+                height: 9px;
+                width: auto;
+            }
+        }
+    }
+
+    &__toogle {
+        display: inline-flex;
+        align-items: center;
+
+        .notification-icon {
+            margin-right: 24px;
+            cursor: pointer;
+
+            .ant-badge-count {
+                background: $color-violet;
+                font-weight: 700;
+                box-shadow: none;
+            }
+
+            .ant-badge-multiple-words {
+                padding: 0 4px;
+            }
+        }
+
+        .app-dropdown {
+            padding: 20px 24px;
+            gap: 10px;
+        }
+
+        .button--left {
+            span.user-type {
+                font-weight: 700;
+                line-height: 21px;
+                font-size: 14px;
+
+                &_bda {
+                    color: $color-violet;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $breakpoint_tablet_max) {
+    .header {
+        padding: 12px 0px;
+
+        .logo_mobile {
+            height: 30px;
+            width: 100px;
+        }
+
+        .container {
+            .menu {
+                .items {
+                    margin-left: 20px;
+                    min-width: 380px;
+                    padding: 0 15px;
+                    font-weight: 200;
+                    line-height: 11px;
+
+                    a {
+                        font-size: 11px;
+                        color: $text-color-white;
+                        font-weight: 200;
+                    }
+
+                    .collab {
+                        font-size: 8px;
+                    }
+
+                    .ant-space-item {
+                        font-size: 11px;
+                        font-weight: 200;
+                    }
+
+                    .app-header__collab-icon {
+                        height: 6px;
+                        width: auto;
+                    }
+
+                    .locking {
+                        min-width: 93px;
+                    }
+                }
+            }
+        }
+    }
+}

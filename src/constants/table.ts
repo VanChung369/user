@@ -1,0 +1,7 @@
+export const TABLE = {
+  SIZE_PAGINATION: 'default',
+  TOTAL_PAGINATION: 0,
+  CURRENT_PAGINATION: 1,
+  PAGE_SIZE_OPTION: ['10', '20', '50'],
+  PAGE_SIZE_PAGINATION: 10,
+};

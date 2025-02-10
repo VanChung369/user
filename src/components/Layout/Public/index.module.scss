@@ -1,0 +1,26 @@
+@import "@/styles/variables.scss";
+
+.content {
+    min-height: calc(100vh - 195px - 118px - 33px - 110px);
+    padding-bottom: 20px;
+
+    .scroll_top {
+        display: none;
+    }
+
+    .scroll_top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        background: $background-button-gray;
+        border-radius: 10px;
+
+        img {
+            height: 24px;
+            width: 24px;
+        }
+    }
+}

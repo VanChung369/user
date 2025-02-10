@@ -1,0 +1,42 @@
+@import "@/styles/variables.scss";
+
+.button {
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: $color-violet;
+    height: 60px;
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid $color-violet;
+    padding: 11px 16px;
+    line-height: 26px;
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+
+    &:focus,
+    &:active,
+    &:hover {
+      background: $color-violet !important;
+      color: $text-color-white !important;
+      opacity: 0.8;
+      border-radius: 5px;
+    }
+  }
+
+  &__icon {
+    margin-left: 20px;
+    margin-right: 12px;
+  }
+
+  &__text {
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0.015em;
+    color: $text-color-white;
+    border: 1px solid $color-violet;
+  }
+}

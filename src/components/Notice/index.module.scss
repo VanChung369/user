@@ -1,0 +1,101 @@
+@import "@/styles/variables.scss";
+@import "@/styles/mixins.scss";
+
+.notification {
+  &_badge {
+    .ant-badge-count {
+      top: 6px;
+      right: 7px;
+      color: white;
+    }
+  }
+  &_icon {
+    padding: 4px;
+    vertical-align: middle;
+    cursor: pointer;
+    filter: brightness(0) invert(1);
+  }
+  &_card {
+    border-radius: 5px;
+    width: 394px;
+    height: auto;
+    background-color: $color-gray !important;
+    padding: 15px;
+    &__title {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 21px;
+      letter-spacing: 0.04em;
+      margin-bottom: 5px;
+      color: $text-color-white;
+    }
+
+    &__group {
+      gap: 10px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid $disabled-color;
+      cursor: pointer;
+
+      &_content {
+        width: 95%;
+        &_text {
+          width: 100%;
+          padding-top: 14px;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 21px;
+          letter-spacing: 0.015em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 1;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+        }
+        &_sub_text {
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 14px;
+          color: #c4c4c4;
+          padding-top: 2px;
+
+          span:nth-child(2) {
+            margin-left: 4px;
+          }
+        }
+        &_effect {
+          &_dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: $color-violet;
+            margin-left: -2px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.notFound {
+  padding: 73px 0 88px;
+  color: $color-sliver;
+  text-align: center;
+  img {
+    display: inline-block;
+    height: 76px;
+    margin-bottom: 16px;
+  }
+  div {
+    color: $color-sliver;
+  }
+}
+
+.infinite-scroll-component {
+  overflow: auto;
+  overflow-x: hidden !important;
+  max-height: 350px;
+  padding-right: 20px;
+  @include scrollbars();
+  padding: 0 10px;
+}

@@ -1,0 +1,40 @@
+export default {
+  'codeMessage.S1': 'Tạo NFT thành công',
+  'codeMessage.S2': 'Xóa NFT thành công',
+  'codeMessage.S3': 'Cập nhật NFT thành công',
+  'codeMessage.S4': 'Tạo đơn đặt hàng thành công',
+  'codeMessage.S5': 'Tạo thẻ thành công',
+  'codeMessage.S6': 'Cập nhật thẻ thành công',
+  'codeMessage.S7': 'Tạo bộ sưu tập thành công',
+  'codeMessage.S8': 'Cập nhật bộ sưu tập thành công',
+
+  //error message
+  'codeMessage.E1': 'Đăng nhập thất bại',
+  'codeMessage.E2':
+    'Ví của bạn chưa được đăng ký làm quản trị viên nên không thể truy cập vào hệ thống.',
+  'codeMessage.E3': 'Kích thước tệp vượt quá {size} MB.',
+  'codeMessage.E4': 'Loại tệp không được hỗ trợ',
+  'codeMessage.E5': 'Tạo NFT không thành công',
+  'codeMessage.E6': 'Phải chọn số cột lớn hơn {column}',
+  'codeMessage.E7': 'Phải chọn số cột ít hơn {column}',
+  'codeMessage.E8': 'Xóa NFT không thành công',
+  'codeMessage.E9': 'Lấy danh sách NFT không thành công',
+  'codeMessage.E10': 'Lấy danh sách chủ sở hữu NFT không thành công',
+  'codeMessage.E11': 'Lấy danh sách Lịch sử NFT không thành công',
+  'codeMessage.E12': 'Cập nhật NFT không thành công',
+  'codeMessage.E13': 'Tạo đơn đặt hàng không thành công',
+  'codeMessage.E14': 'Lấy đơn đặt hàng không thành công',
+  'codeMessage.E15': 'Lấy phân tích thất bại',
+  'codeMessage.E16': 'Lấy giao dịch không thành công',
+  'codeMessage.E17': 'Lấy tổng quan thất bại',
+  'codeMessage.E18': 'Thẻ lỗi',
+  'codeMessage.E19': 'Tạo thẻ không thành công',
+  'codeMessage.E20': 'Thẻ cập nhật không thành công',
+  'codeMessage.E21': 'Tạo bộ sưu tập không thành công',
+  'codeMessage.E22': 'Bộ sưu tập cập nhật không thành công',
+
+  // server error
+  'codeMessage.E100': 'Dữ liệu không hợp lệ',
+  'codeMessage.E101': 'Dữ liệu không tồn tại',
+  'codeMessage.E102': 'Dữ liệu đã có trong hệ thống',
+};

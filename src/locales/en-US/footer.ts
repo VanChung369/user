@@ -1,0 +1,17 @@
+export default {
+  "footer.nft.treasure": "NFT treasure",
+  "footer.about": "About",
+  "footer.ecosystem": "Ecosystem",
+  "footer.contact": "Contact",
+  "footer.ecosystem.landing.page": "Landing Page",
+  "footer.ecosystem.minting": "Minting",
+  "footer.ecosystem.rankings": "Rankings",
+  "footer.join.our": "Join our community",
+  "footer.title": "NFT marketplace UI created with Anima for Figma.",
+  "footer.about.terms.of.service": "Terms Of Service",
+  "footer.about.privacy.policy": "Privacy Policy",
+  "footer.about.faqs": "Faqs",
+  "footer.contact.email": "vanchung917@gmail.com",
+  "footer.contact.phone": "84-74-688-410",
+  "footer.copy.right": "©2025 NFT treasure. All rights reserved.",
+};

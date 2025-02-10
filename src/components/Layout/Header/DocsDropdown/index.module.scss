@@ -1,0 +1,35 @@
+@import "@/styles/variables.scss";
+
+.docs {
+    color: $text-color-white;
+    font-weight: 300;
+    font-size: 14px;
+
+    &_menu {
+        .item {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid $color-gray;
+            cursor: pointer;
+            color: $text-color-white;
+
+            span {
+                font-weight: 300;
+                font-size: 14px;
+                line-height: 19px;
+                display: flex;
+                align-items: center;
+                letter-spacing: 0.005em;
+                padding: 15px 0px;
+
+                &.ml-0 {
+                    margin-left: 0;
+                }
+            }
+
+            span.disconnect {
+                margin-left: 10px;
+            }
+        }
+    }
+}

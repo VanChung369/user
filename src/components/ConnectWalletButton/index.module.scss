@@ -1,0 +1,29 @@
+@import "@/styles/variables.scss";
+
+.connect {
+    &__button {
+        cursor: pointer;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        border-radius: 3px;
+        border: none;
+        text-transform: uppercase;
+        padding: 7px 24px;
+        background: $color-violet;
+        color: $text-color-white;
+
+        &:focus,
+        &:active,
+        &:hover {
+            background: $color-violet !important;
+            color: $text-color-white !important;
+            opacity: 0.8;
+        }
+    }
+}

@@ -1,0 +1,75 @@
+@import "@/styles/variables.scss";
+
+.desktop {
+    &__button {
+        width: 187px;
+        cursor: pointer;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        border-radius: 3px;
+        border: none;
+        text-transform: uppercase;
+        padding: 7px 24px;
+        background: $color-violet;
+        color: $text-color-white;
+        margin-left: 10px;
+
+        span {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 21px;
+            letter-spacing: 0.04em;
+            color: $text-color-white;
+        }
+
+        &:focus,
+        &:active,
+        &:hover {
+            background: $color-violet !important;
+            color: $text-color-white !important;
+        }
+    }
+
+    &_menu {
+        &__address {
+            padding: 8px 0;
+            gap: 8px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid $color-gray;
+            cursor: pointer;
+            color: $text-color-white;
+
+            span {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 19px;
+                display: flex;
+                align-items: center;
+                letter-spacing: 0.005em;
+                padding: 15px 0px;
+
+                &.ml-0 {
+                    margin-left: 0;
+                }
+            }
+
+            span.disconnect {
+                margin-left: 10px;
+            }
+        }
+    }
+}

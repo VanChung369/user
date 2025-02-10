@@ -1,0 +1,130 @@
+@import "@/styles/variables.scss";
+
+.footer {
+    background: $color-dark-slate;
+    margin-top: 5.625rem;
+
+    @media only screen and (max-width: $breakpoint_tablet_max) {
+        margin-top: 2.375rem;
+    }
+
+    &__body {
+        height: 242px;
+        padding: 30px 0;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.005em;
+        color: $text-color-white;
+
+        @media only screen and (max-width: $breakpoint_tablet_max) {
+            height: auto;
+            font-size: 14px;
+            line-height: 28px;
+            padding: 15px 24px;
+            color: $text-color-white;
+        }
+
+        &__logo {
+            font-family: "Amore Dreaming Sans Serif";
+            text-transform: uppercase;
+            font-weight: 400;
+            font-size: 1.5rem;
+            line-height: 2.125rem;
+            color: #b38465;
+            letter-spacing: 0.1em;
+            margin-top: 0;
+
+            &_title {
+                font-weight: 300;
+                font-size: 13px;
+                line-height: 20px;
+                margin-top: 24px;
+                margin-bottom: 1.5rem;
+                color: $text-color-white;
+
+                @media only screen and (max-width: $breakpoint_tablet_max) {
+                    margin-bottom: 2.75rem;
+                }
+            }
+        }
+
+        &__title {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 26px;
+            text-transform: uppercase;
+            color: $text-color-white;
+            padding-bottom: 20px;
+
+            @media only screen and (max-width: $breakpoint_tablet_max) {
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 19px;
+                text-transform: capitalize;
+            }
+        }
+
+        &__contact {
+            display: flex;
+            &__icon {
+                padding-right: 5px;
+            }
+        }
+
+        &__ecosystem {
+            margin-bottom: 24px;
+        }
+
+        &__description {
+            max-width: 270px;
+            padding-bottom: 20px;
+
+            @media only screen and (max-width: $breakpoint_tablet_max) {
+                padding-top: 14px;
+            }
+        }
+
+        a {
+            color: $text-color-white;
+            font-weight: 300;
+            font-size: 13px;
+            line-height: 13px;
+            margin-bottom: 24px;
+
+            @media only screen and (max-width: $breakpoint_tablet_max) {
+                font-weight: 300;
+                font-size: 13px;
+                line-height: 13px;
+            }
+        }
+    }
+
+    &__copy_right {
+        padding: 8px 0;
+        background-color: $color-dark-horizon;
+        color: $text-color-white;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+
+        @media only screen and (max-width: $breakpoint_tablet_max) {
+            height: 32px;
+            font-size: 12px;
+            color: $text-color-white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__contact {
+        display: flex;
+        &_icon {
+            padding-right: 10px;
+        }
+        &_button {
+            margin-bottom: 24px;
+        }
+    }
+}

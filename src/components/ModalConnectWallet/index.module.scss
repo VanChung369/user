@@ -1,0 +1,179 @@
+@import "@/styles/variables.scss";
+
+.container {
+  max-height: 75vh;
+  padding: 12px 24px;
+  :global {
+    .ant-modal-content {
+      background-color: $background-disabled !important;
+      border-radius: 15px;
+      max-height: 100vh;
+      padding: 20px 47px;
+    }
+
+    .ant-modal-close {
+      color: $text-color-white;
+
+      &:hover {
+        color: $color-violet;
+        opacity: 0.6;
+        background: none;
+      }
+    }
+  }
+
+  .connect {
+    &__loading {
+      &_title {
+        color: $text-color-white;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 1.1;
+        letter-spacing: 1;
+      }
+
+      &_subtitle {
+        color: $text-color-white;
+        font-weight: 400;
+        line-height: 1.5;
+        font-size: 16px;
+      }
+
+      &_image {
+        width: 100%;
+        margin-top: 24px;
+        margin-bottom: 32px;
+        position: relative;
+      }
+
+      &_icon {
+        position: absolute;
+        top: 0;
+        left: 50%;
+      }
+    }
+
+    &__not_found {
+      &_title {
+        color: $text-color-white;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 1.1;
+        letter-spacing: 1;
+      }
+
+      &_subtitle {
+        color: $text-color-white;
+        font-weight: 400;
+        line-height: 1.5;
+        font-size: 16px;
+        margin-bottom: 24px;
+      }
+
+      &_image {
+        width: 100%;
+        margin-top: 24px;
+        margin-bottom: 24px;
+        position: relative;
+      }
+
+      &_icon {
+        position: absolute;
+        top: 0;
+        left: 50%;
+      }
+
+      &_download {
+        width: 100%;
+        position: relative;
+        align-items: center;
+        border-radius: 10px;
+        cursor: pointer;
+        display: inline-flex;
+        justify-content: center;
+        outline: 0px;
+        transition:
+          background-color 0.2s ease 0s,
+          opacity 0.2s ease 0s;
+        height: 48px;
+        padding: 0px 24px;
+        background-color: transparent;
+        border: 2px solid $color-bright-turquoise;
+        box-shadow: none;
+
+        a {
+          font-size: 16px;
+          font-weight: 500;
+          color: $color-bright-turquoise;
+          letter-spacing: 0.03em;
+          line-height: 1.5;
+        }
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+
+  .wallet {
+    &__title {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px;
+      text-align: center;
+      letter-spacing: 0.015em;
+      margin-bottom: 20px;
+      color: $color-violet;
+
+      @media screen and (max-width: $breakpoint_tablet_max) {
+        padding-top: 62px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: $color-violet;
+      }
+    }
+
+    &__button {
+      &__sub_title {
+        text-align: center;
+        font-weight: 400;
+        font-size: 14px;
+        color: $text-color-white;
+        letter-spacing: 0.05em;
+        line-height: 25px;
+        padding-bottom: 32px;
+
+        @media screen and (max-width: $breakpoint_tablet_max) {
+          font-size: 14px;
+          line-height: 18px;
+        }
+      }
+
+      &__sub_note {
+        display: flex;
+        align-items: flex-start;
+        font-weight: 400;
+        font-size: 14px;
+        color: $color-sliver;
+        line-height: 21px;
+        padding: 24px 0px 0px 0px;
+
+        &__image {
+          padding-right: 10px;
+        }
+
+        a {
+          color: $error-color;
+          text-decoration-line: underline;
+        }
+
+        @media screen and (max-width: $breakpoint_tablet_max) {
+          font-size: 14px;
+          line-height: 18px;
+        }
+      }
+    }
+  }
+}

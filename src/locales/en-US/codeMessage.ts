@@ -1,0 +1,41 @@
+export default {
+  "codeMessage.S1": "Create NFT successfully",
+  "codeMessage.S2": "Delete NFT successfully",
+  "codeMessage.S3": "Update NFT successfully",
+  "codeMessage.S4": "Create Sale Orders successfully",
+  "codeMessage.S5": "Create Tag successfully",
+  "codeMessage.S6": "Update Tag successfully",
+  "codeMessage.S7": "Create collection successfully",
+  "codeMessage.S8": "Update collection successfully",
+
+  //error message
+  "codeMessage.E1": "login failed",
+  "codeMessage.E2":
+    "Your wallet has not been registered as admin, thus you cannot access the system.",
+  "codeMessage.E3": "File size is exceeding {size}MB.",
+  "codeMessage.E4": "File type not supported",
+  "codeMessage.E5": "Create NFT failed",
+  "codeMessage.E6": "Must select number of columns greater than {column}",
+  "codeMessage.E7": "Must select number of columns less than {column}",
+  "codeMessage.E8": "Delete NFT failed",
+  "codeMessage.E9": "Get list NFT failed",
+  "codeMessage.E10": "Get list NFT owner failed",
+  "codeMessage.E11": "Get list NFT history failed",
+  "codeMessage.E12": "Update NFT failed",
+  "codeMessage.E13": "Create Sale Order failed",
+  "codeMessage.E14": "Get sale order failed",
+  "codeMessage.E15": "Get analytics failed",
+  "codeMessage.E16": "Get transactions failed",
+  "codeMessage.E17": "Get overview failed",
+  "codeMessage.E18": "Error tag",
+  "codeMessage.E19": "Create Tag failed",
+  "codeMessage.E20": "Update Tag failed",
+  "codeMessage.E21": "Create collection failed",
+  "codeMessage.E22": "Update collection failed",
+
+  // server error
+  "codeMessage.E100": "Data invalid",
+  "codeMessage.E101": "No data exit",
+  "codeMessage.E102": "Data exit",
+  "codeMessage.E103": "Server error. Please try again!",
+};

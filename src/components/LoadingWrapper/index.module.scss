@@ -1,0 +1,11 @@
+.loading {
+  height: 100vh !important;
+  width: 100%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  &__icon {
+    font-size: 40px !important;
+  }
+}

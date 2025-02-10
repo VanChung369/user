@@ -1,0 +1,122 @@
+@import "@/styles/variables.scss";
+
+.container {
+  max-height: 90vh;
+  padding: 12px 24px;
+
+  :global {
+    .ant-modal-content {
+      background-color: $background-disabled;
+      border-radius: 15px;
+      max-height: 100vh;
+      min-height: 400px;
+      padding: 24px 12px;
+    }
+  }
+
+  .wrong_network {
+    &__title {
+      color: $text-color-white;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 1.1;
+      letter-spacing: 1;
+    }
+
+    &__subtitle {
+      color: $text-color-white;
+      font-weight: 400;
+      line-height: 1.5;
+      font-size: 16px;
+    }
+
+    &__image {
+      width: 100%;
+      margin-top: 18px;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    &__icon {
+      position: absolute;
+      top: 0;
+      left: 35%;
+    }
+
+    &__switch {
+      border-radius: 10px;
+      border: 2px solid $color-heliotrope;
+      padding: 8px 12px;
+      background: rgba(255, 178, 255, 0.098);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 1em;
+
+      &_icon {
+        align-self: center;
+        color: $color-heliotrope;
+        filter: invert(8%) sepia(100%) saturate(6230%) hue-rotate(268deg) brightness(165%) contrast(90%);
+      }
+
+      &_title {
+        color: $color-heliotrope;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: center;
+        margin: unset;
+      }
+
+      &_polygon {
+        width: 100%;
+        position: relative;
+        align-items: center;
+        border-radius: 10px;
+        cursor: pointer;
+        display: inline-flex;
+        justify-content: center;
+        outline: 0px;
+        height: 48px;
+        padding: 0px 24px;
+        border: 2px solid $color-bright-turquoise;
+        background-color: $color-bright-turquoise;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        line-height: 1;
+        color: $color-licorice;
+        margin-bottom: 1em;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+
+    &__disconnect {
+      width: 100%;
+      position: relative;
+      align-items: center;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-flex;
+      justify-content: center;
+      outline: 0px;
+      height: 48px;
+      padding: 0px 24px;
+      border: 2px solid $color-bright-turquoise;
+      background: unset;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      line-height: 1;
+      color: $color-bright-turquoise;
+      margin-bottom: 1em;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}

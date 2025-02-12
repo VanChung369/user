@@ -14,7 +14,7 @@ export default class Wallet {
   isAdmin = async (_account: string) => {
     try {
       const contract = await sdk.getContract(
-        process.env.UMI_APP_PROXY_ADDRESS!
+        process.env.NEXT_PUBLIC_PROXY_ADDRESS!
       );
 
       return await contract.call("isAdmin", [_account]);

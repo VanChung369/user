@@ -20,6 +20,7 @@ import tag from "./en-US/tag";
 import collection from "./en-US/collection";
 import header from "./en-US/header";
 import footer from "./en-US/footer";
+import home from "./en-US/home";
 
 export default {
   "navBar.lang": "Languages",
@@ -54,4 +55,5 @@ export default {
   ...collection,
   ...header,
   ...footer,
+  ...home,
 };

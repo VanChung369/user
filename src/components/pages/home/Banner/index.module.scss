@@ -1,0 +1,154 @@
+@import "@/styles/variables.scss";
+
+.home_banner {
+    background-image: url("../../../../../public/images/banner-image.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+
+    @media only screen and (max-width: $breakpoint_tablet_sm) {
+        background-image: url("../../../../../public/images/banner-image-mobile.png");
+        padding: 4rem 0;
+    }
+
+    @media only screen and (max-width: $breakpoint_tablet_max) {
+        height: fit-content;
+        flex-direction: column;
+    }
+
+    .home_banner_content {
+        height: 400px;
+        margin: 40px 0;
+
+        @media only screen and (max-width: $breakpoint_tablet_sm) {
+            height: 100%;
+        }
+
+        &__title {
+            font-family: "Amore Dreaming Sans Serif";
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 3rem;
+            line-height: 3.125rem;
+            color: $text-color-white;
+            letter-spacing: 0.1em;
+            margin-top: 0;
+        }
+
+        &__text {
+            font-weight: 300;
+            font-size: 1rem;
+            line-height: 1.7rem;
+            color: #c8cacc;
+            margin-bottom: 2rem;
+        }
+
+        &__button {
+            cursor: pointer;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            text-align: center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            border-radius: 25px;
+            border: none;
+            text-transform: uppercase;
+            padding: 7px 24px;
+            background: $color-violet;
+            color: $text-color-white;
+
+            &:focus,
+            &:active,
+            &:hover {
+                background: $color-violet !important;
+                color: $text-color-white !important;
+                opacity: 0.8;
+            }
+        }
+    }
+    .image {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+
+        img {
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+    }
+    .content {
+        margin-top: 20px;
+    }
+
+    .item {
+        color: $text-color-white;
+
+        span {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 16px;
+            text-transform: capitalize;
+            margin-right: 10px;
+        }
+
+        .text {
+            font-weight: 300;
+            font-size: 1rem;
+            line-height: 1.7rem;
+            margin-bottom: 2rem;
+        }
+
+        .icon {
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+        }
+    }
+
+    .overview {
+        padding: 1.5rem 0 1.5rem 0;
+        gap: 4rem;
+
+        @media only screen and (max-width: $breakpoint_tablet_md) {
+            padding: 1.25rem;
+        }
+    }
+
+    :global {
+        .ant-carousel {
+            height: 450px;
+            @media only screen and (max-width: $breakpoint_tablet_sm) {
+                height: inherit;
+            }
+
+            .ant-statistic-title {
+                margin-bottom: 0;
+                margin-right: 3px;
+            }
+
+            .slick-dots li {
+                width: 2.5rem;
+
+                & button {
+                    background: #5c6873;
+                }
+
+                &.slick-active button {
+                    background: $color-violet;
+                }
+            }
+
+            .slick-dots-bottom {
+                position: absolute;
+                margin-bottom: 1.4rem;
+
+                @media only screen and (max-width: $breakpoint_tablet_sm) {
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,199 @@
+@import "@/styles/variables.scss";
+
+.collection_card {
+    color: $text-color-white;
+    align-items: flex-start;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: auto;
+    mix-blend-mode: normal;
+    position: relative;
+    width: 340px;
+
+    @media only screen and (max-width: $breakpoint_tablet_max) {
+        margin-bottom: 20px;
+    }
+
+    .collection_card_content {
+        align-items: flex-start;
+        align-self: stretch;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        height: auto;
+        position: relative;
+
+        .primary_photo {
+            height: 330px;
+            max-width: 340px;
+            align-self: stretch;
+            background-color: transparent;
+            cursor: pointer;
+            mix-blend-mode: normal;
+            object-fit: cover;
+            pointer-events: auto;
+            position: relative;
+            transition: all 0.3s ease;
+            border-radius: 20px;
+            transition: transform 0.5s ease-in-out;
+
+            @media only screen and (max-width: $breakpoint_laptop_max) {
+                width: 320px;
+            }
+
+            &:hover {
+                transform: scale(0.95);
+            }
+        }
+
+        .content_frame {
+            align-items: flex-start;
+            align-self: stretch;
+            background-color: transparent;
+            display: flex;
+            gap: 15px;
+            height: auto;
+            position: relative;
+
+            @media only screen and (max-width: $breakpoint_laptop_max) {
+                width: 320px;
+                gap: 9px;
+            }
+
+            .secondary_photo {
+                background-color: transparent;
+                cursor: pointer;
+                flex: 1;
+                height: 100px;
+                min-width: 100px;
+                mix-blend-mode: normal;
+                object-fit: cover;
+                pointer-events: auto;
+                position: relative;
+                transition: all 0.3s ease;
+                border-radius: 20px;
+                transition: transform 0.5s ease-in-out;
+
+                &:hover {
+                    transform: scale(0.95);
+                }
+            }
+
+            .secondary_text {
+                align-items: center;
+                background-color: $color-violet;
+                border-radius: 20px;
+                cursor: pointer;
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+                gap: 10px;
+                height: 100px;
+                justify-content: center;
+                mix-blend-mode: normal;
+                padding: 32px 15px;
+                pointer-events: auto;
+                position: relative;
+
+                transition: all 0.5s ease;
+
+                &:hover {
+                    transform: scale(0.95);
+                }
+
+                .secondary_text_middle {
+                    background-color: transparent;
+                    letter-spacing: 0px;
+                    line-height: 35.2px;
+                    margin-top: -0.5px;
+                    mix-blend-mode: normal;
+                    position: relative;
+                    text-align: center;
+                    white-space: nowrap;
+                    width: fit-content;
+                    font-size: 18px;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+
+    .collection_card_info {
+        align-items: flex-start;
+        align-self: stretch;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        height: auto;
+        position: relative;
+
+        .info_name {
+            align-self: stretch;
+            background-color: transparent;
+            letter-spacing: 0px;
+            line-height: 30.8px;
+            margin-top: -1px;
+            mix-blend-mode: normal;
+            position: relative;
+            text-align: left;
+            white-space: nowrap;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .info_artist {
+            align-items: flex-start;
+            align-self: stretch;
+            background-color: transparent;
+            border-radius: 20px;
+            display: flex;
+            gap: 12px;
+            height: auto;
+            position: relative;
+
+            .info_artist_avatar {
+                align-items: flex-start;
+                background-color: transparent;
+                cursor: pointer;
+                display: flex;
+                gap: 10px;
+                height: auto;
+                mix-blend-mode: normal;
+                pointer-events: auto;
+                position: relative;
+                transition: all 0.3s ease;
+                width: fit-content;
+
+                .info_artist_avatar_image {
+                    background-color: transparent;
+                    cursor: pointer;
+                    height: 25px;
+                    left: 0px;
+                    mix-blend-mode: normal;
+                    object-fit: cover;
+                    position: absolute;
+                    top: 0px;
+                    width: 25px;
+                }
+            }
+
+            .info_artist_name {
+                background-color: transparent;
+                flex: 1;
+                letter-spacing: 0px;
+                line-height: 22.4px;
+                mix-blend-mode: normal;
+                position: relative;
+                text-align: left;
+                white-space: nowrap;
+                font-size: 14px;
+                font-weight: 500;
+                margin-left: 20px;
+            }
+        }
+    }
+}

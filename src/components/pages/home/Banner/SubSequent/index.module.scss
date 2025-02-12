@@ -1,0 +1,184 @@
+@import "@/styles/variables.scss";
+
+.sub_sequent {
+    .sub_sequent_content {
+        height: 400px;
+        margin: 40px 0;
+
+        @media only screen and (max-width: $breakpoint_tablet_sm) {
+            height: 100%;
+        }
+
+        &__title {
+            div {
+                font-family: "Amore Dreaming Sans Serif";
+                text-transform: uppercase;
+                font-weight: 600;
+                font-size: 3rem;
+                line-height: 3.125rem;
+                color: $text-color-white;
+                letter-spacing: 0.1em;
+                margin-top: 0;
+            }
+        }
+
+        &__text {
+            font-weight: 300;
+            font-size: 1rem;
+            line-height: 1.7rem;
+            color: #c8cacc;
+            margin-bottom: 2rem;
+        }
+
+        &__button {
+            cursor: pointer;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            text-align: center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            border-radius: 15px;
+            border: none;
+            text-transform: uppercase;
+            padding: 7px 24px;
+            background: $color-violet;
+            color: $text-color-white;
+            margin-top: 20px;
+
+            &:focus,
+            &:active,
+            &:hover {
+                background: $color-violet !important;
+                color: $text-color-white !important;
+                opacity: 0.8;
+            }
+        }
+    }
+    .image {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+
+        img {
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+    }
+    .content {
+        margin-top: 20px;
+    }
+
+    .item {
+        color: $text-color-white;
+
+        span {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 16px;
+            text-transform: capitalize;
+            margin-right: 10px;
+        }
+
+        .text {
+            font-weight: 300;
+            font-size: 1rem;
+            line-height: 1.7rem;
+            margin-bottom: 2rem;
+        }
+
+        .icon {
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+        }
+    }
+
+    .overview {
+        padding: 1.5rem 0.875rem 1.5rem 2.75rem;
+        grid-gap: 4rem;
+        gap: 4rem;
+        background: rgba(224, 233, 242, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 8px;
+
+        @media only screen and (max-width: $breakpoint_tablet_md) {
+            padding: 1.25rem;
+        }
+
+        &_title {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 1.7rem;
+            color: $text-color-white;
+        }
+    }
+
+    .ant_statistic {
+        padding-bottom: 10px;
+        &.text_end {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            line-height: 21px;
+            font-weight: 500;
+            margin: 10px 0;
+
+            span {
+                font-size: inherit;
+            }
+
+            img {
+                margin-right: 3px;
+            }
+        }
+
+        .ant-statistic-title {
+            margin-bottom: 0;
+            margin-right: 3px;
+        }
+
+        &__end {
+            color: #51606f;
+        }
+    }
+
+    .countdown {
+        display: flex;
+        align-items: center;
+        margin: 0.75rem 0;
+        font-size: 14px;
+        line-height: 21px;
+        font-weight: 500;
+        color: $text-color-white;
+        margin-bottom: 20px;
+
+        @media only screen and (max-width: $breakpoint_tablet_max) {
+            display: block;
+        }
+
+        .label {
+            margin-right: 10px;
+        }
+
+        .time {
+            display: flex;
+            align-items: center;
+        }
+
+        .countdown_item {
+            &:first-child {
+                margin-left: 0;
+            }
+
+            width: 3.75rem;
+            padding: 0.625rem 0;
+            text-align: center;
+            background-color: #707c88;
+            border-radius: 4px;
+            margin: 0 1rem;
+        }
+    }
+}

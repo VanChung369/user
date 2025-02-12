@@ -4,8 +4,8 @@
 .notification {
   &_badge {
     .ant-badge-count {
-      top: 6px;
-      right: 7px;
+      top: 5px;
+      right: 6px;
       color: white;
     }
   }
@@ -21,6 +21,7 @@
     height: auto;
     background-color: $color-gray !important;
     padding: 15px;
+
     &__title {
       font-weight: 700;
       font-size: 16px;
@@ -28,6 +29,7 @@
       letter-spacing: 0.04em;
       margin-bottom: 5px;
       color: $text-color-white;
+      color: white;
     }
 
     &__group {
@@ -51,6 +53,7 @@
           -webkit-line-clamp: 1;
           display: -webkit-box;
           -webkit-box-orient: vertical;
+          color: white;
         }
         &_sub_text {
           font-weight: 400;

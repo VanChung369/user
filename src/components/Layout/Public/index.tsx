@@ -7,6 +7,7 @@ import LoadingWrapper from "@/components/LoadingWrapper";
 import Header from "../Header";
 import style from "./index.module.scss";
 import Footer from "../Footer";
+import { UpOutlined } from "@ant-design/icons";
 
 const LayoutPublic: FC<{
   children: any;
@@ -38,11 +39,9 @@ const LayoutPublic: FC<{
       <div className={className}>
         {!notShowHeader && <Header />}
         <div className={style.content}>
-          <FloatButton.BackTop>
-            <div className={style.scroll_top}>
-              <img src={ChevronUpIcon} />
-            </div>
-          </FloatButton.BackTop>
+          <FloatButton.BackTop
+            icon={<UpOutlined style={{ color: "white" }} />}
+          />
           {children}
         </div>
 

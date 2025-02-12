@@ -61,7 +61,7 @@ const Notice: React.FC = () => {
       totalDocs = 0,
       totalUnread = 0,
       page,
-    } = data?.pages?.slice(-1)[0] || {};
+    } = data?.pages?.slice(-1)[0]?.data || {};
     setNotices(page === DEFAULT_PAGE ? [...docs] : [...notices, ...docs]);
     setTotalNotification(totalDocs);
     setTotalUnread(totalUnread);

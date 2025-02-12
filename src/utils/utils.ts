@@ -38,6 +38,7 @@ import { DATE_FORMAT } from "@/constants/date";
 import BigNumber from "bignumber.js";
 // import { NFT_ATTRIBUTE_CREATED_FIELD, NFT_CREATE_FIELD } from '@/pages/nft/constants';
 import { ethers } from "ethers";
+import { SALE_STATUS_ORDER_VALUE } from "@/constants/saleOrder";
 
 // const {
 //   FILE,
@@ -122,6 +123,45 @@ export const isAddress = (address: string) => {
 
 //   return JSON.stringify(prevNft) !== JSON.stringify(newNft);
 // };
+
+export const compareDate = (date1: any, date2: any) => {
+  if (moment(date1).isBefore(date2)) {
+    return -1;
+  }
+  if (moment(date1).isAfter(date2)) {
+    return 1;
+  }
+  return 0;
+};
+
+export const compareSaleOrder = (firstSaleOrder: any, secondSaleOrder: any) => {
+  if (firstSaleOrder.status === secondSaleOrder.status) {
+    const sortDate =
+      firstSaleOrder.status === SALE_STATUS_ORDER_VALUE.COMING_SOON
+        ? compareDate(firstSaleOrder?.startDate, secondSaleOrder?.startDate)
+        : compareDate(firstSaleOrder?.endDate, secondSaleOrder?.endDate);
+    if (sortDate === 0) {
+      return firstSaleOrder?.name.localeCompare(secondSaleOrder?.name);
+    }
+    return sortDate;
+  }
+
+  if (firstSaleOrder.status === SALE_STATUS_ORDER_VALUE.LISTED) {
+    return -1;
+  }
+
+  if (firstSaleOrder.status === SALE_STATUS_ORDER_VALUE.LISTED) {
+    return 1;
+  }
+
+  if (firstSaleOrder.status === SALE_STATUS_ORDER_VALUE.COMING_SOON) {
+    return -1;
+  }
+
+  if (firstSaleOrder.status === SALE_STATUS_ORDER_VALUE.COMING_SOON) {
+    return 1;
+  }
+};
 
 export const checkValueChange = (preVal: object, newVal: object) => {
   return JSON.stringify(preVal) !== JSON.stringify(newVal);
@@ -923,104 +963,6 @@ export function calculateBoundSize(
     height = maxHeight;
   }
   return [width, height];
-}
-
-export function sum(nums: number[]): number {
-  const length = nums.length;
-  let total = 0;
-
-  for (let i = length - 1; i >= 0; --i) {
-    total += nums[i];
-  }
-  return total;
-}
-
-export function average(nums: number[]) {
-  const length = nums.length;
-  let total = 0;
-
-  for (let i = length - 1; i >= 0; --i) {
-    total += nums[i];
-  }
-  return length ? total / length : 0;
-}
-
-export function getRad(pos1: number[], pos2: number[]): number {
-  const distX = pos2[0] - pos1[0];
-  const distY = pos2[1] - pos1[1];
-  const rad = Math.atan2(distY, distX);
-
-  return rad >= 0 ? rad : rad + Math.PI * 2;
-}
-
-export function getCenterPoint(points: number[][]): number[] {
-  return [0, 1].map((i) => average(points.map((pos) => pos[i])));
-}
-
-export function getShapeDirection(points: number[][]): 1 | -1 {
-  const center = getCenterPoint(points);
-  const pos1Rad = getRad(center, points[0]);
-  const pos2Rad = getRad(center, points[1]);
-
-  return (pos1Rad < pos2Rad && pos2Rad - pos1Rad < Math.PI) ||
-    (pos1Rad > pos2Rad && pos2Rad - pos1Rad < -Math.PI)
-    ? 1
-    : -1;
-}
-
-export function getDist(a: number[], b?: number[]) {
-  return Math.sqrt(
-    Math.pow((b ? b[0] : 0) - a[0], 2) + Math.pow((b ? b[1] : 0) - a[1], 2)
-  );
-}
-
-export function throttleArray(nums: number[], unit?: number) {
-  nums.forEach((_, i) => {
-    nums[i] = throttle(nums[i], unit);
-  });
-  return nums;
-}
-
-export function counter(num: number): number[] {
-  const nums: number[] = [];
-
-  for (let i = 0; i < num; ++i) {
-    nums.push(i);
-  }
-
-  return nums;
-}
-
-export function replaceOnce(
-  text: string,
-  fromText: RegExp | string,
-  toText: string | ((...args: any[]) => string)
-): string {
-  let isOnce = false;
-  return text.replace(fromText, (...args: any[]) => {
-    if (isOnce) {
-      return args[0];
-    }
-    isOnce = true;
-    return isString(toText) ? toText : toText(...args);
-  });
-}
-
-export function flat<Type>(arr: Type[][]): Type[] {
-  return arr.reduce((prev, cur) => {
-    return prev.concat(cur);
-  }, []);
-}
-
-export function deepFlat<T extends any[]>(arr: T): Array<FlattedElement<T[0]>> {
-  return arr.reduce((prev, cur) => {
-    if (isArray(cur)) {
-      prev.push(...deepFlat(cur));
-    } else {
-      prev.push(cur);
-    }
-    return prev;
-  }, [] as any[]);
 }
 
 export function removeNullProperties(obj: any): { [key: string]: any } {

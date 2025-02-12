@@ -1,0 +1,70 @@
+@import "@/styles/variables.scss";
+
+.collection {
+    margin-top: 50px;
+
+    .collection_box {
+        :gloabl {
+            .ant-row {
+                align-items: center;
+            }
+        }
+
+        background-color: transparent;
+        flex: 1;
+        color: $text-color-white;
+        letter-spacing: 0px;
+        line-height: 45.6px;
+        margin-top: -1px;
+        mix-blend-mode: normal;
+        position: relative;
+        text-align: left;
+        white-space: nowrap;
+
+        &__link {
+            align-items: center;
+            background-color: transparent;
+            border: 2px solid;
+            border-color: $color-violet;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            gap: 12px;
+            height: 60px;
+            justify-content: center;
+            padding: 0px 50px;
+            pointer-events: auto;
+            position: relative;
+            transition: all 0.3s ease;
+            width: fit-content;
+
+            a {
+                color: $text-color-white;
+                letter-spacing: 0px;
+                line-height: 45.6px;
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            &:focus,
+            &:active,
+            &:hover {
+                border-color: $color-violet;
+                background: transparent !important;
+                color: $text-color-white !important;
+                opacity: 0.8;
+            }
+        }
+
+        &__title {
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+        &__title_content {
+            font-size: 16px;
+            font-weight: 300;
+            color: #c8cacc;
+        }
+    }
+}

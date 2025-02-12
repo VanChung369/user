@@ -44,10 +44,7 @@ const ModalConnectWallet = () => {
 
   const handleConnectMetamask = () => {
     handleConnect();
-
-    if (window.ethereum) {
-      handleHideModalConnectWallet();
-    }
+    handleHideModalConnectWallet();
   };
 
   useEffect(() => {

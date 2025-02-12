@@ -1,0 +1,218 @@
+@import "@/styles/variables.scss";
+
+.nft_card {
+    color: $text-color-white;
+    align-items: center;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 469px;
+    mix-blend-mode: normal;
+    pointer-events: auto;
+    position: relative;
+    transition: all 0.5s ease;
+    background-color: $background-color;
+
+    &:hover {
+        transform: scale(0.95);
+    }
+
+    .nft_card_image {
+        align-items: flex-start;
+        align-self: stretch;
+        background-color: transparent;
+        border-radius: 20px 20px 0px 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        height: auto;
+        position: relative;
+
+        .nft_card_image_placeholder {
+            align-self: stretch;
+            background-color: transparent;
+            height: 296px;
+            max-width: 325px;
+            mix-blend-mode: normal;
+            object-fit: cover;
+            position: relative;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+    }
+
+    .nft_card_info {
+        align-items: flex-start;
+        align-self: stretch;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        height: auto;
+        padding: 20px 30px 25px;
+        position: relative;
+
+        .nft_card_artst_info {
+            align-items: flex-start;
+            align-self: stretch;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            height: auto;
+            position: relative;
+
+            .nft_card_nft_info_name {
+                align-self: stretch;
+                background-color: transparent;
+                letter-spacing: 0px;
+                line-height: 30.8px;
+                margin-top: -1px;
+                mix-blend-mode: normal;
+                position: relative;
+                text-align: left;
+                white-space: nowrap;
+                font-size: 18px;
+                font-weight: 600;
+            }
+
+            .nft_card_artist_info_avatar_name {
+                align-items: flex-start;
+                align-self: stretch;
+                background-color: transparent;
+                display: flex;
+                gap: 12px;
+                height: auto;
+                position: relative;
+
+                .nft_card_artist_info_avatar {
+                    align-items: flex-start;
+                    background-color: transparent;
+                    display: flex;
+                    gap: 10px;
+                    height: auto;
+                    mix-blend-mode: normal;
+                    position: relative;
+                    width: fit-content;
+
+                    .nft_card_artist_info_avatar_asset {
+                        background-color: transparent;
+                        height: 24px;
+                        min-width: 24px;
+                        mix-blend-mode: normal;
+                        position: relative;
+
+                        .nft_card_artist_info_avatar_placeholder {
+                            background-color: transparent;
+                            height: 24px;
+                            left: 0px;
+                            mix-blend-mode: normal;
+                            object-fit: cover;
+                            position: absolute;
+                            top: 0px;
+                            width: 24px;
+                        }
+                    }
+                }
+
+                .nft_card_artist_info_name {
+                    background-color: transparent;
+                    flex: 1;
+                    font-size: 15px;
+                    letter-spacing: 0px;
+                    line-height: 22.4px;
+                    mix-blend-mode: normal;
+                    position: relative;
+                    text-align: left;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+
+    .nft_card_info_additional {
+        align-items: flex-start;
+        align-self: stretch;
+        background-color: transparent;
+        display: flex;
+        height: auto;
+        position: relative;
+
+        .nft_card_info_price {
+            align-items: flex-start;
+            background-color: transparent;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            gap: 8px;
+            height: auto;
+            padding: 0px 21px 0px 0px;
+            position: relative;
+
+            .nft_card_info_price_title {
+                align-self: stretch;
+                background-color: transparent;
+                letter-spacing: 0px;
+                line-height: 13.2px;
+                margin-top: -1px;
+                mix-blend-mode: normal;
+                position: relative;
+                text-align: left;
+                white-space: nowrap;
+                font-size: 14px;
+            }
+
+            .nft_card_info_price_content {
+                align-self: stretch;
+                background-color: transparent;
+                letter-spacing: 0px;
+                line-height: 22.4px;
+                mix-blend-mode: normal;
+                position: relative;
+                text-align: left;
+                white-space: nowrap;
+                font-size: 15px;
+            }
+        }
+
+        .nft_card_info_type {
+            align-items: flex-end;
+            background-color: transparent;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            gap: 8px;
+            height: auto;
+            justify-content: center;
+            position: relative;
+
+            .nft_card_info_type_title {
+                align-self: stretch;
+                background-color: transparent;
+                letter-spacing: 0px;
+                line-height: 13.2px;
+                margin-top: -1px;
+                mix-blend-mode: normal;
+                position: relative;
+                text-align: right;
+                white-space: nowrap;
+                font-size: 14px;
+            }
+
+            .nft_card_info_type_content {
+                align-self: stretch;
+                background-color: transparent;
+                letter-spacing: 0px;
+                line-height: 22.4px;
+                mix-blend-mode: normal;
+                position: relative;
+                text-align: right;
+                white-space: nowrap;
+                text-transform: uppercase;
+                font-size: 15px;
+            }
+        }
+    }
+}

@@ -1,4 +1,3 @@
-"use client";
 import { SUPPORTED_CHAIN_IDS } from "@/constants/connect";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { useConnectWallet } from "@/hooks/hook-customs/useConnectWallet";
@@ -133,6 +132,7 @@ const ConnectWalletWrapper: FC<{
 
   const handleLoginFailed = () => {
     handleDisconnect();
+    dispatch(handleSetLoadingMetamask(false));
     messageApi.open({
       type: "error",
       content:

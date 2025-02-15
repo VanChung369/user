@@ -13,6 +13,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useMobile } from "@/hooks/hook-customs/useWindowSize";
 import NftDetailModal from "./NftDetailModal";
+import Image from "next/image";
+import ROUTES_PATH from "@/constants/routesPath";
 
 const NFTs = () => {
   const intl = useIntl();
@@ -31,8 +33,8 @@ const NFTs = () => {
   return (
     <div className={classNames("container", style.nft)}>
       <div className={style.nft_box}>
-        <Row>
-          <Col md={20}>
+        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} justify="space-between">
+          <Col xs={24} sm={20} md={20} lg={20} xl={20} xxl={20}>
             <div className={style.nft_box__title}>
               {intl.formatMessage({ id: "home.banner.nft" })}
             </div>
@@ -41,14 +43,14 @@ const NFTs = () => {
             </div>
           </Col>
 
-          <Col md={4}>
-            <AppLink href={"#"}>
+          <Col xs={24} sm={4} md={4} lg={4} xl={4} xxl={4}>
+            <AppLink href={ROUTES_PATH.MARKETPLACE}>
               <ButtonWrapper
                 className={style.nft_box__link}
                 text={intl.formatMessage({
                   id: "home.banner.see.all",
                 })}
-                prefixIcon={<img src={EyeIcon.src} />}
+                prefixIcon={<Image src={EyeIcon} alt={"eye icon"} />}
               />
             </AppLink>
           </Col>

@@ -1,11 +1,9 @@
-import { Col, Image, Row } from "antd";
-import { useIntl } from "react-intl";
 import style from "./index.module.scss";
 import ShortenAddress from "@/components/ShortenAddress";
 import ProfileIcon from "@public/images/no-profile-md.png";
+import Image from "next/image";
 
 const CollectionItem = ({ collection }: any) => {
-  const intl = useIntl();
   const nftData =
     collection?.nft?.length > 2
       ? collection?.nft?.slice(1, 3)
@@ -25,11 +23,13 @@ const CollectionItem = ({ collection }: any) => {
           {nftData &&
             nftData?.map((nft: any, index: any) => {
               return (
-                <img
+                <Image
                   key={index}
                   className={style.secondary_photo}
                   src={nft.image.url}
                   alt="Secondary Photo Placeholder"
+                  width={100}
+                  height={100}
                 />
               );
             })}
@@ -45,7 +45,7 @@ const CollectionItem = ({ collection }: any) => {
         <div className={style.info_name}>{collection?.name}</div>
         <div className={style.info_artist}>
           <div className={style.info_artist_avatar}>
-            <img
+            <Image
               className={style.info_artist_avatar_image}
               src={
                 collection?.user?.image?.url
@@ -53,6 +53,8 @@ const CollectionItem = ({ collection }: any) => {
                   : ProfileIcon.src
               }
               alt="Avatar Placeholder"
+              width={24}
+              height={24}
             />
           </div>
           <div className={style.info_artist_name}>

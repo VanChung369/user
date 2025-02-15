@@ -7,12 +7,12 @@ import { useIntl } from "react-intl";
 import { useGetListTags } from "../hooks";
 import TagItem from "./TagItem";
 import classNames from "classnames";
+import ROUTES_PATH, { QUERY } from "@/constants/routesPath";
 
 const Tag = () => {
   const intl = useIntl();
-  const { data } = useGetListTags();
-  const limitedData =
-    data?.docs?.length > 8 ? data?.docs?.slice(0, 8) : data?.docs;
+  const limitData = 8;
+  const { data } = useGetListTags({ limit: limitData });
 
   return (
     <div className={classNames("container", style.tag)}>
@@ -21,13 +21,15 @@ const Tag = () => {
           {intl.formatMessage({ id: "home.banner.tag.browse.categories" })}
         </div>
       </div>
-      <div className="">
+      <div>
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-          {limitedData &&
-            limitedData?.map((tag: any, index: any) => {
+          {data?.docs &&
+            data.docs?.map((tag: any, index: any) => {
               return (
-                <Col key={index} md={6} xs={24}>
-                  <AppLink href={"#"}>
+                <Col key={index} xs={24} sm={12} md={8} lg={8} xl={6} xxl={6}>
+                  <AppLink
+                    href={`${ROUTES_PATH.MARKETPLACE}?${QUERY.TAG}=${tag?._id}`}
+                  >
                     <TagItem key={index} tag={tag} />
                   </AppLink>
                 </Col>

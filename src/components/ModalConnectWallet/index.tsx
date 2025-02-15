@@ -6,7 +6,7 @@ import {
   handleSetConnectModal,
   handleSetLoadingMetamask,
 } from "@/redux/connection/slice";
-import { Typography, Modal, Image } from "antd";
+import { Typography, Modal } from "antd";
 import { Fragment, useEffect } from "react";
 import LoadingIcon from "@public/images/loading.gif";
 import NotFoundMetamaskIcon from "@public/images/not_found_metamask.png";
@@ -16,6 +16,7 @@ import { useIntl } from "react-intl";
 import AddToWallet from "../AddToWallet";
 import { WALLET_TYPE } from "@/constants/wallet";
 import InfoIcon from "@public/svg/info-icon.svg";
+import Image from "next/image";
 
 declare let window: any;
 
@@ -83,9 +84,10 @@ const ModalConnectWallet = () => {
           onClick={handleDispatchConnectMetamask}
         />
         <p className={style.wallet__button__sub_note}>
-          <img
+          <Image
             className={style.wallet__button__sub_note__image}
-            src={InfoIcon.src}
+            src={InfoIcon}
+            alt={"info icon"}
           />
           <span
             dangerouslySetInnerHTML={{
@@ -111,10 +113,9 @@ const ModalConnectWallet = () => {
           <div className={style.connect__loading_image}>
             <Image
               className={style.connect__loading_icon}
-              preview={false}
               height={150}
               width={150}
-              src={LoadingIcon.src}
+              src={LoadingIcon}
               alt="loading"
             />
           </div>
@@ -135,10 +136,9 @@ const ModalConnectWallet = () => {
           <div className={style.connect__not_found_image}>
             <Image
               className={style.connect__not_found_icon}
-              preview={false}
               height={150}
               width={150}
-              src={NotFoundMetamaskIcon.src}
+              src={NotFoundMetamaskIcon}
               alt="metamask not found"
             />
           </div>

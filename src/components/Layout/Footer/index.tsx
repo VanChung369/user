@@ -9,6 +9,7 @@ import { useIntl } from "react-intl";
 import ROUTES_PATH from "@/constants/routesPath";
 import classNames from "classnames";
 import style from "./index.module.scss";
+import Image from "next/image";
 
 type FooterProps = Record<string, never>;
 
@@ -68,10 +69,10 @@ const Footer: React.FC<FooterProps> = ({}) => {
   ];
 
   const groupIcon = [
-    { icon: TwitterIcon.src, href: "#" },
-    { icon: FacebookIcon.src, href: "#" },
-    { icon: YoutubeIcon.src, href: "#" },
-    { icon: InstagramIcon.src, href: "#" },
+    { icon: TwitterIcon, href: "#" },
+    { icon: FacebookIcon, href: "#" },
+    { icon: YoutubeIcon, href: "#" },
+    { icon: InstagramIcon, href: "#" },
   ];
 
   const renderFooterItem = ({
@@ -83,10 +84,20 @@ const Footer: React.FC<FooterProps> = ({}) => {
     return (
       <AppLink href={href}>
         {prefixIcon && (
-          <img src={prefixIcon} className={style.footer__contact} />
+          <Image
+            src={prefixIcon}
+            className={style.footer__contact}
+            alt={"prefix icon"}
+          />
         )}
         {text && <span className={style.footer__contact_button}>{text}</span>}
-        {icon && <img className={style.footer__contact_icon} src={icon} />}
+        {icon && (
+          <Image
+            className={style.footer__contact_icon}
+            src={icon}
+            alt={"contact icon"}
+          />
+        )}
       </AppLink>
     );
   };

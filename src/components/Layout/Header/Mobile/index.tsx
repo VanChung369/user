@@ -20,6 +20,7 @@ import { useAddress, useDisconnect } from "@thirdweb-dev/react";
 import selectedConnection from "@/redux/connection/selector";
 import AddToWallet from "@/components/AddToWallet";
 import { WALLET_TYPE } from "@/constants/wallet";
+import Image from "next/image";
 
 const { SubMenu } = Menu;
 
@@ -103,7 +104,7 @@ const Mobile = () => {
     return (
       <div className="header-menu">
         <div className="close-btn">
-          <img src={CloseIcon.src} alt="close icon" onClick={handleCloseMenu} />
+          <Image src={CloseIcon} alt="close icon" onClick={handleCloseMenu} />
         </div>
         <div className="container">
           <div className="menu">
@@ -156,16 +157,18 @@ const Mobile = () => {
   return (
     <div className="mobile-header">
       {isConnected && (
-        <img
-          src={UserIcon.src}
+        <Image
+          src={UserIcon}
           className="mobile-header__icon"
           onClick={handleOpenAccountMenu}
+          alt={"user icon"}
         />
       )}
-      <img
-        src={MenuIcon.src}
+      <Image
+        src={MenuIcon}
         className="mobile-header__icon menu-icon"
         onClick={handleOpenMenu}
+        alt={"menu icon"}
       />
 
       <Drawer
@@ -202,7 +205,7 @@ const Mobile = () => {
         <ButtonWrapper
           text={
             <div className="item border-bottom-none" onClick={handleDisconnect}>
-              <img src={DisconnectIcon.src} />
+              <Image src={DisconnectIcon} alt={"disconnect icon"} />
               <span className="disconnect">disconnect</span>
             </div>
           }

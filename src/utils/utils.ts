@@ -141,7 +141,7 @@ export const compareSaleOrder = (firstSaleOrder: any, secondSaleOrder: any) => {
         ? compareDate(firstSaleOrder?.startDate, secondSaleOrder?.startDate)
         : compareDate(firstSaleOrder?.endDate, secondSaleOrder?.endDate);
     if (sortDate === 0) {
-      return firstSaleOrder?.name.localeCompare(secondSaleOrder?.name);
+      return firstSaleOrder?.name?.localeCompare(secondSaleOrder?.name);
     }
     return sortDate;
   }

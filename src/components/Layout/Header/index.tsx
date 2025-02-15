@@ -12,6 +12,7 @@ import Notice from "@/components/Notice";
 import { SelectLang } from "@/components/SelectLang";
 import Mobile from "./Mobile";
 import Desktop from "./Desktop";
+import Image from "next/image";
 
 type HeaderProps = Record<string, never>;
 
@@ -28,7 +29,13 @@ const Header: React.FC<HeaderProps> = () => {
             <AppLink href={ROUTES_PATH.HOME}>
               <div className={style.menu__icon}>
                 <div className={style.menu__icon_img}>
-                  <img src={Logo_icon.src} alt="Logo" className={style.logo} />
+                  <Image
+                    src={Logo_icon}
+                    alt="Logo"
+                    className={style.logo}
+                    height={30}
+                    width={30}
+                  />
                 </div>
                 <div className={style.menu__icon_title}>
                   NFT <span>T</span>reasure
@@ -38,7 +45,7 @@ const Header: React.FC<HeaderProps> = () => {
           </div>
           {!isMobile ? (
             <div className={style.items}>
-              <AppLink href={"#"}>Marketplace</AppLink>
+              <AppLink href={ROUTES_PATH.MARKETPLACE}>Marketplace</AppLink>
               <AppLink href={"#"}>Rankings</AppLink>
               <AppLink href={"#"}>landing page</AppLink>
               <DocsDropdown />

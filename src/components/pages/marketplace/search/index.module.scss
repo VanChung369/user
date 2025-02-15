@@ -1,0 +1,29 @@
+@import "@/styles/variables.scss";
+
+.search {
+    .search_keyword {
+        :global {
+            .ant-input {
+                height: 62px;
+                border-radius: 20px;
+                padding: 12px 24px;
+                font-size: 14px;
+                font-weight: 500;
+                border-color: #3b3b3b;
+
+                &::placeholder {
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 3px;
+                }
+            }
+
+            .ant-input-group-addon {
+                svg {
+                    color: white;
+                    font-size: large;
+                }
+            }
+        }
+    }
+}

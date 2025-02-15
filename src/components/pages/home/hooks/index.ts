@@ -38,7 +38,7 @@ export const useGetListCollections = (params?: any) => {
 
   const handleGetListCollections = async () => {
     try {
-      const response = await getCollections();
+      const response = await getCollections(params);
 
       return get(response, "data");
     } catch (error) {
@@ -47,9 +47,10 @@ export const useGetListCollections = (params?: any) => {
   };
 
   const useFetchListCollections: any = useQuery({
-    queryKey: ["getListCollections", address],
+    queryKey: ["getListCollections", params, address],
     queryFn: () => handleGetListCollections(),
     refetchOnWindowFocus: false,
+    enabled: !!params,
   });
 
   const { isLoading } = useFetchListCollections;
@@ -64,7 +65,7 @@ export const useGetListTags = (params?: any) => {
   const { address } = useAppSelector(selectedAddress.getAddress);
   const handleGetListTags = async () => {
     try {
-      const response = await getTags();
+      const response = await getTags(params);
 
       return get(response, "data");
     } catch (error) {
@@ -73,9 +74,10 @@ export const useGetListTags = (params?: any) => {
   };
 
   const useFetchListTags: any = useQuery({
-    queryKey: ["getListTags", address],
+    queryKey: ["getListTags", params, address],
     queryFn: () => handleGetListTags(),
     refetchOnWindowFocus: false,
+    enabled: !!params,
   });
 
   const { isLoading } = useFetchListTags;

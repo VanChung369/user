@@ -1,5 +1,5 @@
 "use client";
-import { Col, Image, Progress, ProgressProps, Row } from "antd";
+import { Col, Progress, ProgressProps, Row } from "antd";
 import Countdown, { zeroPad } from "react-countdown";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
@@ -15,6 +15,7 @@ import NumberFormatWrapper from "@/components/NumberFormatWrapper";
 import ButtonWrapper from "@/components/ButtonWrapper";
 import style from "./index.module.scss";
 import classNames from "classnames";
+import Image from "next/image";
 
 const SubSequent = ({
   quantity,
@@ -48,7 +49,7 @@ const SubSequent = ({
     if (completed && saleOrderIsListed) {
       return (
         <div className={classNames(style.ant_statistic, style.text_end)}>
-          <img src={ClockIcon.src} alt="" />
+          <Image src={ClockIcon} alt="clock icon" />
           <span className={style.statistic__end}>{`${intl.formatMessage({
             id: "home.banner.ended.on",
           })} ${moment(endDate).format(
@@ -188,7 +189,6 @@ const SubSequent = ({
             width={370}
             height={370}
             alt="Picture of the author"
-            preview={false}
           />
         </Col>
       </Row>

@@ -1,6 +1,6 @@
-import { Typography } from 'antd';
-import classNames from 'classnames';
-import { FC, ReactNode } from 'react';
+import { Typography } from "antd";
+import classNames from "classnames";
+import { FC, ReactNode } from "react";
 
 const { Text } = Typography;
 
@@ -15,7 +15,6 @@ type TextEllipsisProps = {
   [key: string]: any;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 const TextEllipsis: FC<TextEllipsisProps> = ({
   text,
   className,
@@ -33,7 +32,7 @@ const TextEllipsis: FC<TextEllipsisProps> = ({
       ellipsis={isShorten ? ellipsis : isShorten}
       {...props}
     >
-      {text ?? '--'}
+      {text ?? "--"}
       {children}
     </Text>
   );

@@ -21,6 +21,7 @@ import collection from "./en-US/collection";
 import header from "./en-US/header";
 import footer from "./en-US/footer";
 import home from "./en-US/home";
+import marketplace from "./en-US/marketplace";
 
 export default {
   "navBar.lang": "Languages",
@@ -56,4 +57,5 @@ export default {
   ...header,
   ...footer,
   ...home,
+  ...marketplace,
 };

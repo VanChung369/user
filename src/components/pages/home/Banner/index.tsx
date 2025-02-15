@@ -19,7 +19,9 @@ import ButtonWrapper from "@/components/ButtonWrapper";
 import Image from "next/image";
 import style from "./index.module.scss";
 import RocketLaunchIcon from "@public/svg/rocket-launch.svg";
+import BannerGif from "@public/gif/banner.gif";
 import SubSequent from "./SubSequent";
+import ROUTES_PATH from "@/constants/routesPath";
 
 const Banner = () => {
   const intl = useIntl();
@@ -55,7 +57,15 @@ const Banner = () => {
         contentClass={style.content}
         className={classNames(style.item, className)}
       >
-        {icon && <img className={style.icon} src={icon} />}
+        {icon && (
+          <Image
+            className={style.icon}
+            src={icon}
+            alt={"currency icon"}
+            width={24}
+            height={24}
+          />
+        )}
         {value ? (
           <EllipsisText
             className={style.text}
@@ -72,7 +82,7 @@ const Banner = () => {
   return (
     <div className={style.home_banner}>
       <div className="container">
-        <Carousel>
+        <Carousel autoplay={true} autoplaySpeed={8000}>
           <div className={style.home_banner_content}>
             <Row gutter={24} justify="space-between" align="middle">
               <Col lg={14} md={14} sm={18}>
@@ -83,13 +93,18 @@ const Banner = () => {
                   <div className={style.home_banner_content__text}>
                     {intl.formatMessage({ id: "home.banner.text" })}
                   </div>
-                  <AppLink href={"#"}>
+                  <AppLink href={ROUTES_PATH.MARKETPLACE}>
                     <ButtonWrapper
                       text={intl.formatMessage({
                         id: "home.banner.get.started",
                       })}
                       className={classNames(style.home_banner_content__button)}
-                      prefixIcon={<img src={RocketLaunchIcon.src} />}
+                      prefixIcon={
+                        <Image
+                          src={RocketLaunchIcon}
+                          alt={"rocketLaunch icon"}
+                        />
+                      }
                     />
                   </AppLink>
                   <div className={style.overview}>
@@ -111,7 +126,7 @@ const Banner = () => {
               </Col>
               <Col lg={10} md={10} xs={24} className={style.image}>
                 <Image
-                  src="/gif/banner.gif"
+                  src={BannerGif}
                   width={370}
                   height={370}
                   alt="Picture of the author"

@@ -26,6 +26,7 @@ import HeaderDropdown from "../HeaderDropdown";
 import { Badge } from "antd";
 import { useIntl } from "react-intl";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } = LENGTH_CONSTANTS;
 const {
@@ -286,7 +287,7 @@ const Notice: React.FC = () => {
         </InfiniteScroll>
       ) : (
         <div className={styles.notFound}>
-          <img src={NotFoundNotice.src} alt="not found" />
+          <Image src={NotFoundNotice} alt="not found" />
           <div>{intl.formatMessage({ id: "notification.empty" })}</div>
         </div>
       )}
@@ -304,7 +305,11 @@ const Notice: React.FC = () => {
         className={styles.notification_badge}
         count={totalUnread ? totalUnread : null}
       >
-        <img src={NoticeIcon.src} className={styles.notification_icon} />
+        <Image
+          src={NoticeIcon}
+          className={styles.notification_icon}
+          alt={"notification icon"}
+        />
       </Badge>
     </HeaderDropdown>
   );

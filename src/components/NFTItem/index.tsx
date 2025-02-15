@@ -1,19 +1,22 @@
-import { Col, Image, Row } from "antd";
+import { Col, Row } from "antd";
 import { useIntl } from "react-intl";
 import style from "./index.module.scss";
 import ShortenAddress from "@/components/ShortenAddress";
 import ProfileIcon from "@public/images/no-profile-md.png";
 import EllipsisText from "../EllipsisText";
+import Image from "next/image";
 
 const NFTItem = ({ nft }: any) => {
   const intl = useIntl();
   return (
     <div className={style.nft_card}>
       <div className={style.nft_card_image}>
-        <img
+        <Image
           className={style.nft_card_image_placeholder}
           src={nft?.image?.url}
           alt="Image Placeholder"
+          fill
+          sizes="(max-width: 600px) 100vw, 50vw"
         />
       </div>
       <div className={style.nft_card_info}>
@@ -24,7 +27,7 @@ const NFTItem = ({ nft }: any) => {
           <div className={style.nft_card_artist_info_avatar_name}>
             <div className={style.nft_card_artist_info_avatar}>
               <div className={style.nft_card_artist_info_avatar_asset}>
-                <img
+                <Image
                   className={style.nft_card_artist_info_avatar_placeholder}
                   src={
                     nft?.user?.image?.url
@@ -32,6 +35,8 @@ const NFTItem = ({ nft }: any) => {
                       : ProfileIcon.src
                   }
                   alt="Avatar Placeholder"
+                  fill
+                  sizes="(max-width: 600px) 100vw, 50vw"
                 />
               </div>
             </div>

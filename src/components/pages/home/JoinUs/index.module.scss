@@ -3,7 +3,6 @@
 .join_us {
     margin-top: 50px;
     margin-bottom: 30px;
-
     align-items: center;
     align-self: stretch;
     background-color: rgba(224, 233, 242, 0.1);
@@ -16,6 +15,11 @@
     padding: 34px 45px 34px;
     position: relative;
     border-radius: 20px;
+    max-width: 1300px;
+
+    @media only screen and (max-width: $breakpoint_laptop_max) {
+        max-width: 1004px;
+    }
 
     .join_us_subscribe_widget {
         align-items: center;
@@ -27,7 +31,6 @@
         mix-blend-mode: normal;
         padding: 60px;
         position: relative;
-        width: 1050px;
 
         .join_us_subscribe_photo {
             background-color: transparent;

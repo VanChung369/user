@@ -1,0 +1,37 @@
+@import "@/styles/variables.scss";
+
+.tab {
+  :global {
+    .ant-tabs-tab {
+      font-weight: 450;
+      font-size: 17px;
+      line-height: 21px;
+      letter-spacing: 0.015em;
+    }
+
+    .ant-tabs-tab-active .ant-tabs-tab-btn {
+    }
+
+    .ant-tabs-ink-bar {
+    }
+
+    .tab-pane {
+    }
+
+    .ant-tabs-nav {
+    }
+
+    .ant-tabs-ink-bar-animated {
+    }
+
+    .ant-tabs-tab {
+    }
+
+    .ant-tabs-tab-active {
+    }
+
+    .page-content {
+      border-top-left-radius: 0px;
+    }
+  }
+}

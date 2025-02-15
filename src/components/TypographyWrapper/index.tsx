@@ -86,13 +86,14 @@ const TypographyWrapper: FC<TypographyWrapperProps> = ({
       typographyRender = (
         <TextHelp
           label={label}
-          children={children}
           className={className}
           helpText={helpText}
           contentClass={contentClass}
           labelClassName={labelClassName}
           iconClassName={iconClassName}
-        />
+        >
+          {children}
+        </TextHelp>
       );
       break;
     default:

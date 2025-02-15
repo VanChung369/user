@@ -34,7 +34,7 @@ const throttledResetToLogin = throttle(resetToLogin, 500, {
 const checkErrorNetwork = (err: any) => {
   if (err?.toJSON() && err.toJSON().message === "Network Error") {
     return formatMessage({
-      descriptor: { id: "codeMessage.E103" },
+      msgContent: "Server error. Please try again!",
       type: "error",
     });
   }
@@ -56,17 +56,15 @@ const checkErrorStatus = (
     if (HTTP_STATUS_CONTSTANTS.SERVER_ERROR !== response?.data?.code) {
       !options?.isHideErrorMessage &&
         formatMessage({
-          descriptor: {
-            id: response?.data?.code
-              ? `codeMessage.${response?.data?.code}`
-              : `codeMessage.${response?.code}`,
-          },
+          msgContent: response?.data?.code
+            ? `codeMessage.${response?.data?.code}`
+            : `codeMessage.${response?.code}`,
           type: "error",
         });
     } else {
       !options?.isHideErrorMessage &&
         formatMessage({
-          descriptor: { id: response?.meta?.msg },
+          msgContent: response?.meta?.msg,
           type: "error",
         });
     }

@@ -14,6 +14,7 @@
     position: relative;
     transition: all 0.5s ease;
     background-color: $background-color;
+    margin-bottom: 20px;
 
     &:hover {
         transform: scale(0.95);
@@ -27,14 +28,14 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-        height: auto;
         position: relative;
+        height: 296px;
+        width: 100%;
 
         .nft_card_image_placeholder {
             align-self: stretch;
             background-color: transparent;
-            height: 296px;
-            max-width: 325px;
+            width: 325px;
             mix-blend-mode: normal;
             object-fit: cover;
             position: relative;
@@ -100,13 +101,13 @@
                     .nft_card_artist_info_avatar_asset {
                         background-color: transparent;
                         height: 24px;
+                        width: 100%;
                         min-width: 24px;
                         mix-blend-mode: normal;
                         position: relative;
 
                         .nft_card_artist_info_avatar_placeholder {
                             background-color: transparent;
-                            height: 24px;
                             left: 0px;
                             mix-blend-mode: normal;
                             object-fit: cover;

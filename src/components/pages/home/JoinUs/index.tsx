@@ -6,7 +6,7 @@ import classNames from "classnames";
 import ButtonWrapper from "@/components/ButtonWrapper";
 import JoinUsImage from "@public/images/join-us.png";
 import EmailIcon from "@public/svg/email-icon.svg";
-import { init } from "next/dist/compiled/webpack/webpack";
+import Image from "next/image";
 
 const JoinUs = () => {
   const intl = useIntl();
@@ -14,9 +14,9 @@ const JoinUs = () => {
   return (
     <div className={classNames("container", style.join_us)}>
       <div className={style.join_us_subscribe_widget}>
-        <img
+        <Image
           className={style.join_us_subscribe_photo}
-          src={JoinUsImage.src}
+          src={JoinUsImage}
           alt="Photo"
         />
         <div className={style.join_us_subscribe_widget_frame}>
@@ -45,11 +45,11 @@ const JoinUs = () => {
               className={style.join_us_subscribe_widget_frame_subscribe_button}
               text={intl.formatMessage({ id: "home.banner.subscribe" })}
               prefixIcon={
-                <img
+                <Image
                   className={
                     style.join_us_subscribe_widget_frame_subscribe_button_icon
                   }
-                  src={EmailIcon.src}
+                  src={EmailIcon}
                   alt="icon-mail"
                 />
               }

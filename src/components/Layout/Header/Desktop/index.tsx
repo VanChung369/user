@@ -19,6 +19,7 @@ import ConnectWalletButton from "@/components/ConnectWalletButton";
 import styles from "./index.module.scss";
 import classNames from "classnames";
 import { useIntl } from "react-intl";
+import Image from "next/image";
 
 const Desktop = () => {
   const intl = useIntl();
@@ -63,7 +64,7 @@ const Desktop = () => {
             className={classNames(styles.item, "border-bottom-none")}
             onClick={handleDisconnect}
           >
-            <img src={DisconnectIcon.src} />
+            <Image src={DisconnectIcon} alt={"disconnect icon"} />
             <span className={styles.disconnect}>
               {intl.formatMessage({ id: "header.user.disconnect" })}
             </span>

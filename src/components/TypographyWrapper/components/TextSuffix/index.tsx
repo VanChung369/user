@@ -20,7 +20,6 @@ type TextSuffixProps = {
   [key: string]: any;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 const TextSuffix: FC<TextSuffixProps> = ({
   text,
   onChange,

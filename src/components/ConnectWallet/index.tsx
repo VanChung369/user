@@ -25,24 +25,26 @@ import {
   useSigner,
 } from "@thirdweb-dev/react";
 import { FC, Fragment, useEffect } from "react";
-import { message } from "antd";
 import ModalWrongNetwork from "../ModalWrongNetwork";
 import ModalConnectWallet from "../ModalConnectWallet";
 import selectedConnection from "@/redux/connection/selector";
 import MetamaskService from "@/services/blockchain";
 import { useLogin } from "./hook";
+import formatMessage from "@/components/FormatMessage";
+import { useIntl } from "react-intl";
 
 const ConnectWalletWrapper: FC<{
   children: any;
 }> = ({ children }) => {
   const dispatch = useAppDispatch();
+  const intl = useIntl();
   const connectionStatus = useConnectionStatus();
   const chainId = useChainId();
   const account = useAddress();
   const signer = useSigner();
+
   const disconnectWallet = useDisconnect();
   const { handleConnect } = useConnectWallet();
-  const [messageApi, contextHolder] = message.useMessage();
   const { onLogin } = useLogin();
 
   const { address, listAddress } = useAppSelector(selectedAddress.getAddress);
@@ -133,10 +135,10 @@ const ConnectWalletWrapper: FC<{
   const handleLoginFailed = () => {
     handleDisconnect();
     dispatch(handleSetLoadingMetamask(false));
-    messageApi.open({
+
+    formatMessage({
+      msgContent: intl.formatMessage({ id: "codeMessage.E2" }),
       type: "error",
-      content:
-        "Your wallet has been registered as admin, thus you cannot access the system.",
     });
   };
 
@@ -217,7 +219,6 @@ const ConnectWalletWrapper: FC<{
 
   return (
     <Fragment>
-      {contextHolder}
       {children}
       <ModalWrongNetwork />
       <ModalConnectWallet />

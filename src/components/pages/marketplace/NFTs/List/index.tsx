@@ -16,6 +16,8 @@ import NFTItem from "@/components/NFTItem";
 import style from "./index.module.scss";
 import PaginationCustom from "@/components/Pagination";
 import Nodata from "@/components/Nodata";
+import AppLink from "@/components/AppLink";
+import ROUTES_PATH from "@/constants/routesPath";
 
 type ListProps = {
   data?: Array<any>;
@@ -92,7 +94,11 @@ const List = ({
                         xl={6}
                         xxl={6}
                       >
-                        <NFTItem nft={item} />
+                        <AppLink
+                          href={`${ROUTES_PATH.NFT_DETAIL}/${item?._id}`}
+                        >
+                          <NFTItem nft={item} />
+                        </AppLink>
                       </Col>
                     ))}
                   </Row>

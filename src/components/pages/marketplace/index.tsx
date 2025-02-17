@@ -76,6 +76,7 @@ const MarketPlace = () => {
 
   const handleChangeTab = (value: string) => {
     setActiveTab(value);
+    setParams(initialValues);
     const newUrl = new URL(window.location.href);
     newUrl.searchParams.set(QUERY.MARKET_PLACE_TAB_QUERY, value);
     newUrl.searchParams.delete(QUERY.COLLECTION);

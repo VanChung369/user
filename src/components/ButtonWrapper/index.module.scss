@@ -20,19 +20,33 @@
   }
 
   &--default {
+    cursor: pointer;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.05em;
-    background-color: transparent;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    text-transform: uppercase;
+    padding: 7px 24px;
+    background: $color-violet;
     color: $text-color-white;
     border: 1px solid $color-violet;
 
     &:focus,
     &:active,
     &:hover {
-      color: $text-color-white;
-      opacity: 0.7;
+      background: $color-violet !important;
+      color: $text-color-white !important;
+      opacity: 0.8;
+    }
+
+    @media only screen and (max-width: $breakpoint_tablet_max) {
+      max-width: 100%;
     }
   }
 
@@ -71,7 +85,7 @@
 
     &:disabled {
       background-color: $text-color-white;
-      color: $text-color-white;
+      color: $color-trout;
       border: 1px solid $text-color-white;
     }
   }

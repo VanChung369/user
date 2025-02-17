@@ -1,0 +1,48 @@
+@import "@/styles/variables.scss";
+
+.nft_detail_attributes {
+    width: 100%;
+    overflow: inherit;
+    background: $color-gray;
+    border-radius: 20px;
+
+    .nft_detail_attributes_header {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr 8fr 1fr;
+        margin-bottom: 10px;
+        border-bottom: 1px solid $color-sliver;
+        padding: 25px 25px;
+
+        .nft_detail_attributes_header_icon {
+            align-self: center;
+            filter: invert(100%) brightness(100%);
+            color: $text-color-white;
+            flex-shrink: 0;
+        }
+
+        .nft_detail_attributes_header_text {
+            font-weight: 600;
+            line-height: 1.5;
+            font-size: 16px;
+        }
+    }
+
+    .nft_detail_attributes_content {
+        padding: 25px 25px;
+
+        .nft_detail_attributes_content_lable {
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: $color-sliver;
+        }
+
+        .nft_detail_attributes_content_text {
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+    }
+}

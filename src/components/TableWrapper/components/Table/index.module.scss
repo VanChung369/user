@@ -1,0 +1,164 @@
+@import "@/styles/variables.scss";
+
+.pagination {
+  margin-top: 20px;
+
+  :global {
+    .ant-pagination-prev {
+      color: $text-color-white;
+    }
+
+    .ant-pagination-item-active {
+      border-color: $color-violet;
+      a {
+        font-weight: 600;
+        letter-spacing: 0.005em;
+        color: $color-violet;
+      }
+    }
+
+    .ant-pagination-options {
+      position: absolute;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(0%);
+      left: 0;
+      margin: auto;
+    }
+
+    .ant-select-selector {
+      background: $color-gray !important;
+
+      .ant-select-selection-item {
+        color: $text-color-white;
+      }
+    }
+
+    .ant-pagination-item {
+      background-color: $color-gray !important;
+      border-color: $text-color-white;
+
+      a {
+        color: $text-color-white;
+      }
+    }
+
+    .ant-pagination-item-link {
+      color: $text-color-white !important;
+    }
+  }
+}
+
+.table {
+  :global {
+    .ant-table {
+      scrollbar-color: $color-gray !important;
+
+      // .ant-table-placeholder {
+      //   background-color: $color-gray;
+      //   height: 415px;
+
+      //   &:hover {
+      //     > td {
+      //       background-color: unset !important;
+      //     }
+      //   }
+      // }
+
+      .ant-table-container {
+        color: $text-color-white;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      .ant-table-thead {
+        & > tr > th {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ant-table-column-has-sorters {
+          &:hover {
+            background-color: $background-color;
+          }
+        }
+
+        .ant-table-cell {
+          background-color: $background-color;
+          letter-spacing: 0.015em;
+          color: $text-color-white;
+
+          .ant-table-column {
+            &-title {
+              flex: unset;
+            }
+          }
+
+          .ant-table-column-sorters {
+            justify-content: flex-start;
+            .ant-table-column-sorter {
+              color: $text-color-white;
+
+              &::after {
+                background-color: $color-gray;
+              }
+            }
+
+            &:hover {
+              background-color: $background-color;
+            }
+          }
+        }
+      }
+
+      .ant-table-tbody {
+        & > tr > td {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 28px;
+          margin: 20px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+          &.ant-table-cell-row-hover {
+            background: $color-gray;
+          }
+        }
+
+        .ant-table-row {
+          background: $color-gray;
+
+          &:hover {
+            td {
+              background-color: $color-gray;
+            }
+          }
+
+          .ant-table-placeholder {
+            &:hover > td {
+              background-color: $color-gray;
+            }
+          }
+        }
+
+        .ant-table-cell-fix-right {
+          background: $color-gray;
+        }
+
+        .ant-table-column-sort {
+          background-color: unset;
+        }
+      }
+
+      .ant-table-expanded-row-fixed {
+        background: $color-gray;
+
+        text-align: center;
+        height: 150px;
+
+        .ant-empty-description {
+          color: $text-color-white;
+        }
+      }
+    }
+  }
+}

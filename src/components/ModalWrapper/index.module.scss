@@ -1,4 +1,22 @@
+@import "@/styles/variables.scss";
+
 .modal {
+  :global {
+    .ant-modal-content {
+      background-color: $background-disabled !important;
+    }
+
+    .ant-modal-close {
+      color: $text-color-white;
+
+      &:hover {
+        color: $color-violet;
+        opacity: 0.6;
+        background: none;
+      }
+    }
+  }
+
   &__icon {
     &_close {
       position: absolute;
@@ -6,6 +24,10 @@
       height: 15px;
       top: 20px;
       right: 20px;
+
+      > svg {
+        fill: aliceblue;
+      }
     }
   }
   &__content {

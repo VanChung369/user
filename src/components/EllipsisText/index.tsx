@@ -55,7 +55,9 @@ const EllipsisText: FC<EllipsisTextProps> = ({
   return isOverflow || alwaysShowTooltip ? (
     <Tooltip
       title={tooltipText || text}
-      overlayClassName={tooltipClassName ? tooltipClassName : "tooltip-detail"}
+      classNames={{
+        root: tooltipClassName ? tooltipClassName : "tooltip-detail",
+      }}
     >
       {renderContent()}
     </Tooltip>

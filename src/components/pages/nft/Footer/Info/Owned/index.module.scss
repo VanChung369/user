@@ -1,0 +1,23 @@
+@import "@/styles/variables.scss";
+
+.token_id {
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+
+    :global {
+        .ant-typography {
+            color: $text-color-white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+    }
+
+    a {
+        svg {
+            fill: $text-color-white;
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+    }
+}

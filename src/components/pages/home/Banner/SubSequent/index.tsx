@@ -16,6 +16,7 @@ import ButtonWrapper from "@/components/ButtonWrapper";
 import style from "./index.module.scss";
 import classNames from "classnames";
 import Image from "next/image";
+import ROUTES_PATH from "@/constants/routesPath";
 
 const SubSequent = ({
   quantity,
@@ -61,7 +62,6 @@ const SubSequent = ({
     return (
       <div className={style.countdown}>
         <div className={style.label}>{nameEvent}</div>
-
         <div className={style.time}>
           <div className={style.countdown_item}>
             <span>
@@ -167,7 +167,7 @@ const SubSequent = ({
               <Row justify="space-between" align="middle">
                 <Col lg={5} md={24}>
                   {saleOrderIsListed && (
-                    <AppLink href={"#"}>
+                    <AppLink href={`${ROUTES_PATH.NFT_DETAIL}/${nftId?._id}`}>
                       <ButtonWrapper
                         text={intl.formatMessage({
                           id: "home.banner.mint.now",

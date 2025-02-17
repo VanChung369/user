@@ -1,0 +1,89 @@
+@import "@/styles/variables.scss";
+
+.nft_detail_chain_info {
+    width: 100%;
+    overflow: inherit;
+    background: $color-gray;
+    border-radius: 20px;
+    margin-top: 10px;
+
+    .nft_detail_chain_info_header {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr 8fr 1fr;
+        margin-bottom: 10px;
+        border-bottom: 1px solid $color-sliver;
+        padding: 25px 25px;
+
+        .nft_detail_chain_info_header_icon {
+            align-self: center;
+            filter: invert(100%) brightness(100%);
+            color: $text-color-white;
+            flex-shrink: 0;
+        }
+
+        .nft_detail_chain_info_header_text {
+            font-weight: 600;
+            line-height: 1.5;
+            font-size: 16px;
+        }
+    }
+
+    .nft_detail_chain_info_content {
+        padding: 25px 25px;
+        align-items: center;
+        .nft_detail_chain_info_content_col {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 20px;
+            align-items: center;
+
+            .info {
+                width: 50%;
+                flex: 0 0 60%;
+            }
+
+            .info_text {
+                font-weight: 400;
+                display: flex;
+                align-items: center;
+                height: 24px;
+
+                .icon {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+
+    .info_button {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 0.015em;
+        color: $text-color-white;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .info_button_icon {
+            padding-left: 10px;
+            margin-right: 30px;
+            @media only screen and (max-width: $breakpoint_laptop_max) {
+                margin-right: 30px;
+            }
+        }
+
+        a {
+            color: $text-color-white;
+        }
+    }
+
+    .app_link {
+        width: 70%;
+
+        @media only screen and (max-width: $breakpoint_laptop_max) {
+            width: 60%;
+        }
+    }
+}

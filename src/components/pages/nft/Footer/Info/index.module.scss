@@ -1,0 +1,78 @@
+@import "@/styles/variables.scss";
+
+.extra_tabs {
+    display: inline-flex;
+    align-items: center;
+
+    @media only screen and (max-width: $breakpoint_tablet_max) {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .timer {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 24px;
+        letter-spacing: 0.005em;
+        color: $text-color-white;
+    }
+
+    .loading_resfresh {
+        width: 28px;
+        height: 28px;
+    }
+
+    .extra_tabs_label {
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 24px;
+        letter-spacing: 0.005em;
+        color: $text-color-white;
+        margin-right: 5px;
+    }
+
+    .extra_tabs_switch {
+        margin-right: 5px;
+    }
+}
+
+.style_nft_info {
+    background-color: $color-gray;
+    border-radius: 20px;
+    padding: 25px 25px;
+    :global {
+        .ant-tabs-nav {
+            &::before {
+                border-bottom: 0.3px solid $text-color-white;
+            }
+
+            .ant-tabs-nav-wrap {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                mix-blend-mode: normal;
+
+                .ant-tabs-nav-list {
+                    .ant-tabs-tab {
+                        color: $text-color-white;
+                        font-weight: 600;
+                        font-size: 16px;
+
+                        .ant-tabs-tab-btn {
+                            padding-top: 10px;
+                            color: unset;
+                        }
+                    }
+
+                    .ant-tabs-tab-active {
+                        color: $color-violet;
+                    }
+
+                    .ant-tabs-ink-bar {
+                        background: $color-violet;
+                    }
+                }
+            }
+        }
+    }
+}

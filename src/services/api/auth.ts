@@ -1,9 +1,9 @@
 import { api } from "..";
 
-export async function login(body: any, options?: { [key: string]: any }) {
+export async function login(data: any, options?: { [key: string]: any }) {
   return api.post({
     endpoint: "/api/auth/login",
-    params: body,
+    params: data,
     options: options,
   });
 }
@@ -19,12 +19,12 @@ export async function outLogin(
 }
 
 export async function refreshToken(
-  body: any,
+  data: any,
   options?: { [key: string]: any }
 ) {
   return api.post({
     endpoint: "/api/auth/refresh",
-    params: body,
+    params: data,
     options: options,
   });
 }

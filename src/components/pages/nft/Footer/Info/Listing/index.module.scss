@@ -1,0 +1,33 @@
+@import "@/styles/variables.scss";
+
+.button_buy {
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    height: 40px;
+    width: 80px;
+    border-radius: 10px;
+    border: none;
+    text-transform: uppercase;
+    padding: 7px 24px;
+    background: $color-violet;
+    color: $text-color-white;
+
+    &:focus,
+    &:active,
+    &:hover {
+        background: $color-violet !important;
+        color: $text-color-white !important;
+        opacity: 0.8;
+    }
+
+    @media only screen and (max-width: $breakpoint_tablet_max) {
+        max-width: 100%;
+    }
+}

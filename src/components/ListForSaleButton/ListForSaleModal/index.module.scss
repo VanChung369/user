@@ -1,0 +1,171 @@
+@import "@/styles/variables.scss";
+
+.list_for_sale_modal {
+    padding: 25px;
+
+    @media only screen and (max-width: $breakpoint_tablet_max) {
+        padding: 36px 20px;
+    }
+
+    .list_for_sale_modal_title {
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 30px;
+        text-align: center;
+        letter-spacing: 0.015em;
+        color: $text-color-white;
+        margin-bottom: 30px;
+
+        @media only screen and (max-width: $breakpoint_tablet_max) {
+            font-size: 24px;
+            line-height: 36px;
+            margin-bottom: 34px;
+        }
+    }
+
+    .list_for_sale_modal_preview {
+        height: 434px;
+        max-width: 350px;
+
+        @media only screen and (max-width: $breakpoint_tablet_max) {
+            height: 328px;
+            margin-bottom: 24px;
+        }
+
+        img {
+            height: 100%;
+            width: fit-content;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+    }
+
+    .list_for_sale_modal_form {
+        padding-left: 30px;
+        position: relative;
+
+        @media only screen and (max-width: $breakpoint_tablet_max) {
+            padding-left: 0px;
+        }
+
+        .list_for_sale_modal_form_name {
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 30px;
+            color: $text-color-white;
+            margin-bottom: 10px;
+
+            @media only screen and (max-width: $breakpoint_tablet_max) {
+                font-size: 20px;
+                line-height: 18px;
+            }
+        }
+
+        .list_for_sale_modal_form_name_token {
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 25px;
+            color: $color-sliver;
+        }
+
+        .list_for_sale_modal_form_item_lable {
+            font-weight: 400;
+            font-size: 15px;
+            color: $text-color-white;
+            margin-bottom: 5px;
+        }
+
+        .list_for_sale_modal_form_item_text {
+            font-weight: 400;
+            font-size: 14px;
+            color: $text-color-white;
+            margin-bottom: 10px;
+        }
+
+        .list_for_sale_modal_form_input {
+            position: relative;
+            margin-bottom: 15px;
+            .list_for_sale_modal_form_input_button_max {
+                position: absolute;
+                right: -10px;
+                width: 80px;
+                height: 40px;
+                &:focus,
+                &:active,
+                &:hover {
+                    opacity: 0.95;
+                    border-color: $color-violet !important;
+                    color: $text-color-white !important;
+                    background-color: $color-violet !important;
+                }
+            }
+
+            .list_for_sale_modal_form_input_currency {
+                position: absolute;
+                right: 10px;
+                top: 60px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 17px;
+                color: $color-sliver;
+            }
+        }
+
+        .column {
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 24px;
+            margin-bottom: 15px;
+
+            .label {
+                color: $text-color-white;
+                display: flex;
+                justify-content: flex-end;
+
+                .text {
+                    color: $text-color-white;
+                    opacity: 0.5;
+                }
+            }
+
+            .content {
+                display: flex;
+                justify-content: flex-end;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 17px;
+                color: $color-sliver;
+            }
+        }
+
+        .list_for_sale_modal_button {
+            margin-top: 20px;
+            .list_for_sale_modal_button_approve {
+                height: 40px;
+
+                &:focus,
+                &:active,
+                &:hover {
+                    opacity: 0.95;
+                    border-color: $color-violet !important;
+                    color: $text-color-white !important;
+                    background-color: $color-violet !important;
+                }
+            }
+
+            .list_for_sale_modal_button_proceed {
+                height: 40px;
+                margin-top: 10px;
+
+                &:focus,
+                &:active,
+                &:hover {
+                    opacity: 0.95;
+                    border-color: $color-violet !important;
+                    color: $text-color-white !important;
+                    background-color: $color-violet !important;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,213 @@
+@import "@/styles/variables.scss";
+@import "@/styles/mixins.scss";
+
+.nft_detail_info {
+    .nft_detail_info_code {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        margin-bottom: 10px;
+
+        @media only screen and (max-width: $breakpoint_tablet_max) {
+            margin-bottom: 24px;
+        }
+
+        .nft_detail_info_code_text {
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 16px;
+            padding: 8px 55px;
+            text-transform: capitalize;
+            height: 32px;
+            margin-right: 12px;
+            color: $text-color-white;
+            background: $background-button-gray;
+        }
+    }
+
+    .nft_detail_info_collection {
+        font-size: 16px;
+        font-weight: 500;
+
+        .nft_detail_info_collection_text {
+            a {
+                color: $color-violet;
+            }
+        }
+    }
+
+    .nft_detail_info_name {
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 40px;
+        margin-bottom: 24px;
+        color: $text-color-white;
+
+        @media only screen and (max-width: $breakpoint_tablet_max) {
+            font-size: 20px;
+            line-height: 18px;
+        }
+    }
+
+    .nft_detail_info_sale {
+        display: flex;
+        align-items: center;
+        gap: 10%;
+
+        @media only screen and (max-width: $breakpoint_tablet_max) {
+            gap: unset;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nft_detail_info_sale_item {
+            .nft_detail_info_sale_item_label {
+                font-weight: 300;
+                font-size: 15px;
+                line-height: 17px;
+                text-transform: capitalize;
+                color: $color-sliver;
+                margin-bottom: 8px;
+
+                @media only screen and (max-width: $breakpoint_tablet_max) {
+                    font-size: 14px;
+                }
+            }
+
+            .nft_detail_info_sale_item_text {
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 22px;
+                text-transform: capitalize;
+                color: $text-color-white;
+            }
+        }
+    }
+
+    .nft_detail_info_description {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        text-align: justify;
+        letter-spacing: 0.015em;
+        color: $text-color-white;
+        overflow: auto;
+        margin-top: 20px;
+        width: 98%;
+        height: 60px;
+        margin-bottom: 30px;
+        @include scrollbars();
+
+        @media only screen and (max-width: $breakpoint_tablet_max) {
+            height: auto;
+            margin-bottom: 24px;
+            max-height: 168px;
+        }
+    }
+
+    .nft_detail_info_footer {
+        .nft_detail_info_footer_active {
+            :global {
+                .ant-image-img {
+                    padding-top: 78px;
+                }
+            }
+            &__top {
+                width: fit-content;
+                margin-bottom: 18px;
+
+                @media only screen and (max-width: $breakpoint_tablet_max) {
+                    width: 100%;
+                }
+            }
+
+            .nft_detail_info_footer_active_currency {
+                display: flex;
+                align-items: center;
+                text-transform: capitalize;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 36px;
+                color: $text-color-white;
+
+                @media only screen and (max-width: $breakpoint_tablet_max) {
+                    justify-content: flex-end;
+
+                    &__price {
+                        word-break: break-word;
+                    }
+                }
+
+                span {
+                    margin-right: 7px;
+                }
+
+                &__symbol {
+                    opacity: 0.5;
+                    margin-right: 0px !important;
+                }
+
+                &__icon {
+                    height: 25px;
+                    width: 25px;
+                    margin-right: 10px;
+                }
+
+                &__usd {
+                    font-weight: 400;
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+
+    .buy_button {
+        cursor: pointer;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: 130px;
+        border-radius: 15px;
+        border: none;
+        text-transform: uppercase;
+        padding: 7px 24px;
+        background: $color-violet;
+        color: $text-color-white;
+
+        &:focus,
+        &:active,
+        &:hover {
+            background: $color-violet !important;
+            color: $text-color-white !important;
+            opacity: 0.8;
+        }
+
+        @media only screen and (max-width: $breakpoint_tablet_max) {
+            max-width: 100%;
+        }
+    }
+
+    .not_for_sale {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: 200px;
+        border-radius: 15px;
+        border: none;
+        text-transform: uppercase;
+        padding: 7px 24px;
+        background: $background-color;
+        color: $text-color-white;
+    }
+}

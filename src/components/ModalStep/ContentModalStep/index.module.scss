@@ -1,0 +1,19 @@
+.modal_content {
+  &__title {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: 0.005em;
+    margin-bottom: 24px;
+  }
+
+  &__description {
+    width: 100%;
+    max-width: 384px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0.015em;
+    margin: auto;
+  }
+}

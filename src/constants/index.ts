@@ -52,6 +52,7 @@ export const SOCKET_EVENT = {
   NOTIFICATION: "notification",
   REMOVE_FROM_SALE: "removeFromSale",
   ADMIN_MINT: "adminMint",
+  BUY_NFT: "buyNFT",
 };
 
 export const NOTIFICATION_EVENT = {
@@ -64,3 +65,5 @@ export const NOTIFICATION_EVENT = {
 };
 
 export const KEY_STORAGE = "cookies-token";
+export const MAX_ALLOWANCE =
+  "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";

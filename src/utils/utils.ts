@@ -325,6 +325,37 @@ export const disabledSaleOrderEndDate =
 
 export const getValueAttribute = (attributes: any, field: string) =>
   attributes?.[field]?.text || attributes?.[field];
+export const convertPriceBigNumber = (value: any, coinDecimal = 18) => {
+  BigNumber.config({
+    EXPONENTIAL_AT: 100,
+  });
+  return new BigNumber(value).multipliedBy(
+    new BigNumber(Math.pow(10, coinDecimal))
+  );
+};
+
+export const isLessThanOfTenPowerByCap = (value: any, dicimal: 8) => {
+  BigNumber.config({
+    EXPONENTIAL_AT: 100,
+  });
+  return (
+    value > 0 && new BigNumber(value).lt(new BigNumber(Math.pow(10, dicimal)))
+  );
+};
+
+export const multipleTwoBigNumber = (first: any, second: any) => {
+  if (!first || !second) {
+    return 0;
+  }
+  BigNumber.config({
+    EXPONENTIAL_AT: 100,
+  });
+  return new BigNumber(first).multipliedBy(new BigNumber(second)).toString();
+};
+
+export const convertToNumber = (value: any) => {
+  return value ? new BigNumber(value).toNumber() : ZERO_VALUE;
+};
 
 export const formatCurrency = (
   value: any,

@@ -250,6 +250,9 @@ const Owned = () => {
 
   return (
     <TableWrapper
+      className={style.table_wrapper_owned}
+      classNamePagination={style.pagination_wrapper_owned}
+      simple={{ readOnly: true }}
       total={nftOwned?.totalDocs}
       columns={columns}
       dataSource={nftOwned?.docs}
@@ -257,7 +260,6 @@ const Owned = () => {
       current={page}
       onChangePagination={handleChangePaging}
       rowKey={(row: any) => row?.tokenId}
-      scroll={{ x: 784 }}
       isPagination={true}
       emptyText={intl.formatMessage({ id: "common.text.no.data" })}
     />

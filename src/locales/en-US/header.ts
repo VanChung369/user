@@ -7,4 +7,6 @@ export default {
   "header.docs.terms.of.service": "Terms Of Service",
   "header.docs.privacy.policy": "Privacy Policy",
   "header.docs.faqs": "Faqs",
+  "header.home": "Home",
+  "header.marketplace": "Marketplace",
 };

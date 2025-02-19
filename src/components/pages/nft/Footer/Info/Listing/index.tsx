@@ -120,7 +120,7 @@ const Listing = ({ isMySaleOrder }: { isMySaleOrder?: boolean }) => {
             &nbsp;
             <span>{currency?.symbol}</span>
             <p className="usd">
-              ~ {DOLLAR_TEXT} <NumberFormatWrapper value={usd} />
+              (<NumberFormatWrapper value={usd} /> {DOLLAR_TEXT})
             </p>
           </div>
         );
@@ -224,6 +224,9 @@ const Listing = ({ isMySaleOrder }: { isMySaleOrder?: boolean }) => {
 
   return (
     <TableWrapper
+      className={style.table_wrapper_listing}
+      classNamePagination={style.pagination_wrapper_listing}
+      simple={{ readOnly: true }}
       total={listListing?.totalDocs}
       columns={columns}
       loading={loadingListing}
@@ -233,7 +236,6 @@ const Listing = ({ isMySaleOrder }: { isMySaleOrder?: boolean }) => {
       onChangePagination={handleChangePaging}
       rowKey={(row: any) => row?._id}
       onChange={handleChangeTable}
-      scroll={{ x: 784 }}
       isPagination={true}
       emptyText={intl.formatMessage({ id: "common.text.no.data" })}
     />

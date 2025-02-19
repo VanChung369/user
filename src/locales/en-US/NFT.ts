@@ -1,115 +1,12 @@
 export default {
-  "NFT.management": "NFT Management",
-  "NFT.content": "NFT Content *",
-  "NFT.admin": "Admin",
-  "NFT.file.support":
-    "Upload Image, Video, Audio, or 3D Model. File types supported: \nJPG, PNG, GIF, MP4, WEBM, MP3, WAV, OGG, GLB, GLTF. Max size: 100 MB",
-  "NFT.file.upload": "Drag and Drop file or upload from your device",
-  "NFT.file.preview": "Preview Image",
-  "NFT.file.previwe.desc":
-    "Because you’ve included multimedia, you’ll need to provide an image \n(JPG, PNG, or GIF) to display preview of your item. Max size: 2 MB",
-  "NFT.all": "All",
-
-  // nft create
-  "NFT.create": "Create NFT",
-  "NFT.create.type": "Type",
-  "NFT.create.type.placeholder": "Select type",
-  "NFT.create.mythology": "Mythology",
-  "NFT.create.mythology.placeholder": "Select ",
-  "NFT.create.god": "God",
-  "NFT.create.god.placeholder": "Enter Content",
-  "NFT.create.level": "Level",
-  "NFT.create.level.placeholder": "Select",
-  "NFT.create.class": "Class",
-  "NFT.create.class.placeholder": "Select",
-  "NFT.create.name": "Name",
-  "NFT.create.name.placeholder": "Enter Name",
-  "NFT.create.royalties": "Royalties",
-  "NFT.create.royalties.placeholder": "Enter Royalties",
-  "NFT.create.supply": "Total Supply",
-  "NFT.create.supply.placeholder": "Enter Edition Quantity",
-  "NFT.create.description": "Description",
-  "NFT.create.sub.description":
-    "The description will be included on the item's detail page underneath its image.",
-  "NFT.create.description.placeholder":
-    "Provide a detailed description of your NFT",
-  "NFT.create.button.discard": "Discard",
-  "NFT.create.button.create": "Create Item",
-  "NFT.create.button.save": "Save Changes",
-  "NFT.create.preview": "Preview",
-  "NFT.create.preview.placeholder": "Preview of your NFT",
-  "NFT.create.price": "Price",
-  "NFT.create.quantity": "Quantity",
-  "NFT.create.tag": "Tag",
-  "NFT.create.collection": "Collection",
-  "NFT.create.tag.description": "Enter Tag",
-  "NFT.create.collection.description": "Enter Collection",
-  "NFT.update": "Update NFT",
-  "NFT.update.unsave": "Unsave changed",
-  "NFT.update.unsave.description":
-    "If you leave this page, any unsaved changes will be lost.",
-  "NFT.update.leave.page": "Leave page",
-
-  //nft validation
   "NFT.quantity.error.positive": "Please enter a number greater than 0",
   "NFT.quantity.error.required": "Quantity is required",
   "NFT.price.error.required": "Price is required",
   "NFT.price.error.positive": "Please enter a number greater than 0",
   "NFT.quantity.error.max": "Quantity cannot be greater than {number}",
   "NFT.quantity": "Quantity",
-  //
-  "NFT.file.error.required": "File is required",
-  "NFT.file.preview.error.required": "File preview is required",
-  "NFT.name.error.required": "Name is required",
-  "NFT.type.error.required": "Type is required",
-  "NFT.total.supply.error.required": "Total supply is required",
-  "NFT.total.supply.error.min": "Total supply must be at least {min}",
-  "NFT.total.supply.error.max": "Total supply cannot exceed {max}",
-  "NFT.royalty.fee.error.required": "Royalty fee is required",
-  "NFT.royalty.fee.error.positive": "Royalty fee must be positive",
-  "NFT.royalty.fee.error.max": "Royalty fee cannot exceed {max}",
-  "NFT.decription.error.required": "Description fee is required",
-  "NFT.decription.error.max": "Description cannot exceed {max} characters",
-  "NFT.mythology.error.required": "Mythology is required",
-  "NFT.god.error.required": "God is required",
-  "NFT.class.error.required": "Level is required",
-  "NFT.level.error.required": "Class is required",
-  "NFT.mint.quantity.positive": "Please input number greater than 0.",
-  "NFT.mint.quantity.required": "Quantity is required",
-  "NFT.mint.quantity.max": "Quantity cannot be greater than {number}",
-  "NFT.mint.to.address.required": "Recipient’s Wallet Address is required",
-  "NFT.mint.is.address": "Wallet address is invalid",
-
-  // nft management
-
   "NFT.management.ERC-721": "ERC-721",
   "NFT.management.ERC-1155": "ERC-1155",
-  "NFT.management.Total": "Total NFTs:",
-  "NFT.management.create.date": "Created Date",
-  "NFT.management.id": "NFT ID",
-  "NFT.management.name": "NFT Name",
-  "NFT.management.copies": "Total Copies",
-  "NFT.management.supply": "Total Supply",
-  "NFT.management.quantity": "On Sale Quantity",
-  "NFT.management.minted": "Total Minted",
-  "NFT.management.status": "Status",
-  "NFT.management.status.placeholder": "Select status",
-  "NFT.management.action": "Action",
-  "NFT.management.no": "No",
-  "NFT.management.search": "Search",
-  "NFT.management.search.placeholder": "Search by NFT name, ID",
-  "NFT.management.reset": "Reset",
-  "NFT.management.off.sale": "Off Sale",
-  "NFT.management.on.sale": "On Sale",
-  "NFT.management.sold.out": "Sold Out",
-  "NFT.management.detail": "View Detail",
-  "NFT.management.column.setting": "Column Setting",
-  "NFT.management.columns.selected": "Columns Selected",
-  "NFT.management.columns.apply": "Apply",
-  "NFT.management.columns.warning": "You can select up to {column} columns",
-
-  // nft detail
-
   "NFT.detail": "NFT Detail",
   "NFT.detail.ended": "Ended",
   "NFT.detail.for.sale.and.total.supply": "For Sale/Total Supply",
@@ -170,7 +67,7 @@ export default {
   "NFT.detail.owned.status": "Status",
   "NFT.detail.owned.price": "Price",
   "NFT.detail.owned.quantity": "Quantity",
-  "NFT.detail.owned.list.for.sale": "List For Sale",
+  "NFT.detail.owned.list.for.sale": "List Sale",
   "NFT.detail.owned.actions": "Actions",
   "NFT.detail.owned.royalties": "Royalties",
   "NFT.detail.owned.invalid.tooltip":
@@ -183,25 +80,4 @@ export default {
   "NFT.detail.owned.remove.from.sale": "Remove Sale",
   "NFT.detail.owned.proceed.removal": "Proceed Removal",
   "NFT.detail.more.nfts.collection": "More from this collection",
-  //
-
-  // mint nft
-
-  "NFT.mint": "Mint NFT",
-  "NFT.mint.enter.quantity": "Enter Mint Quantity",
-  "NFT.mint.quantity": "Mint Quantity",
-  "NmaxFT.mint.": "Max",
-  "NFT.mint.limit": "Minting Limit: {number}",
-  "NFT.mint.tooltip":
-    "This is the maximum edition that can be minted. \nOnly editions which are not minted nor being listed for sale are available to mint",
-  "NFT.mint.recipient.wallet.address": "Recipient’s Wallet Address",
-  "NFT.mint.recipient.wallet.address.placeholder": "Enter Wallet Address",
-  "NFT.mint.note":
-    "<strong>NOTE</strong>: Due to gas limit on Polygon network, \nyou can only mint up to {number} NFTs each time",
-  "NFT.mint.proceed": "Proceed To Mint",
-  "NFT.mint.success":
-    "You have successfully minted <strong>{number}</strong> editions of <strong>{name}</strong>",
-  "NFT.mint.single.success":
-    "You have successfully minted <strong>{number}</strong> edition of <strong>{name}</strong>",
-  "NFT.mint.view.ploygon": "View On PolygonScan",
 };

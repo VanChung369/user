@@ -22,15 +22,13 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useAppSelector } from "@/hooks";
 import selectedAddress from "@/redux/address/selector";
 import { SorterTable } from "@/types";
-import NumberFormatWrapper from "@/components/NumberFormatWrapper";
-import { DOLLAR_TEXT, EMPTY_DEFAULT_TEXT } from "@/constants/input";
+import { EMPTY_DEFAULT_TEXT } from "@/constants/input";
 import ShortenAddress from "@/components/ShortenAddress";
 import { formatDate } from "@/utils/utils";
-import BuyButton from "@/components/BuyButton";
-import ButtonWrapper from "@/components/ButtonWrapper";
 import { setOrderSorter } from "@/utils/sort";
 import TableWrapper from "@/components/TableWrapper";
 import NumberWrapper from "@/components/NumberWrapper";
+import style from "./index.module.scss";
 
 const { PAGE, LIMIT } = NFT_ACTIVITIES_FIELDS;
 const { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } = LENGTH_CONSTANTS;
@@ -245,6 +243,9 @@ const Activities = ({ isMyHistory }: { isMyHistory?: boolean }) => {
 
   return (
     <TableWrapper
+      className={style.table_wrapper_activities}
+      classNamePagination={style.pagination_wrapper_activities}
+      simple={{ readOnly: true }}
       total={listActivities?.totalDocs}
       columns={columns}
       loading={loadingActivities}

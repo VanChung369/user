@@ -20,6 +20,7 @@ import ButtonWrapper from "@/components/ButtonWrapper";
 import BuyButton from "@/components/BuyButton";
 import { MARKETPLACE_TABS } from "@/constants/marketplace";
 import Image from "next/image";
+import Tags from "../Tag";
 
 const { SOLD_OUT, LISTED, DELISTED, COMING_SOON } = SALE_STATUS_ORDER_VALUE;
 
@@ -107,7 +108,9 @@ const Info = () => {
           </p>
         </div>
       </div>
-
+      <div className={style.nft_detail_info_tag}>
+        <Tags />
+      </div>
       <div>
         <EllipsisText
           className={style.nft_detail_info_description}
@@ -124,6 +127,8 @@ const Info = () => {
                   src={icon}
                   className={style.nft_detail_info_footer_active_currency__icon}
                   alt={"icon"}
+                  width={25}
+                  height={25}
                 />
                 <NumberFormatWrapper
                   className={
@@ -142,7 +147,7 @@ const Info = () => {
                 <span
                   className={style.nft_detail_info_footer_active_currency__usd}
                 >
-                  (~
+                  (
                   <NumberFormatWrapper
                     value={nftData?.saleOrder?.usd}
                     decimalScale={8}

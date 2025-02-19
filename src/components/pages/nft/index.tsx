@@ -91,7 +91,7 @@ const NFTDetail = () => {
           }}
         />
         <div className={style.buy_successful}>
-          <a href={ROUTES_PATH.MY_NFTS} target="_blank" rel="noreferrer">
+          <a href={ROUTES_PATH.MY_ACCOUNT} target="_blank" rel="noreferrer">
             <ButtonWrapper
               className={style.buy_successful_button_view_nft}
               text={intl.formatMessage({ id: "NFT.detail.view.my.nfts" })}

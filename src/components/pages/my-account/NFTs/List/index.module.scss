@@ -1,0 +1,50 @@
+@import "@/styles/variables.scss";
+
+.nft_list {
+    .nft_list_filter {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        justify-items: center;
+        margin-bottom: 20px;
+
+        > div {
+            display: flex;
+            align-items: baseline;
+            font-size: 15px;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+
+        :global {
+            .ant-select {
+                min-width: 126px;
+
+                .ant-select-selector {
+                    background-color: $color-trout;
+
+                    .ant-select-selection-wrap {
+                        color: $text-color-white;
+                    }
+                }
+
+                .ant-select-arrow {
+                    color: $text-color-white;
+                }
+            }
+        }
+    }
+
+    .nft_list_content {
+        color: aliceblue;
+
+        :global {
+            @media only screen and (min-width: $breakpoint_tablet_sm) and (max-width: $breakpoint_laptop_max) {
+                .ant-col-xl-6 {
+                    flex: 0 0 33.33333333333333%;
+                    max-width: 33.33333333333333%;
+                }
+            }
+        }
+    }
+}

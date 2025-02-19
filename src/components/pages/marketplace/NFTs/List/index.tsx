@@ -1,7 +1,5 @@
 import React, { Fragment } from "react";
-import classNames from "classnames";
 import { useIntl } from "react-intl";
-import { useMobile } from "@/hooks/hook-customs/useWindowSize";
 import { useGetNFTSize } from "@/hooks/hook-customs/useGetNFTSize";
 import { NFTS_SORTER } from "@/constants/marketplace";
 import { LENGTH_CONSTANTS } from "@/constants";
@@ -9,7 +7,7 @@ import { initialValues, KEY_SEARCH } from "../..";
 import FormWrapper from "@/components/FormWrapper";
 import { TYPE_INPUT } from "@/constants/input";
 import LoadingWrapper from "@/components/LoadingWrapper";
-import { Col, Pagination, Row } from "antd";
+import { Col, Row } from "antd";
 import { Formik } from "formik";
 import { noop } from "lodash";
 import NFTItem from "@/components/NFTItem";

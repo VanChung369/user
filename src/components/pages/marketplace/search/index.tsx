@@ -1,6 +1,5 @@
 import { Fragment, memo, useRef } from "react";
 import { Form, Formik } from "formik";
-import classNames from "classnames";
 import isString from "lodash/isString";
 import { useIntl } from "react-intl";
 import { LENGTH_CONSTANTS } from "@/constants";
@@ -10,7 +9,6 @@ import FormWrapper from "@/components/FormWrapper";
 import { useChangeAddress } from "@/hooks/hook-customs/useChangeAddress";
 import { trim } from "lodash";
 import style from "./index.module.scss";
-import { NFTS_SORTER } from "@/constants/marketplace";
 import { initialValues, KEY_SEARCH } from "..";
 
 type SearchProps = {
@@ -68,7 +66,7 @@ const Search = ({ onSubmit, params }: SearchProps) => {
                   className={style.search_keyword}
                   name={KEY_SEARCH.KEYWORD}
                   placeholder={intl.formatMessage({
-                    id: "tag.management.search.placeholder",
+                    id: "marketplace.search.placeholder",
                   })}
                   onSearch={handleChangeField(
                     setFieldValue,

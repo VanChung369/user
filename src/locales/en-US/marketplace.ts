@@ -9,4 +9,5 @@ export default {
   "marketplace.highest.price": "Highest Price",
   "marketplace.new.arrivals": "New Arrivals",
   "marketplace.collections": "Collections({total})",
+  "marketplace.search.placeholder": "Search by NFT Name/ID, Created by Address",
 };

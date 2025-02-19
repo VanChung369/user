@@ -13,9 +13,7 @@ const ROUTES_PATH = {
   HOME: "/",
   MARKETPLACE: "/marketplace",
   NFT_DETAIL: "/nft",
-  MY_NFTS: "/my-nfts",
-  MY_ACCOUNT: "/my-account",
-  MY_ACTIVITIES: "/my-activities",
+  MY_ACCOUNT: "/account",
   LANDING_PAGE: "/",
   PAGE_404: "/404",
 };

@@ -1,6 +1,6 @@
 "use client";
 import style from "./index.module.scss";
-import React, { useEffect } from "react";
+import React from "react";
 import { Col, Row } from "antd";
 import AppLink from "@/components/AppLink";
 import { useIntl } from "react-intl";

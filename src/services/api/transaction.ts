@@ -20,3 +20,25 @@ export async function updateTransactionHash(id: string, body?: any) {
     params: body,
   });
 }
+
+export async function getSaleHistory(
+  params?: any,
+  options?: { [key: string]: any }
+) {
+  return api.get({
+    endpoint: "/api/transactions/sale-histories",
+    params: params,
+    options: options,
+  });
+}
+
+export async function getPurchaseHistory(
+  params?: any,
+  options?: { [key: string]: any }
+) {
+  return api.get({
+    endpoint: "/api/transactions/purchase-histories",
+    params: params,
+    options: options,
+  });
+}

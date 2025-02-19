@@ -96,7 +96,7 @@
         margin-top: 20px;
         width: 98%;
         height: 60px;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
         @include scrollbars();
 
         @media only screen and (max-width: $breakpoint_tablet_max) {
@@ -171,8 +171,8 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        height: 50px;
-        width: 130px;
+        height: 45px;
+        min-width: 165px;
         border-radius: 15px;
         border: none;
         text-transform: uppercase;
@@ -194,20 +194,20 @@
     }
 
     .not_for_sale {
-        font-weight: 400;
+        font-weight: 600;
         font-size: 14px;
         line-height: 21px;
         text-align: center;
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        height: 50px;
-        width: 200px;
+        height: 40px;
+        min-width: 150px;
         border-radius: 15px;
         border: none;
         text-transform: uppercase;
         padding: 7px 24px;
-        background: $background-color;
-        color: $text-color-white;
+        background: $color-sliver;
+        color: $color-dark-slate;
     }
 }

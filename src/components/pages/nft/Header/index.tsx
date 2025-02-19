@@ -87,12 +87,12 @@ const Header = () => {
           <div className={style.nft_detail_header_breadcrum}>
             <span>
               <AppLink href={ROUTES_PATH.HOME}>
-                {intl.formatMessage({ id: "menu.home" })}
+                {intl.formatMessage({ id: "header.home" })}
               </AppLink>
             </span>
             <span>
               <AppLink href={ROUTES_PATH.MARKETPLACE}>
-                {intl.formatMessage({ id: "menu.marketplace" })}
+                {intl.formatMessage({ id: "header.marketplace" })}
               </AppLink>
             </span>
             <span> {intl.formatMessage({ id: "NFT.detail" })}</span>

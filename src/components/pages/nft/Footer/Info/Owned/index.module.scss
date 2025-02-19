@@ -21,3 +21,79 @@
         }
     }
 }
+
+.table_wrapper_owned {
+    :global {
+        .ant-table-wrapper {
+            .ant-table {
+                scrollbar-color: $color-gray !important;
+                background: $background-color;
+
+                .ant-table-thead {
+                    .ant-table-column-has-sorters {
+                        &::before {
+                            background-color: unset !important;
+                        }
+                    }
+
+                    .ant-table-cell {
+                        background-color: $background-color;
+                        letter-spacing: 0.015em;
+                        color: $text-color-white;
+                        font-weight: 500;
+                        font-size: 13px;
+                        line-height: 28px;
+                        text-transform: uppercase;
+
+                        &::before {
+                            background-color: unset !important;
+                        }
+
+                        .ant-table-column-sorter-inner {
+                            margin-top: 5px;
+                            span {
+                                font-size: 12px;
+                            }
+                        }
+                    }
+                }
+
+                .ant-table-tbody {
+                    .ant-table-row {
+                        background: $background-color;
+
+                        &:hover {
+                            background: $background-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.pagination_wrapper_owned {
+    :global {
+        .ant-pagination-item {
+            border-width: 0;
+            background: $background-color !important;
+        }
+
+        .ant-pagination-simple-pager {
+            color: $text-color-white;
+            margin-top: 1px;
+        }
+
+        .ant-pagination-options {
+            .ant-select {
+                .ant-select-selector {
+                    background: $background-color !important;
+
+                    .ant-select-selection-item {
+                        color: $text-color-white;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -44,13 +44,19 @@
   }
 
   :global {
+    color: $text-color-white;
+
     .ant-input {
       height: 40px;
       width: 100%;
       border-radius: 5px;
       border: 1px solid $color-gray;
-      color: $color-sliver;
       background: unset;
+      color: $text-color-white;
+      font-size: 14px;
+      line-height: 1.5714285714285714;
+      transition: all 0.2s;
+      min-width: 1px;
 
       &:hover,
       &:focus {
@@ -72,6 +78,11 @@
       width: 100%;
       border: 1px solid $color-gray;
       border-radius: 5px;
+      color: $text-color-white;
+
+      svg {
+        fill: aliceblue;
+      }
     }
 
     .ant-input[disabled] {
@@ -109,6 +120,10 @@
       height: 40px;
       border-radius: 5px;
 
+      svg {
+        fill: aliceblue;
+      }
+
       .ant-select-selector {
         @include scrollbars();
         overflow: auto;
@@ -116,6 +131,8 @@
         height: 100%;
         align-items: center;
         border: 1px solid $color-gray;
+        background: transparent;
+        color: $text-color-white;
 
         &:hover,
         &:focus {
@@ -140,6 +157,10 @@
         border: none;
         background: unset !important;
         margin-left: -45px;
+
+        svg {
+          fill: aliceblue;
+        }
       }
     }
   }

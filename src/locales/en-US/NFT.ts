@@ -1,4 +1,7 @@
 export default {
+  "NFT.on.sale": "On Sale",
+  "NFT.off.sale": "Off Sale",
+  "NFT.sold.out": "Sold Out",
   "NFT.quantity.error.positive": "Please enter a number greater than 0",
   "NFT.quantity.error.required": "Quantity is required",
   "NFT.price.error.required": "Price is required",

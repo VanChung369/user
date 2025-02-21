@@ -124,6 +124,19 @@
           // }
         }
 
+        .ant-table-placeholder {
+          background: $background-color;
+          &:hover {
+            background-color: $background-color;
+          }
+
+          .ant-table-cell {
+            .ant-empty-description {
+              color: $text-color-white;
+            }
+          }
+        }
+
         .ant-table-row {
           background: $color-gray;
 
@@ -134,6 +147,7 @@
           }
 
           .ant-table-placeholder {
+            background: $background-color;
             &:hover > td {
               background-color: $color-gray;
             }

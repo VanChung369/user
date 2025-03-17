@@ -5,9 +5,41 @@
     border-radius: 20px;
     padding: 30px 50px 30px;
 
+    @media screen and (max-width: $breakpoint_laptop_max) {
+        padding: 25px 40px;
+    }
+
+    @media screen and (max-width: $breakpoint_tablet_max) {
+        padding: 20px 30px;
+        border-radius: 16px;
+    }
+
+    @media screen and (max-width: $breakpoint_mobile_max) {
+        padding: 16px 20px;
+        border-radius: 12px;
+    }
+
+    :global {
+        .ant-row {
+            @media screen and (max-width: $breakpoint_tablet_max) {
+                row-gap: 24px;
+            }
+
+            @media screen and (max-width: $breakpoint_mobile_max) {
+                row-gap: 20px;
+            }
+        }
+    }
+
     .nft_detail_general_info {
+        @media screen and (max-width: $breakpoint_tablet_max) {
+            order: 2;
+        }
     }
 
     .nft_detail_general_preview {
+        @media screen and (max-width: $breakpoint_tablet_max) {
+            order: 1;
+        }
     }
 }

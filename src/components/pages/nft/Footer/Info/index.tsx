@@ -15,11 +15,13 @@ import Listing from "./Listing";
 import style from "./index.module.scss";
 import Activities from "./Activities";
 import Owned from "./Owned";
+import { useMobile } from "@/hooks/hook-customs/useWindowSize";
 
 const { LISTING, ACTIVITIES, OWNED } = NFT_DETAIL_TABS;
 
 const Info = () => {
   const intl = useIntl();
+  const isMobile = useMobile();
   const { isRefreshSaleOrder, onSetIsRefreshSaleOrder } = useContext(
     NftDetailContext
   ) as any;
@@ -48,7 +50,7 @@ const Info = () => {
       key: OWNED.key,
       tab: intl.formatMessage(
         { id: OWNED.label },
-        { number: nftOwned?.totalDocs }
+        { number: nftOwned?.totalDocs || 0 }
       ),
       content: <Owned />,
     },
@@ -98,7 +100,8 @@ const Info = () => {
     switch (activeTab) {
       case ACTIVITIES.key:
         return (
-          isConnected && (
+          isConnected &&
+          !isMobile && (
             <div className={style.extra_tabs}>
               <span className={style.extra_tabs_label}>
                 {renderExtraTabLabel}
@@ -115,7 +118,7 @@ const Info = () => {
       case LISTING.key:
         return (
           <div className={style.extra_tabs}>
-            {isConnected && (
+            {isConnected && !isMobile && (
               <div>
                 <span className={style.extra_tabs_label}>
                   {renderExtraTabLabel}
@@ -131,20 +134,22 @@ const Info = () => {
             {isRefreshSaleOrder ? (
               <></>
             ) : (
-              <CountdownCircleTimer
-                isPlaying
-                duration={10}
-                colors="#a259ff"
-                trailColor="#a259ff"
-                onComplete={() => {
-                  onSetIsRefreshSaleOrder(true);
-                  return { shouldRepeat: true, delay: 1 };
-                }}
-                size={28}
-                strokeWidth={2}
-              >
-                {renderTime}
-              </CountdownCircleTimer>
+              !isMobile && (
+                <CountdownCircleTimer
+                  isPlaying
+                  duration={10}
+                  colors="#a259ff"
+                  trailColor="#a259ff"
+                  onComplete={() => {
+                    onSetIsRefreshSaleOrder(true);
+                    return { shouldRepeat: true, delay: 1 };
+                  }}
+                  size={28}
+                  strokeWidth={2}
+                >
+                  {renderTime}
+                </CountdownCircleTimer>
+              )
             )}
           </div>
         );

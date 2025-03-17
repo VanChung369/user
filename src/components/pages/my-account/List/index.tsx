@@ -11,6 +11,7 @@ import TableWrapper from "@/components/TableWrapper";
 import { SorterTable } from "@/types";
 import { useIntl } from "react-intl";
 import style from "./index.module.scss";
+import { useMobile } from "@/hooks/hook-customs/useWindowSize";
 
 type ListProps = {
   data?: Array<any>;
@@ -30,6 +31,7 @@ const List = ({
   onSubmit,
 }: ListProps) => {
   const intl = useIntl();
+  const isMobile = useMobile();
   const { limit, page } = params;
 
   const handleChangeTable = (
@@ -70,6 +72,7 @@ const List = ({
       dataSource={data}
       pageSize={limit}
       current={page}
+      scroll={isMobile ? { x: 784 } : false}
       onChangePagination={handleChangePaging}
       rowKey={(row: any) => row?._id}
       onChange={handleChangeTable}

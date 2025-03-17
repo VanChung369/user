@@ -21,7 +21,7 @@ export default {
   "login.wrong.network.switch.polygon": "Switch to Polygon Smart Chain",
   "login.disconnect.wallet": "Disconnect wallet",
   "login.connect.wallet.content":
-    "Please connect your wallet to continue.The system supports the following wallets:",
+    "Please connect your wallet to continue.The system supports the following wallets",
   "login.connect.wallet.note":
     "<b>NOTE</b>:  By connecting your wallet, you agree with our <a className='view-nft-detail' href='#' target='_blank' rel='noreferre'>Terms of Service</a> and <a className='view-nft-detail' href='#' target='_blank' rel='noreferre'>Privacy Policy</a>",
 };

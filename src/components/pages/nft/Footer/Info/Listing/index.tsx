@@ -26,12 +26,14 @@ import ButtonWrapper from "@/components/ButtonWrapper";
 import { setOrderSorter } from "@/utils/sort";
 import TableWrapper from "@/components/TableWrapper";
 import style from "./index.module.scss";
+import { useMobile } from "@/hooks/hook-customs/useWindowSize";
 
 const { PAGE, LIMIT } = NFT_ACTIVITIES_FIELDS;
 const { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } = LENGTH_CONSTANTS;
 
 const Listing = ({ isMySaleOrder }: { isMySaleOrder?: boolean }) => {
   const intl = useIntl();
+  const isMobile = useMobile();
   const account = useAddress();
   const { id } = useParams();
   const queryClient = useQueryClient();
@@ -235,6 +237,7 @@ const Listing = ({ isMySaleOrder }: { isMySaleOrder?: boolean }) => {
       current={page}
       onChangePagination={handleChangePaging}
       rowKey={(row: any) => row?._id}
+      scroll={isMobile ? { x: 784 } : false}
       onChange={handleChangeTable}
       isPagination={true}
       emptyText={intl.formatMessage({ id: "common.text.no.data" })}

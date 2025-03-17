@@ -26,7 +26,7 @@ const Tag = () => {
           {data?.docs &&
             data.docs?.map((tag: any, index: any) => {
               return (
-                <Col key={index} xs={24} sm={12} md={8} lg={8} xl={6} xxl={6}>
+                <Col key={index} xs={12} sm={12} md={8} lg={8} xl={6} xxl={6}>
                   <AppLink
                     href={`${ROUTES_PATH.MARKETPLACE}?${QUERY.TAG}=${tag?._id}`}
                   >

@@ -1,0 +1,177 @@
+@import "@/styles/variables.scss";
+
+.mobile_header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    padding: 0 15px;
+
+    @media screen and (max-width: $breakpoint_tablet_max) {
+        gap: 1px;
+    }
+
+    @media screen and (max-width: $breakpoint_mobile_max) {
+        gap: 1px;
+    }
+
+    &__icon {
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        &.menu_icon {
+            margin-left: 10px;
+        }
+    }
+}
+
+.mobile_drawer {
+    &:global(.ant-drawer-content) {
+        background-color: $background-color;
+    }
+
+    :global {
+        .ant-drawer-wrapper-body {
+            background: $background-color;
+        }
+
+        .ant-drawer-header {
+            background: transparent;
+            border-bottom: none;
+            padding: 24px 24px 0;
+        }
+
+        .ant-drawer-body {
+            padding: 24px;
+        }
+    }
+
+    .header_menu {
+        position: relative;
+        padding-bottom: 20px;
+
+        .close_btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        .menu {
+            margin-top: 40px;
+
+            .item {
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+                a {
+                    color: $text-color-white;
+                    font-size: 16px;
+                    font-weight: 500;
+                    text-transform: capitalize;
+                    transition: color 0.3s ease;
+
+                    &:hover {
+                        color: $color-violet;
+                    }
+                }
+
+                :global {
+                    .ant-menu {
+                        background: transparent;
+                        border: none;
+
+                        .ant-menu-submenu {
+                            background: transparent;
+                            color: $text-color-white;
+
+                            &-title {
+                                color: $text-color-white;
+                                font-size: 16px;
+                                font-weight: 500;
+                                text-transform: capitalize;
+                                padding-left: 0;
+
+                                &:hover {
+                                    color: $color-violet;
+                                }
+                            }
+
+                            &-arrow {
+                                color: $text-color-white;
+                            }
+                        }
+
+                        .ant-menu-item {
+                            margin: 0;
+                            padding-left: 20px;
+
+                            a {
+                                color: $color-sliver;
+                                font-size: 14px;
+
+                                &:hover {
+                                    color: $color-violet;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &_account {
+        .header_overlay {
+            padding-bottom: 20px;
+
+            &__address {
+                font-size: 16px;
+                font-weight: 600;
+                color: $text-color-white;
+                margin-bottom: 20px;
+            }
+        }
+
+        .item {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: $text-color-white;
+            font-size: 16px;
+            text-transform: capitalize;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: $color-violet;
+            }
+
+            &.border_bottom_none {
+                border-bottom: none;
+            }
+
+            img {
+                width: 20px;
+                height: 20px;
+            }
+
+            .disconnect {
+                color: $text-color-white;
+            }
+        }
+    }
+}

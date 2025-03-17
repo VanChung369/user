@@ -3,16 +3,37 @@
 .container {
   max-height: 75vh;
   padding: 12px 24px;
+  z-index: 9999;
+
+  @media screen and (max-width: $breakpoint_mobile_max) {
+    padding: 10px 16px;
+    margin: 10px;
+  }
+
   :global {
     .ant-modal-content {
       background-color: $background-disabled !important;
       border-radius: 15px;
       max-height: 100vh;
       padding: 20px 47px;
+
+      @media screen and (max-width: $breakpoint_tablet_max) {
+        padding: 20px 30px;
+      }
+
+      @media screen and (max-width: $breakpoint_mobile_max) {
+        padding: 15px 20px;
+      }
     }
 
     .ant-modal-close {
       color: $text-color-white;
+      transition: all 0.3s ease;
+
+      @media screen and (max-width: $breakpoint_mobile_max) {
+        top: 10px;
+        right: 10px;
+      }
 
       &:hover {
         color: $color-violet;
@@ -24,12 +45,24 @@
 
   .connect {
     &__loading {
+      text-align: center;
+
       &_title {
         color: $text-color-white;
         font-weight: 600;
         font-size: 20px;
         line-height: 1.1;
-        letter-spacing: 1;
+        letter-spacing: 1px;
+        margin-bottom: 24px;
+
+        @media screen and (max-width: $breakpoint_tablet_max) {
+          font-size: 18px;
+        }
+
+        @media screen and (max-width: $breakpoint_mobile_max) {
+          font-size: 16px;
+          margin-bottom: 16px;
+        }
       }
 
       &_subtitle {
@@ -37,6 +70,10 @@
         font-weight: 400;
         line-height: 1.5;
         font-size: 16px;
+
+        @media screen and (max-width: $breakpoint_mobile_max) {
+          font-size: 14px;
+        }
       }
 
       &_image {
@@ -47,18 +84,33 @@
       }
 
       &_icon {
-        margin-top: 24px;
-        margin-bottom: 32px;
+        margin: 24px 0 32px;
+
+        @media screen and (max-width: $breakpoint_mobile_max) {
+          margin: 16px 0 24px;
+          width: 120px;
+          height: 120px;
+        }
       }
     }
 
     &__not_found {
+      text-align: center;
+
       &_title {
         color: $text-color-white;
         font-weight: 600;
         font-size: 20px;
         line-height: 1.1;
-        letter-spacing: 1;
+        letter-spacing: 1px;
+
+        @media screen and (max-width: $breakpoint_tablet_max) {
+          font-size: 18px;
+        }
+
+        @media screen and (max-width: $breakpoint_mobile_max) {
+          font-size: 16px;
+        }
       }
 
       &_subtitle {
@@ -67,6 +119,11 @@
         line-height: 1.5;
         font-size: 16px;
         margin-bottom: 24px;
+
+        @media screen and (max-width: $breakpoint_mobile_max) {
+          font-size: 14px;
+          margin-bottom: 16px;
+        }
       }
 
       &_image {
@@ -76,8 +133,13 @@
       }
 
       &_icon {
-        margin-top: 24px;
-        margin-bottom: 24px;
+        margin: 24px 0;
+
+        @media screen and (max-width: $breakpoint_mobile_max) {
+          margin: 16px 0;
+          width: 120px;
+          height: 120px;
+        }
       }
 
       &_download {
@@ -88,15 +150,18 @@
         cursor: pointer;
         display: inline-flex;
         justify-content: center;
-        outline: 0px;
-        transition:
-          background-color 0.2s ease 0s,
-          opacity 0.2s ease 0s;
+        outline: 0;
+        transition: all 0.3s ease;
         height: 48px;
-        padding: 0px 24px;
+        padding: 0 24px;
         background-color: transparent;
         border: 2px solid $color-bright-turquoise;
         box-shadow: none;
+
+        @media screen and (max-width: $breakpoint_mobile_max) {
+          height: 44px;
+          padding: 0 20px;
+        }
 
         a {
           font-size: 16px;
@@ -104,6 +169,11 @@
           color: $color-bright-turquoise;
           letter-spacing: 0.03em;
           line-height: 1.5;
+          transition: opacity 0.3s ease;
+
+          @media screen and (max-width: $breakpoint_mobile_max) {
+            font-size: 14px;
+          }
         }
 
         &:hover {
@@ -124,11 +194,17 @@
       color: $color-violet;
 
       @media screen and (max-width: $breakpoint_tablet_max) {
-        padding-top: 62px;
+        padding-top: 30px;
         font-weight: 700;
         font-size: 24px;
         line-height: 36px;
-        color: $color-violet;
+      }
+
+      @media screen and (max-width: $breakpoint_mobile_max) {
+        padding-top: 20px;
+        font-size: 20px;
+        line-height: 28px;
+        margin-bottom: 16px;
       }
     }
 
@@ -144,7 +220,14 @@
 
         @media screen and (max-width: $breakpoint_tablet_max) {
           font-size: 14px;
-          line-height: 18px;
+          line-height: 22px;
+          padding-bottom: 24px;
+        }
+
+        @media screen and (max-width: $breakpoint_mobile_max) {
+          font-size: 13px;
+          line-height: 20px;
+          padding-bottom: 20px;
         }
       }
 
@@ -155,20 +238,39 @@
         font-size: 14px;
         color: $color-sliver;
         line-height: 21px;
-        padding: 24px 0px 0px 0px;
+        padding: 24px 0 0;
+
+        @media screen and (max-width: $breakpoint_tablet_max) {
+          font-size: 13px;
+          line-height: 20px;
+          padding-top: 20px;
+        }
+
+        @media screen and (max-width: $breakpoint_mobile_max) {
+          font-size: 12px;
+          line-height: 18px;
+          padding-top: 16px;
+        }
 
         &__image {
           padding-right: 10px;
+          flex-shrink: 0;
+
+          @media screen and (max-width: $breakpoint_mobile_max) {
+            padding-right: 8px;
+            width: 16px;
+            height: 16px;
+          }
         }
 
         a {
           color: $error-color;
           text-decoration-line: underline;
-        }
+          transition: opacity 0.3s ease;
 
-        @media screen and (max-width: $breakpoint_tablet_max) {
-          font-size: 14px;
-          line-height: 18px;
+          &:hover {
+            opacity: 0.8;
+          }
         }
       }
     }

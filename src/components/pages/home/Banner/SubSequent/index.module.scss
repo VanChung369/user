@@ -1,6 +1,9 @@
 @import "@/styles/variables.scss";
 
 .sub_sequent {
+    @media only screen and (max-width: $breakpoint_mobile_max) {
+        padding: 10px;
+    }
     .sub_sequent_content {
         height: 400px;
         margin: 40px 0;
@@ -55,16 +58,41 @@
                 color: $text-color-white !important;
                 opacity: 0.8;
             }
+
+            @media only screen and (max-width: $breakpoint_laptop_max) {
+                height: 55px;
+                padding: 0 40px;
+            }
+
+            @media only screen and (max-width: $breakpoint_tablet_max) {
+                height: 50px;
+                padding: 0 35px;
+                font-size: 15px;
+            }
+
+            @media only screen and (max-width: $breakpoint_mobile_max) {
+                height: 45px;
+                padding: 0 30px;
+                font-size: 14px;
+                width: 100%;
+                justify-content: center;
+            }
         }
     }
     .image {
         display: flex;
         justify-content: flex-end;
-        align-items: flex-end;
+        align-items: center;
+
+        @media only screen and (max-width: $breakpoint_mobile_max) {
+            justify-content: center;
+            margin-top: 30px;
+        }
 
         img {
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
         }
     }
     .content {
@@ -179,6 +207,16 @@
             background-color: #707c88;
             border-radius: 4px;
             margin: 0 1rem;
+
+            @media only screen and (max-width: $breakpoint_tablet_max) {
+                padding: 8px 12px;
+                min-width: 70px;
+            }
+
+            @media only screen and (max-width: $breakpoint_mobile_max) {
+                padding: 6px 10px;
+                min-width: 60px;
+            }
         }
     }
 }

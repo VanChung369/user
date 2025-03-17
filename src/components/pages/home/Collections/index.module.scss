@@ -3,10 +3,26 @@
 .collection {
     margin-top: 50px;
 
+    @media only screen and (max-width: $breakpoint_laptop_max) {
+        margin-top: 40px;
+    }
+
+    @media only screen and (max-width: $breakpoint_tablet_max) {
+        margin-top: 30px;
+    }
+
+    @media only screen and (max-width: $breakpoint_mobile_max) {
+        margin-top: 25px;
+    }
+
     .collection_box {
-        :gloabl {
+        :global {
             .ant-row {
                 align-items: center;
+
+                @media only screen and (max-width: $breakpoint_mobile_max) {
+                    row-gap: 15px;
+                }
             }
         }
 
@@ -20,6 +36,17 @@
         position: relative;
         text-align: left;
         white-space: nowrap;
+        margin-bottom: 30px;
+
+        @media only screen and (max-width: $breakpoint_tablet_max) {
+            margin-bottom: 25px;
+            line-height: 38px;
+        }
+
+        @media only screen and (max-width: $breakpoint_mobile_max) {
+            margin-bottom: 20px;
+            line-height: 32px;
+        }
 
         &__link {
             align-items: center;
@@ -38,12 +65,33 @@
             transition: all 0.3s ease;
             width: fit-content;
 
-            a {
-                color: $text-color-white;
-                letter-spacing: 0px;
-                line-height: 45.6px;
-                font-size: 16px;
-                font-weight: 600;
+            @media only screen and (max-width: $breakpoint_tablet_max) {
+                height: 50px;
+                padding: 0px 30px;
+                gap: 8px;
+            }
+
+            @media only screen and (max-width: $breakpoint_mobile_max) {
+                height: 45px;
+                padding: 0px 20px;
+                gap: 6px;
+                width: 100%;
+            }
+
+            color: $text-color-white;
+            letter-spacing: 0px;
+            line-height: 45.6px;
+            font-size: 16px;
+            font-weight: 600;
+
+            @media only screen and (max-width: $breakpoint_tablet_max) {
+                font-size: 15px;
+                line-height: 38px;
+            }
+
+            @media only screen and (max-width: $breakpoint_mobile_max) {
+                font-size: 14px;
+                line-height: 32px;
             }
 
             &:focus,
@@ -59,12 +107,71 @@
         &__title {
             font-size: 30px;
             font-weight: 900;
+
+            @media only screen and (max-width: $breakpoint_laptop_max) {
+                font-size: 28px;
+            }
+
+            @media only screen and (max-width: $breakpoint_tablet_max) {
+                font-size: 24px;
+            }
+
+            @media only screen and (max-width: $breakpoint_mobile_max) {
+                font-size: 20px;
+            }
         }
 
         &__title_content {
             font-size: 16px;
             font-weight: 300;
             color: #c8cacc;
+            white-space: normal;
+            margin-top: 5px;
+
+            @media only screen and (max-width: $breakpoint_tablet_max) {
+                font-size: 15px;
+            }
+
+            @media only screen and (max-width: $breakpoint_mobile_max) {
+                font-size: 14px;
+                margin-top: 3px;
+            }
+        }
+    }
+
+    :global {
+        .ant-row {
+            margin-bottom: -30px;
+
+            @media only screen and (max-width: $breakpoint_tablet_max) {
+                margin-bottom: -24px;
+            }
+
+            @media only screen and (max-width: $breakpoint_mobile_max) {
+                margin-bottom: -16px;
+            }
+
+            & > div {
+                margin-bottom: 30px;
+
+                @media only screen and (max-width: $breakpoint_tablet_max) {
+                    margin-bottom: 24px;
+                }
+
+                @media only screen and (max-width: $breakpoint_mobile_max) {
+                    margin-bottom: 16px;
+                }
+            }
+        }
+
+        a {
+            display: block;
+            height: 100%;
+            transition: all 0.3s ease;
+
+            &:hover {
+                transform: scale(0.98);
+            }
         }
     }
 }

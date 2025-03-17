@@ -6,7 +6,7 @@
     background-size: cover;
     align-items: center;
 
-    @media only screen and (max-width: $breakpoint_tablet_sm) {
+    @media only screen and (max-width: $breakpoint_mobile_max) {
         background-image: url("../../../../../public/images/banner-image-mobile.png");
         padding: 4rem 0;
     }
@@ -20,8 +20,13 @@
         height: 400px;
         margin: 40px 0;
 
-        @media only screen and (max-width: $breakpoint_tablet_sm) {
+        @media only screen and (max-width: $breakpoint_tablet_max) {
             height: 100%;
+        }
+
+        @media only screen and (max-width: $breakpoint_mobile_max) {
+            height: 85%;
+            padding: 5px;
         }
 
         &__title {
@@ -39,7 +44,7 @@
             font-weight: 300;
             font-size: 1rem;
             line-height: 1.7rem;
-            color: #c8cacc;
+            color: $color-sliver;
             margin-bottom: 2rem;
         }
 
@@ -67,16 +72,38 @@
                 color: $text-color-white !important;
                 opacity: 0.8;
             }
+
+            @media only screen and (max-width: $breakpoint_tablet_max) {
+                height: 50px;
+                padding: 0 35px;
+                font-size: 15px;
+                margin-bottom: 40px;
+            }
+
+            @media only screen and (max-width: $breakpoint_mobile_max) {
+                height: 45px;
+                padding: 0 30px;
+                font-size: 14px;
+                margin-bottom: 30px;
+                width: 100%;
+                justify-content: center;
+            }
         }
     }
     .image {
         display: flex;
         justify-content: flex-end;
-        align-items: flex-end;
+        align-items: center;
+
+        @media only screen and (max-width: $breakpoint_mobile_max) {
+            justify-content: center;
+            margin-top: 30px;
+        }
 
         img {
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
         }
     }
     .content {

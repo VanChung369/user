@@ -24,11 +24,13 @@ import TableWrapper from "@/components/TableWrapper";
 import style from "./index.module.scss";
 import ListForSaleButton from "@/components/ListForSaleButton";
 import RemoveFromSaleButton from "@/components/RemoveFromSaleButton";
+import { useMobile } from "@/hooks/hook-customs/useWindowSize";
 
 const { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } = LENGTH_CONSTANTS;
 
 const Owned = () => {
   const intl = useIntl();
+  const isMobile = useMobile();
   const account = useAddress();
   const { id } = useParams();
   const queryClient = useQueryClient();
@@ -259,6 +261,7 @@ const Owned = () => {
       pageSize={limit}
       current={page}
       onChangePagination={handleChangePaging}
+      scroll={isMobile ? { x: 784 } : false}
       rowKey={(row: any) => row?.tokenId}
       isPagination={true}
       emptyText={intl.formatMessage({ id: "common.text.no.data" })}

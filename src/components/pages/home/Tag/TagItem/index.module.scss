@@ -18,9 +18,25 @@
     margin-bottom: 20px;
     margin-top: 30px;
 
-    // @media only screen and (max-width: $breakpoint_laptop_max) {
-    //     width: 320px;
-    // }
+    @media only screen and (max-width: $breakpoint_laptop_max) {
+        width: 220px;
+        margin-bottom: 15px;
+        margin-top: 25px;
+    }
+
+    @media only screen and (max-width: $breakpoint_tablet_max) {
+        width: 200px;
+        margin-bottom: 12px;
+        margin-top: 20px;
+        margin-left: 5px;
+    }
+
+    @media only screen and (max-width: $breakpoint_mobile_max) {
+        width: 150px;
+        margin-bottom: 10px;
+        margin-top: 15px;
+        margin-left: 5px;
+    }
 
     &:hover {
         transform: scale(0.95);
@@ -34,6 +50,21 @@
         min-width: 240px;
         position: relative;
 
+        @media only screen and (max-width: $breakpoint_laptop_max) {
+            height: 220px;
+            min-width: 220px;
+        }
+
+        @media only screen and (max-width: $breakpoint_tablet_max) {
+            height: 200px;
+            min-width: 200px;
+        }
+
+        @media only screen and (max-width: $breakpoint_mobile_max) {
+            height: 150px;
+            min-width: 150px;
+        }
+
         .tag_card_photo_icon_image {
             background-color: transparent;
             height: 240px;
@@ -43,6 +74,21 @@
             position: absolute;
             top: 0px;
             width: 240px;
+
+            @media only screen and (max-width: $breakpoint_laptop_max) {
+                height: 220px;
+                width: 220px;
+            }
+
+            @media only screen and (max-width: $breakpoint_tablet_max) {
+                height: 200px;
+                width: 200px;
+            }
+
+            @media only screen and (max-width: $breakpoint_mobile_max) {
+                height: 150px;
+                width: 150px;
+            }
         }
     }
 
@@ -57,6 +103,21 @@
         padding: 20px 30px 25px;
         position: relative;
 
+        @media only screen and (max-width: $breakpoint_laptop_max) {
+            padding: 18px 25px 22px;
+            gap: 20px;
+        }
+
+        @media only screen and (max-width: $breakpoint_tablet_max) {
+            padding: 15px 20px 20px;
+            gap: 18px;
+        }
+
+        @media only screen and (max-width: $breakpoint_mobile_max) {
+            padding: 12px 15px 15px;
+            gap: 15px;
+        }
+
         .tag_card_name_text {
             align-self: stretch;
             background-color: transparent;
@@ -69,6 +130,23 @@
             white-space: nowrap;
             font-size: 18px;
             font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            @media only screen and (max-width: $breakpoint_laptop_max) {
+                font-size: 17px;
+                line-height: 28px;
+            }
+
+            @media only screen and (max-width: $breakpoint_tablet_max) {
+                font-size: 16px;
+                line-height: 26px;
+            }
+
+            @media only screen and (max-width: $breakpoint_mobile_max) {
+                font-size: 14px;
+                line-height: 22px;
+            }
         }
     }
 }

@@ -4,7 +4,7 @@ import CloseIcon from "@public/svg/close-icon.svg";
 import DisconnectIcon from "@public/svg/disconnect-icon.svg";
 import MenuIcon from "@public/svg/menu-icon.svg";
 import UserIcon from "@public/images/no-profile-md.png";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import AppLink from "@/components/AppLink";
 import ShortenAddress from "@/components/ShortenAddress";
 import ButtonWrapper from "@/components/ButtonWrapper";
@@ -18,8 +18,6 @@ import {
 import { handleSetAuthenticationToken } from "@/redux/authentication/slice";
 import { useAddress, useDisconnect } from "@thirdweb-dev/react";
 import selectedConnection from "@/redux/connection/selector";
-import AddToWallet from "@/components/AddToWallet";
-import { WALLET_TYPE } from "@/constants/wallet";
 import Image from "next/image";
 import { useIntl } from "react-intl";
 import style from "./index.module.scss";
@@ -143,7 +141,7 @@ const Mobile = () => {
           className={classNames(
             style.item,
             style.border_bottom_none,
-            style.header_overlay__address
+            style.header_overlay__address,
           )}
         >
           <ShortenAddress address={account} />

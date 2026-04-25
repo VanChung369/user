@@ -1,5 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
-import { SALE_STATUS_ORDER_VALUE } from "@/constants/saleOrder";
+import { useContext, useEffect } from "react";
 import { useIntl } from "react-intl";
 import { useParams } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
@@ -22,8 +21,6 @@ import { MARKETPLACE_TABS } from "@/constants/marketplace";
 import Image from "next/image";
 import Tags from "../Tag";
 
-const { SOLD_OUT, LISTED, DELISTED, COMING_SOON } = SALE_STATUS_ORDER_VALUE;
-
 const Info = () => {
   const intl = useIntl();
   const { id } = useParams();
@@ -40,7 +37,7 @@ const Info = () => {
   ]);
   const ownedData: any = queryClient.getQueryData(["getOwned", nftId, address]);
   const { isRefreshSaleOrder, selectedNFT, onSetSelectedNFT } = useContext(
-    NftDetailContext
+    NftDetailContext,
   ) as any;
 
   const isForSale = nftData?.status === NFT_STATUS[1].value;

@@ -1,4 +1,4 @@
-import { LENGTH_CONSTANTS, ORDERS } from "@/constants";
+import { ORDERS } from "@/constants";
 import {
   NFT_ACTIVITIES_FIELD_SORTER,
   NFT_ACTIVITIES_FIELDS,
@@ -7,7 +7,6 @@ import {
 import { useAppSelector } from "@/hooks";
 import selectedAddress from "@/redux/address/selector";
 import selectedConnection from "@/redux/connection/selector";
-import { checkSuccessRequest } from "@/services";
 import {
   getActivities,
   getListing,
@@ -17,11 +16,10 @@ import {
 } from "@/services/api/nft";
 import { useQuery } from "@tanstack/react-query";
 import { useAddress } from "@thirdweb-dev/react";
-import { get, omit } from "lodash";
-import { useEffect, useState } from "react";
+import get from "lodash/get";
+import omit from "lodash/omit";
 
-const { SORT, PAGE, LIMIT } = NFT_ACTIVITIES_FIELDS;
-const { DEFAULT_PAGE } = LENGTH_CONSTANTS;
+const { SORT } = NFT_ACTIVITIES_FIELDS;
 const { ORDER, FIELD, ASC, DESC } = ORDERS;
 const {
   CREATED_AT: listingCreatedAt,

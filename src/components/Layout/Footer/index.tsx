@@ -7,7 +7,6 @@ import FacebookIcon from "@public/svg/facebook_contact_icon.svg";
 import AppLink from "@/components/AppLink";
 import { useIntl } from "react-intl";
 import ROUTES_PATH from "@/constants/routesPath";
-import classNames from "classnames";
 import style from "./index.module.scss";
 import Image from "next/image";
 

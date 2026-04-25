@@ -3,7 +3,8 @@ import selectedAddress from "@/redux/address/selector";
 import { getCollections } from "@/services/api/collection";
 import { getNfts } from "@/services/api/nft";
 import { useQuery } from "@tanstack/react-query";
-import { get, pick } from "lodash";
+import get from "lodash/get";
+import pick from "lodash/pick";
 import { KEY_SEARCH } from "..";
 import { useGetNFTSize } from "@/hooks/hook-customs/useGetNFTSize";
 import { ORDERS } from "@/constants";
@@ -61,7 +62,7 @@ export const useGetListNFTs = (params?: any, isOwned?: boolean) => {
   }
 
   const sorter = NFTS_SORTER.find(
-    (sorter) => sorter?.value === params?.[KEY_SEARCH.SORT]
+    (sorter) => sorter?.value === params?.[KEY_SEARCH.SORT],
   );
 
   newParams[`${KEY_SEARCH.SORT}[${sorter?.field}]`] = sorter?.order;

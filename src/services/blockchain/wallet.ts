@@ -1,6 +1,6 @@
 import { NFT_STANDARD, NFT_TRANSACTION_STATUS } from "@/constants/nft";
 import { WALLET_STATUS } from "@/constants/wallet";
-import { ThirdwebSDK, TransactionError } from "@thirdweb-dev/sdk";
+import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { ethers } from "ethers";
 import { AddressZero } from "@ethersproject/constants";
 import { formatUnits } from "ethers/lib/utils";
@@ -25,7 +25,7 @@ export default class Wallet {
   isAdmin = async (_account: string) => {
     try {
       const contract = await sdk.getContract(
-        process.env.NEXT_PUBLIC_PROXY_ADDRESS!
+        process.env.NEXT_PUBLIC_PROXY_ADDRESS!,
       );
 
       return await contract.call("isAdmin", [_account]);
@@ -88,10 +88,10 @@ export default class Wallet {
   }) => {
     const sdkSigner = ThirdwebSDK.fromSigner(
       signer,
-      Number(process.env.NEXT_PUBLIC_APP_CHAIN_ID)
+      Number(process.env.NEXT_PUBLIC_APP_CHAIN_ID),
     );
     const contract = await sdkSigner.getContract(
-      process.env.NEXT_PUBLIC_PROXY_ADDRESS!
+      process.env.NEXT_PUBLIC_PROXY_ADDRESS!,
     );
 
     let response;
@@ -226,10 +226,10 @@ export default class Wallet {
     try {
       const sdkSigner = ThirdwebSDK.fromSigner(
         signer,
-        Number(process.env.NEXT_PUBLIC_APP_CHAIN_ID)
+        Number(process.env.NEXT_PUBLIC_APP_CHAIN_ID),
       );
       const contract = await sdkSigner.getContract(
-        process.env.NEXT_PUBLIC_ERC_20!
+        process.env.NEXT_PUBLIC_ERC_20!,
       );
       const response = await contract.call("increaseAllowance", [
         process.env.NEXT_PUBLIC_PROXY_ADDRESS!,
@@ -258,7 +258,7 @@ export default class Wallet {
       const contract = await sdk.getContract(
         standard === NFT_STANDARD[0].value
           ? process.env.NEXT_PUBLIC_ERC_721!
-          : process.env.NEXT_PUBLIC_ERC_1155!
+          : process.env.NEXT_PUBLIC_ERC_1155!,
       );
       const response = await contract.call("isApprovedForAll", [
         account,
@@ -269,7 +269,7 @@ export default class Wallet {
     } catch (e) {
       console.log(
         "Execution checkListForSaleNftApproved reverted with reason:",
-        e
+        e,
       );
       console.error(e);
     }
@@ -294,12 +294,12 @@ export default class Wallet {
     try {
       const sdkSigner = ThirdwebSDK.fromSigner(
         signer,
-        Number(process.env.NEXT_PUBLIC_APP_CHAIN_ID)
+        Number(process.env.NEXT_PUBLIC_APP_CHAIN_ID),
       );
       const contract = await sdkSigner.getContract(
         standard === NFT_STANDARD[0].value
           ? process.env.NEXT_PUBLIC_ERC_721!
-          : process.env.NEXT_PUBLIC_ERC_1155!
+          : process.env.NEXT_PUBLIC_ERC_1155!,
       );
 
       const response = await contract.call("setApprovalForAll", [
@@ -316,7 +316,7 @@ export default class Wallet {
     } catch (error: any) {
       console.log(
         "Execution setListForSaleNftApproved reverted with reason:",
-        error
+        error,
       );
       if (WALLET_STATUS.CANCEL_METAMASK === error?.code) {
         onCancelMetamask && onCancelMetamask();
@@ -343,10 +343,10 @@ export default class Wallet {
   }) => {
     const sdkSigner = ThirdwebSDK.fromSigner(
       signer,
-      Number(process.env.NEXT_PUBLIC_APP_CHAIN_ID)
+      Number(process.env.NEXT_PUBLIC_APP_CHAIN_ID),
     );
     const contract = await sdkSigner.getContract(
-      process.env.NEXT_PUBLIC_PROXY_ADDRESS!
+      process.env.NEXT_PUBLIC_PROXY_ADDRESS!,
     );
 
     let response;

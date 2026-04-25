@@ -1,7 +1,6 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { FC, lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 import { PolygonAmoyTestnet } from "@thirdweb-dev/chains";
 import { IntlProvider } from "react-intl";
@@ -27,6 +26,12 @@ const onBeforeLift: any = (store: any) => () => {
 };
 
 const queryClient = new QueryClient();
+const isDev = process.env.NODE_ENV === "development";
+const ReactQueryDevtools = lazy(() =>
+  import("@tanstack/react-query-devtools").then((module) => ({
+    default: module.ReactQueryDevtools,
+  })),
+);
 
 const AppProvider: FC<{
   children: any;
@@ -40,10 +45,16 @@ const AppProvider: FC<{
     }
   }, []);
 
+  const currentMessages = useMemo(() => messages[locale], [locale]);
+
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
-      <IntlProvider locale={locale} messages={messages[locale]}>
+      {isDev ? (
+        <Suspense fallback={null}>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </Suspense>
+      ) : null}
+      <IntlProvider locale={locale} messages={currentMessages}>
         <ThirdwebProvider
           autoConnect={true}
           clientId={process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID!}

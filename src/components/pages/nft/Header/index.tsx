@@ -1,5 +1,5 @@
 import Countdown, { zeroPad } from "react-countdown";
-import { Fragment, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { SALE_STATUS_ORDER_VALUE } from "@/constants/saleOrder";
 import { useIntl } from "react-intl";
 import { useParams, useRouter } from "next/navigation";
@@ -12,7 +12,7 @@ import ROUTES_PATH from "@/constants/routesPath";
 import { formatDate } from "@/utils/utils";
 import { DEFAULT_SEARCH_DATE_TIME_FORMAT } from "@/constants/input";
 
-const { SOLD_OUT, LISTED, DELISTED, COMING_SOON } = SALE_STATUS_ORDER_VALUE;
+const { LISTED, DELISTED } = SALE_STATUS_ORDER_VALUE;
 
 const Header = () => {
   const intl = useIntl();
@@ -123,14 +123,14 @@ const Header = () => {
                 <span>
                   {formatDate(
                     query?.saleOrder?.startDate,
-                    DEFAULT_SEARCH_DATE_TIME_FORMAT
+                    DEFAULT_SEARCH_DATE_TIME_FORMAT,
                   )}
                 </span>
                 -
                 <span>
                   {formatDate(
                     query?.saleOrder?.endDate,
-                    DEFAULT_SEARCH_DATE_TIME_FORMAT
+                    DEFAULT_SEARCH_DATE_TIME_FORMAT,
                   )}
                 </span>
               </p>

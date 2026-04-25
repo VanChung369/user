@@ -3,7 +3,6 @@ import classNames from "classnames";
 import { memo } from "react";
 import style from "./index.module.scss";
 import { TableWrapperProps } from "./typings";
-import { Pagination, Table as TableAntd } from "antd";
 import Table from "./components/Table";
 import EditTable from "./components/EditableTable";
 import SortTable from "./components/DragSortTable";

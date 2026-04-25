@@ -6,7 +6,6 @@ import { useAppSelector } from "@/hooks";
 import { useIntl } from "react-intl";
 import { NftDetailContext } from "../..";
 import { NFT_DETAIL_TABS } from "@/constants/nft";
-import LoadingWrapper from "@/components/LoadingWrapper";
 import TabWapper from "@/components/TabWrapper";
 import { useQueryClient } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
@@ -23,7 +22,7 @@ const Info = () => {
   const intl = useIntl();
   const isMobile = useMobile();
   const { isRefreshSaleOrder, onSetIsRefreshSaleOrder } = useContext(
-    NftDetailContext
+    NftDetailContext,
   ) as any;
   const { id } = useParams();
   const queryClient = useQueryClient();
@@ -50,7 +49,7 @@ const Info = () => {
       key: OWNED.key,
       tab: intl.formatMessage(
         { id: OWNED.label },
-        { number: nftOwned?.totalDocs || 0 }
+        { number: nftOwned?.totalDocs || 0 },
       ),
       content: <Owned />,
     },

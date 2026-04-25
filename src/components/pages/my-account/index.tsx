@@ -1,6 +1,6 @@
 "use client";
 import style from "./index.module.scss";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Col, Row } from "antd";
 import { useIntl } from "react-intl";
 import classNames from "classnames";
@@ -16,7 +16,6 @@ import selectedAddress from "@/redux/address/selector";
 import { useAppSelector } from "@/hooks";
 import { DashboardItem } from "../home/Banner/typing";
 import { formatNumberWithSuffix, getNumber } from "@/utils/utils";
-import { useQueryClient } from "@tanstack/react-query";
 import ItemWithLabel from "@/components/ItemWithLabel";
 import EllipsisText from "@/components/EllipsisText";
 import { EMPTY_DEFAULT_TEXT } from "@/constants/input";
@@ -66,7 +65,7 @@ const MyAccount = () => {
   ];
 
   const renderOwnedItem = (item: DashboardItem = {}) => {
-    const { label, subLabel, icon, value, className } = item;
+    const { label, value, className } = item;
     return (
       <ItemWithLabel
         label={label}

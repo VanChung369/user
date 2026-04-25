@@ -7,7 +7,7 @@ import { Col, Row } from "antd";
 import { TYPE_INPUT } from "@/constants/input";
 import FormWrapper from "@/components/FormWrapper";
 import { useChangeAddress } from "@/hooks/hook-customs/useChangeAddress";
-import { trim } from "lodash";
+import trim from "lodash/trim";
 import style from "./index.module.scss";
 import { ReloadOutlined } from "@ant-design/icons";
 import { NFT_ACTIVITIES_FIELDS, NFT_STANDARD } from "@/constants/nft";

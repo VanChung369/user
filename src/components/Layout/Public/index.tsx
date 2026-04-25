@@ -1,7 +1,6 @@
 "use client";
 import { FC } from "react";
 import { FloatButton } from "antd";
-import ChevronUpIcon from "@public/svg/chevron_up_icon.svg";
 import AppSeo from "@/components/AppSeo";
 import LoadingWrapper from "@/components/LoadingWrapper";
 import Header from "../Header";

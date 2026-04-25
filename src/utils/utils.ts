@@ -7,7 +7,6 @@ import {
   TINY_NUM,
 } from "./consts";
 import {
-  FlattedElement,
   IArrayFormat,
   IObject,
   OpenCloseCharacter,
@@ -26,12 +25,7 @@ import {
   NFT_DECIMAL_SCALE,
   ZERO_VALUE,
 } from "@/constants/input";
-import {
-  EMPTY_TEXT,
-  LENGTH_CONSTANTS,
-  MAX_CODE_LENGTH,
-  TOKEN_SUPPORT,
-} from "@/constants";
+import { EMPTY_TEXT, LENGTH_CONSTANTS, MAX_CODE_LENGTH } from "@/constants";
 import { shortenIfAddress } from "@thirdweb-dev/react";
 import moment from "moment";
 import { DATE_FORMAT } from "@/constants/date";
@@ -177,7 +171,7 @@ export const getAttributeFieldNFTValues = (values: any) => {
       acc[key.toUpperCase()] = key;
       return acc;
     },
-    {}
+    {},
   );
 
   return Object.values(NFT_ATTRIBUTE).reduce(
@@ -186,7 +180,7 @@ export const getAttributeFieldNFTValues = (values: any) => {
         values?.attributes?.[field]?.text || values?.attributes?.[field];
       return acc;
     },
-    {}
+    {},
   );
 };
 
@@ -330,7 +324,7 @@ export const convertPriceBigNumber = (value: any, coinDecimal = 18) => {
     EXPONENTIAL_AT: 100,
   });
   return new BigNumber(value).multipliedBy(
-    new BigNumber(Math.pow(10, coinDecimal))
+    new BigNumber(Math.pow(10, coinDecimal)),
   );
 };
 
@@ -363,7 +357,7 @@ export const formatCurrency = (
     isNotCompare?: boolean;
     decimal?: number;
     isNotFormatDecimal?: boolean;
-  } = {}
+  } = {},
 ) => {
   BigNumber.config({
     EXPONENTIAL_AT: 100,
@@ -488,7 +482,7 @@ export function throttle(num: number, unit?: number) {
 export function findIndex<T>(
   arr: T[],
   callback: (element: T, index: number, arr: T[]) => any,
-  defaultIndex: number = -1
+  defaultIndex: number = -1,
 ): number {
   const length = arr.length;
 
@@ -522,7 +516,7 @@ export const formatText = (value: any) => {
 export function find<T>(
   arr: T[],
   callback: (element: T, index: number, arr: T[]) => any,
-  defalutValue?: T
+  defalutValue?: T,
 ): T | undefined {
   const index = findIndex(arr, callback);
 
@@ -559,7 +553,7 @@ function isEqualSeparator(character: string, separator: string) {
 function findIgnore(
   character: OpenCloseCharacter,
   texts: string[],
-  index: number
+  index: number,
 ) {
   if (!character.ignore) {
     return null;
@@ -574,7 +568,7 @@ function findOpen(
   texts: string[],
   index: number,
   length: number,
-  openCloseCharacters: OpenCloseCharacter[]
+  openCloseCharacters: OpenCloseCharacter[],
 ) {
   const isIgnore = findIgnore(openCharacter, texts, index);
 
@@ -584,7 +578,7 @@ function findOpen(
       texts,
       index + 1,
       length,
-      openCloseCharacters
+      openCloseCharacters,
     );
   }
   return index;
@@ -595,7 +589,7 @@ function findClose(
   texts: string[],
   index: number,
   length: number,
-  openCloseCharacters: OpenCloseCharacter[]
+  openCloseCharacters: OpenCloseCharacter[],
 ) {
   for (let i = index; i < length; ++i) {
     const character = texts[i].trim();
@@ -610,7 +604,7 @@ function findClose(
     // re open
     const openCharacter = find(
       openCloseCharacters,
-      ({ open }) => open === character
+      ({ open }) => open === character,
     );
 
     if (openCharacter) {
@@ -619,7 +613,7 @@ function findClose(
         texts,
         i,
         length,
-        openCloseCharacters
+        openCloseCharacters,
       );
     }
     if (nextIndex === -1) {
@@ -632,7 +626,7 @@ function findClose(
 
 export function splitText(
   text: string,
-  splitOptions: string | SplitOptions
+  splitOptions: string | SplitOptions,
 ): string[] {
   const {
     separator = ",",
@@ -675,11 +669,11 @@ export function splitText(
 
     const openCharacter = find(
       openCloseCharacters,
-      ({ open }) => open === character
+      ({ open }) => open === character,
     );
     const closeCharacter = find(
       openCloseCharacters,
-      ({ close }) => close === character
+      ({ close }) => close === character,
     );
 
     if (openCharacter) {
@@ -688,7 +682,7 @@ export function splitText(
         texts,
         i,
         length,
-        openCloseCharacters
+        openCloseCharacters,
       );
 
       if (nextIndex !== -1 && isSeparateOpenClose) {
@@ -708,7 +702,7 @@ export function splitText(
 
       nextOpenCloseCharacters.splice(
         openCloseCharacters.indexOf(closeCharacter),
-        1
+        1,
       );
 
       return splitText(text, {
@@ -784,7 +778,7 @@ export function decamelize(str: string, separator: string = "-") {
   //eslint-disable-line
   return str.replace(
     /([a-z])([A-Z])/g,
-    (all, letter, letter2) => `${letter}${separator}${letter2.toLowerCase()}`
+    (all, letter, letter2) => `${letter}${separator}${letter2.toLowerCase()}`,
   );
 }
 
@@ -798,7 +792,7 @@ export function now() {
 
 export const formatDate = (
   date: moment.MomentInput | any,
-  type = DATE_FORMAT
+  type = DATE_FORMAT,
 ) => {
   return moment(date).format(type);
 };
@@ -806,7 +800,7 @@ export const formatDate = (
 export function findLastIndex<T>(
   arr: T[],
   callback: (element: T, index: number, arr: T[]) => any,
-  defaultIndex: number = -1
+  defaultIndex: number = -1,
 ): number {
   const length = arr.length;
 
@@ -821,7 +815,7 @@ export function findLastIndex<T>(
 export function findLast<T>(
   arr: T[],
   callback: (element: T, index: number, arr: T[]) => any,
-  defalutValue?: T
+  defalutValue?: T,
 ): T | undefined {
   const index = findLastIndex(arr, callback);
 
@@ -894,7 +888,7 @@ export function getEntries(obj: IObject<any>): [string, any][] {
 
 export function sortOrders(
   keys: Array<string | number>,
-  orders: Array<string | number> = []
+  orders: Array<string | number> = [],
 ) {
   keys.sort((a, b) => {
     const index1 = orders.indexOf(a);
@@ -915,7 +909,7 @@ export function sortOrders(
 
 export function convertUnitSize(
   pos: string,
-  size: number | IObject<((pos: number) => number) | number>
+  size: number | IObject<((pos: number) => number) | number>,
 ) {
   const { value, unit } = splitUnit(pos);
 
@@ -945,7 +939,7 @@ export function checkBoundSize(
   targetSize: number[],
   compareSize: number[],
   isMax: boolean,
-  ratio = targetSize[0] / targetSize[1]
+  ratio = targetSize[0] / targetSize[1],
 ) {
   return (
     [
@@ -965,7 +959,7 @@ export function checkBoundSize(
         return isMax
           ? value <= defaultSize || value <= throttledSize
           : value >= defaultSize || value >= throttledSize;
-      })
+      }),
     )[0] || targetSize
   );
 }
@@ -974,7 +968,7 @@ export function calculateBoundSize(
   size: number[],
   minSize: number[],
   maxSize: number[],
-  keepRatio?: number | boolean
+  keepRatio?: number | boolean,
 ): number[] {
   if (!keepRatio) {
     return size.map((value, i) => between(value, minSize[i], maxSize[i]));

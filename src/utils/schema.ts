@@ -1,5 +1,3 @@
-import { object, string } from "yup";
-
 export function passwordValidate(pw: string): number {
   return (
     (/.{8,}/.test(pw) ? 1 : 0) *

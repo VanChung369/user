@@ -5,7 +5,7 @@ import { getOverview } from "@/services/api/home";
 import { getNfts } from "@/services/api/nft";
 import { getTags } from "@/services/api/tag";
 import { useQuery } from "@tanstack/react-query";
-import { get } from "lodash";
+import get from "lodash/get";
 
 //get Overview
 export const useGetOverview = () => {

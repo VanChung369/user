@@ -1,4 +1,3 @@
-import { Col, Row } from "antd";
 import { useIntl } from "react-intl";
 import style from "./index.module.scss";
 import ShortenAddress from "@/components/ShortenAddress";

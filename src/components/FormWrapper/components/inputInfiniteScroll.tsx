@@ -2,10 +2,8 @@ import React, { useState, FC, useEffect, useMemo } from "react";
 import { FieldInputProps, FormikProps } from "formik";
 import { Select } from "antd";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { uniqBy } from "lodash";
-import HTTP_STATUS_CONTSTANTS from "@/constants/status";
+import uniqBy from "lodash/uniqBy";
 import { LENGTH_CONSTANTS } from "@/constants";
-import { useIntl } from "react-intl";
 
 const { Option } = Select;
 
@@ -38,7 +36,6 @@ const InfinityScrollSelect: FC<{
   queryKey = ["infinityScrollSelect"],
   ...props
 }) => {
-  const intl = useIntl();
   const [searchValue, setSearchValue] = useState("");
   const [value, setValue] = useState(valueProps);
 
@@ -46,19 +43,7 @@ const InfinityScrollSelect: FC<{
     setValue(field?.value || null);
   }, [field?.value]);
 
-  const {
-    status,
-    data,
-    error,
-    isFetching,
-    isFetchingNextPage,
-    isFetchingPreviousPage,
-    fetchNextPage,
-    fetchPreviousPage,
-    hasNextPage,
-    hasPreviousPage,
-    refetch,
-  } = useInfiniteQuery({
+  const { data, isFetchingNextPage, fetchNextPage } = useInfiniteQuery({
     queryKey: [...queryKey, searchValue],
     queryFn: async ({ pageParam = 1 }) => {
       const res = await fetchData({
@@ -79,15 +64,11 @@ const InfinityScrollSelect: FC<{
     },
   });
 
-  const dataShow = uniqBy(
-    data?.pages.flatMap((page) => page?.docs) || [],
-    "_id"
+  const dataShow = useMemo(
+    () => uniqBy(data?.pages.flatMap((page) => page?.docs) || [], "_id"),
+    [data?.pages],
   );
   const total = data?.pages[0]?.totalDocs || 0;
-
-  useEffect(() => {
-    refetch();
-  }, [searchValue, refetch]);
 
   const onSearch = (value: any) => {
     setIsSearch && setIsSearch(true);
@@ -127,7 +108,7 @@ const InfinityScrollSelect: FC<{
       if (field?.name && form) {
         form.setFieldValue(
           field.name,
-          dataShow.find((item: any) => item._id === selectValue)
+          dataShow.find((item: any) => item._id === selectValue),
         );
       } else {
         setValue(selectValue);
@@ -168,7 +149,7 @@ const InfinityScrollSelect: FC<{
         {...props}
       >
         {dataShow?.map((item: any, index: any) =>
-          renderOption({ item, index })
+          renderOption({ item, index }),
         )}
       </Select>
     </div>

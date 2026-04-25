@@ -1,4 +1,3 @@
-import React, { Fragment, useContext } from "react";
 import { Col, Row } from "antd";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAppSelector } from "@/hooks";
@@ -63,7 +62,7 @@ const Attributes = () => {
                   </Col>
                 </Row>
               );
-            }
+            },
           )}
       </div>
     </div>

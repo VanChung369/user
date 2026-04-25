@@ -1,7 +1,6 @@
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Col, Row } from "antd";
 import { useGetConfig } from "@/hooks/hook-customs/useGetConfig";
-import { useMobile } from "@/hooks/hook-customs/useWindowSize";
 import AppLink from "@/components/AppLink";
 import EllipsisText from "@/components/EllipsisText";
 import { useIntl } from "react-intl";

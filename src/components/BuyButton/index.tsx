@@ -26,11 +26,15 @@ import {
 } from "@/redux/action/slice";
 import { SOCKET_EVENT } from "@/constants";
 import { useSocket } from "@/hooks/hook-customs/useSocket";
-import MetamaskService from "@/services/blockchain";
 import { useSigner } from "@thirdweb-dev/react";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 import { MIN_VALUE_TOTAL_COPIES } from "@/constants/input";
 import BuyModal from "./BuyModal";
+
+const getWallet = async () => {
+  const { default: MetamaskService } = await import("@/services/blockchain");
+  return new MetamaskService().getInstance();
+};
 
 const { MINTED, TRANSFER } = NFT_TRANSACTION_TYPE;
 const { PROCESSING, SUCCESSFUL, FAILED, START, CANCEL } = BUY_STEPS;
@@ -63,12 +67,9 @@ const BuyButton = ({
   const { address } = useAppSelector(selectedAddress.getAddress);
   const { buyStep, transactionId } = useAppSelector(selectedAction.getAction);
   const { isConnected } = useAppSelector(selectedConnection.getConnection);
-  const wallet = new MetamaskService().getInstance();
 
-  const { loading: loadingCreateTransaction, onCreateTransaction } =
-    useCreateTransaction();
-  const { loading: loadingUpdateTransaction, onUpdateTransaction } =
-    useUpdateTransaction();
+  const { onCreateTransaction } = useCreateTransaction();
+  const { onUpdateTransaction } = useUpdateTransaction();
   const { onUpdateTransactionHash } = useUpdateTransactionHash();
 
   const [visible, setVisible] = useState(false);
@@ -82,7 +83,7 @@ const BuyButton = ({
   const { address: tokenAddress } = token;
 
   const selectedCurrency = currencies?.find(
-    (item: any) => item?.name === currency?.name
+    (item: any) => item?.name === currency?.name,
   );
 
   useEffect(() => {
@@ -197,8 +198,10 @@ const BuyButton = ({
 
   const handleTransactionSuccessfulCreation = async (
     transactionId: string,
-    data: any
+    data: any,
   ) => {
+    const wallet = await getWallet();
+
     dispatch(handleSetTransactionId(transactionId));
     await wallet.buyNFT({
       signer: signer,
@@ -216,6 +219,8 @@ const BuyButton = ({
   };
 
   const handleProceedBuy = debounce(async (values: any) => {
+    const wallet = await getWallet();
+
     setCheckBalanceLoading(true);
 
     const isEnoughBalance = await wallet.checkBuyerBalance({

@@ -14,10 +14,10 @@ const AppSeo = ({
 }: AppSeoProps) => {
   const metaDescriptionSeo = metaDescription?.substring(
     0,
-    MAX_LENGTH_DESCRIPTION
+    MAX_LENGTH_DESCRIPTION,
   );
   const defaultPreviewImage =
-    "https://firebasestorage.googleapis.com/v0/b/nft-marketplace-85e49.appspot.com/o/logo%2Flogo.png?alt=media&token=816341a7-b54e-4594-93a1-3055234af723";
+    "https://ik.imagekit.io/ez873u6hh/coin_icon.png?updatedAt=1773461191597";
   const defaultTitle = "NFT treasure";
   const defaultMetaDescription =
     "The pioneering minting platform for trusted NFTs with incredible benefits";

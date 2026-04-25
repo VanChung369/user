@@ -5,15 +5,19 @@ import { useGetConfig } from "@/hooks/hook-customs/useGetConfig";
 import { handleSetListForSaleStep } from "@/redux/action/slice";
 import selectedAddress from "@/redux/address/selector";
 import { handleSetConnectModal } from "@/redux/connection/slice";
-import MetamaskService from "@/services/blockchain";
 import { convertToNumber } from "@/utils/utils";
-import { isEmpty } from "lodash";
+import isEmpty from "lodash/isEmpty";
 import React, { Fragment, ReactNode, useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 import ButtonWrapper from "../ButtonWrapper";
 import { useListForSaleNFT } from "./hooks";
 import ListForSaleModal from "./ListForSaleModal";
 import style from "./index.module.scss";
+
+const getWallet = async () => {
+  const { default: MetamaskService } = await import("@/services/blockchain");
+  return new MetamaskService().getInstance();
+};
 
 type ListForSaleButtonProps = {
   nft?: any;
@@ -40,13 +44,11 @@ const ListForSaleButton = ({
   const dispatch = useAppDispatch();
   const { currency } = useGetConfig();
   const { address } = useAppSelector(selectedAddress.getAddress);
-  const { loading, onListForSaleNFT } = useListForSaleNFT();
+  const { onListForSaleNFT } = useListForSaleNFT();
   const [visible, setVisible] = useState(false);
   const [isApprovedListForSale, setIsApproveListForSale] = useState(false);
   const [loadingApprovedListForSale, setLoadingApprovedListForSale] =
     useState(false);
-
-  const wallet = new MetamaskService().getInstance();
 
   const handleUpdateListForSaleStep = (value: number) =>
     dispatch(handleSetListForSaleStep(value));
@@ -58,6 +60,7 @@ const ListForSaleButton = ({
   const handleIsCheckListForSaleApproved = async () => {
     setLoadingApprovedListForSale(true);
     try {
+      const wallet = await getWallet();
       const { token } = selectedNFT;
       const response = await wallet.checkListForSaleNftApproved({
         account: address,

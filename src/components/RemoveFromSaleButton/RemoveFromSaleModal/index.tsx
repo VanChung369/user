@@ -1,7 +1,6 @@
 import { Form, Formik } from "formik";
 import { Col, Row } from "antd";
 import Image from "next/image";
-import classNames from "classnames";
 import { useIntl } from "react-intl";
 import { useGetConfig } from "@/hooks/hook-customs/useGetConfig";
 import { LIST_FOR_SALE_FIELD } from "@/constants/nft";

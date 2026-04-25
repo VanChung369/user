@@ -1,6 +1,6 @@
 "use client";
 import style from "./index.module.scss";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useIntl } from "react-intl";
 import classNames from "classnames";
 import Search from "./search";
@@ -11,7 +11,6 @@ import TabWapper from "@/components/TabWrapper";
 import { useRouter, useSearchParams } from "next/navigation";
 import { QUERY } from "@/constants/routesPath";
 import Collections from "./Collection";
-import { useQueryClient } from "@tanstack/react-query";
 
 const { DEFAULT_PAGE } = LENGTH_CONSTANTS;
 
@@ -37,7 +36,6 @@ export const initialValues = {
 const MarketPlace = () => {
   const intl = useIntl();
   const router = useRouter();
-  const queryClient = useQueryClient();
   const searchParams = useSearchParams();
 
   const marketTab = searchParams.get(QUERY.MARKET_PLACE_TAB_QUERY);
@@ -50,7 +48,7 @@ const MarketPlace = () => {
   const [totalColections, setTotalCollections] = useState(0);
 
   const [activeTab, setActiveTab] = useState(
-    marketTab || MARKETPLACE_TABS.NFTS.type
+    marketTab || MARKETPLACE_TABS.NFTS.type,
   );
 
   useEffect(() => {
@@ -63,55 +61,61 @@ const MarketPlace = () => {
       [KEY_SEARCH.COLLECTION]: collection ?? "",
       [KEY_SEARCH.TAG]: tag ?? "",
     }));
-  }, [marketTab, activeTab, collection, tag]);
+  }, [marketTab, collection, tag]);
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = useCallback((values: any) => {
     setParams({
       ...initialValues,
       ...values,
     });
-  };
+  }, []);
 
-  const handleChangeTab = (value: string) => {
-    setActiveTab(value);
-    setParams(initialValues);
-    const newUrl = new URL(window.location.href);
-    newUrl.searchParams.set(QUERY.MARKET_PLACE_TAB_QUERY, value);
-    newUrl.searchParams.delete(QUERY.COLLECTION);
-    newUrl.searchParams.delete(QUERY.TAG);
-    router.replace(newUrl.toString());
-  };
+  const handleChangeTab = useCallback(
+    (value: string) => {
+      setActiveTab(value);
+      setParams(initialValues);
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.set(QUERY.MARKET_PLACE_TAB_QUERY, value);
+      newUrl.searchParams.delete(QUERY.COLLECTION);
+      newUrl.searchParams.delete(QUERY.TAG);
+      router.replace(newUrl.toString());
+    },
+    [router],
+  );
 
-  const listTab = [
-    {
-      key: MARKETPLACE_TABS.NFTS.type,
-      tab: intl.formatMessage(
-        { id: MARKETPLACE_TABS.NFTS.label },
-        { total: totalNfts }
-      ),
-      content: (
-        <NFTs
-          params={params}
-          setTotalNfts={setTotalNfts}
-          onSubmit={handleSubmit}
-        />
-      ),
-    },
-    {
-      key: MARKETPLACE_TABS.COLLECTIONS.type,
-      tab: intl.formatMessage(
-        { id: MARKETPLACE_TABS.COLLECTIONS.label },
-        { total: totalColections }
-      ),
-      content: (
-        <Collections
-          params={params}
-          setTotalCollections={setTotalCollections}
-          onSubmit={handleSubmit}
-        />
-      ),
-    },
-  ];
+  const listTab = useMemo(
+    () => [
+      {
+        key: MARKETPLACE_TABS.NFTS.type,
+        tab: intl.formatMessage(
+          { id: MARKETPLACE_TABS.NFTS.label },
+          { total: totalNfts },
+        ),
+        content: (
+          <NFTs
+            params={params}
+            setTotalNfts={setTotalNfts}
+            onSubmit={handleSubmit}
+          />
+        ),
+      },
+      {
+        key: MARKETPLACE_TABS.COLLECTIONS.type,
+        tab: intl.formatMessage(
+          { id: MARKETPLACE_TABS.COLLECTIONS.label },
+          { total: totalColections },
+        ),
+        content: (
+          <Collections
+            params={params}
+            setTotalCollections={setTotalCollections}
+            onSubmit={handleSubmit}
+          />
+        ),
+      },
+    ],
+    [handleSubmit, intl, params, totalColections, totalNfts],
+  );
 
   return (
     <div className={classNames(style.marketplace)}>

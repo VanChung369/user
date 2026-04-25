@@ -1,5 +1,5 @@
 import style from "./index.module.scss";
-import React, { useState } from "react";
+import React from "react";
 import { Col, Row } from "antd";
 import AppLink from "@/components/AppLink";
 import { useIntl } from "react-intl";

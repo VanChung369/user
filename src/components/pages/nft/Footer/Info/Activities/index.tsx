@@ -18,7 +18,6 @@ import { NftDetailContext } from "../../..";
 import selectedConnection from "@/redux/connection/selector";
 import { useGetActivities } from "../../../hooks";
 import { useParams } from "next/navigation";
-import { useQueryClient } from "@tanstack/react-query";
 import { useAppSelector } from "@/hooks";
 import selectedAddress from "@/redux/address/selector";
 import { SorterTable } from "@/types";
@@ -32,37 +31,20 @@ import style from "./index.module.scss";
 
 const { PAGE, LIMIT } = NFT_ACTIVITIES_FIELDS;
 const { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } = LENGTH_CONSTANTS;
-const {
-  QUANTITY,
-  TYPE,
-  CREATED_AT,
-  TO_ADDRESS,
-  FROM_ADDRESS,
-  UNIT_PRICE,
-  HASH,
-} = NFT_ACTIVITIES_FIELD_SORTER;
+const { QUANTITY, TYPE, CREATED_AT, TO_ADDRESS, FROM_ADDRESS, UNIT_PRICE } =
+  NFT_ACTIVITIES_FIELD_SORTER;
 
 const Activities = ({ isMyHistory }: { isMyHistory?: boolean }) => {
   const intl = useIntl();
   const account = useAddress();
   const { id } = useParams();
-  const queryClient = useQueryClient();
   const nftId = Array.isArray(id) ? id[0] : id;
   const { address } = useAppSelector(selectedAddress.getAddress);
-  const nftData: any = queryClient.getQueryData([
-    "getNftDetail",
-    nftId,
-    address,
-  ]);
-
   const {
     isCompletedBuy,
     isCompletedRemoveFromSale,
 
     isCompletedListForSale,
-    isRefreshSaleOrder,
-    onSetSelectedNFT,
-    selectedNFT,
   } = useContext(NftDetailContext) as any;
 
   const [params, setParams] = useState({
@@ -72,7 +54,7 @@ const Activities = ({ isMyHistory }: { isMyHistory?: boolean }) => {
 
   const { data: listActivities, loading: loadingActivities } = useGetActivities(
     nftId,
-    params
+    params,
   );
 
   const { isConnected } = useAppSelector(selectedConnection.getConnection);
@@ -115,7 +97,7 @@ const Activities = ({ isMyHistory }: { isMyHistory?: boolean }) => {
       width: 30,
       render: (value: any) => {
         const event = NFT_TRANSACTION_EVENT.find(
-          (event) => event?.value === value
+          (event) => event?.value === value,
         ) as any;
         return (
           <div className="table-column-event">
@@ -229,7 +211,7 @@ const Activities = ({ isMyHistory }: { isMyHistory?: boolean }) => {
     _pagination: TablePaginationConfig,
     _filter: Record<string, FilterValue | null>,
     sorter: SorterResult<any> | SorterResult<any>[],
-    _extra: TableCurrentDataSource<any>
+    _extra: TableCurrentDataSource<any>,
   ) => {
     const { order, field } = sorter as SorterTable;
     const newOrder = setOrderSorter(order);

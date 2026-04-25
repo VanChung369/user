@@ -27,11 +27,14 @@ import {
 import { FC, Fragment, useEffect } from "react";
 import ModalWrongNetwork from "../ModalWrongNetwork";
 import ModalConnectWallet from "../ModalConnectWallet";
-import selectedConnection from "@/redux/connection/selector";
-import MetamaskService from "@/services/blockchain";
 import { useLogin } from "./hook";
 import formatMessage from "@/components/FormatMessage";
 import { useIntl } from "react-intl";
+
+const getWallet = async () => {
+  const { default: MetamaskService } = await import("@/services/blockchain");
+  return new MetamaskService().getInstance();
+};
 
 const ConnectWalletWrapper: FC<{
   children: any;
@@ -49,10 +52,7 @@ const ConnectWalletWrapper: FC<{
 
   const { address, listAddress } = useAppSelector(selectedAddress.getAddress);
   const { authenticationToken } = useAppSelector(
-    selectAuthentication.getAuthenticationToken
-  );
-  const { isConnectingWallet } = useAppSelector(
-    selectedConnection.getConnection
+    selectAuthentication.getAuthenticationToken,
   );
 
   useGetAppConfig();
@@ -77,14 +77,14 @@ const ConnectWalletWrapper: FC<{
         handleSetAddressNetwork({
           chainId,
           address: address,
-        })
+        }),
       );
   }, [authenticationToken, chainId]);
 
   useEffect(() => {
     const setUpAddress = async () => {
       if (account) {
-        const wallet = new MetamaskService().getInstance();
+        const wallet = await getWallet();
         const isAdmin = await handleCheckIsAdmin(wallet);
 
         if (!isAdmin) {
@@ -102,7 +102,7 @@ const ConnectWalletWrapper: FC<{
     }
   }, [account]);
 
-  const handleCheckIsAdmin = async (wallet: MetamaskService) => {
+  const handleCheckIsAdmin = async (wallet: any) => {
     const isAdmin = await wallet.isAdmin(account as string);
     if (isAdmin) {
       handleCancelLoadingMetamask();
@@ -142,7 +142,7 @@ const ConnectWalletWrapper: FC<{
     });
   };
 
-  const handleLoginForFirstTime = async (wallet: MetamaskService) => {
+  const handleLoginForFirstTime = async (wallet: any) => {
     const signature = (await wallet.verifyLoginSignature({
       signer,
       creator: account as string,
@@ -161,13 +161,13 @@ const ConnectWalletWrapper: FC<{
             handleAddAddressNetWork({
               address: account,
               signature,
-            })
+            }),
           );
           dispatch(
             handleSetAddressNetwork({
               chainId,
               address: account,
-            })
+            }),
           );
           dispatch(handleSetLoadingMetamask(false));
         },
@@ -185,7 +185,7 @@ const ConnectWalletWrapper: FC<{
           handleSetAddressNetwork({
             chainId,
             address: account,
-          })
+          }),
         );
         dispatch(handleSetLoadingMetamask(false));
       },

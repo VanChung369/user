@@ -1,10 +1,8 @@
-import { number, object, string, ref, date, mixed, array } from "yup";
-import { formatCurrency, isAddress } from "@/utils/utils";
-import { BUY_FIELD, LIST_FOR_SALE_FIELD } from "@/constants/nft";
+import { number, object } from "yup";
+import { formatCurrency } from "@/utils/utils";
+import { BUY_FIELD } from "@/constants/nft";
 
 const { QUANTITY: buyQuantity } = BUY_FIELD;
-const { QUANTITY: listForSaleQuantity, UNIT_PRICE: listForSaleUnitPrice } =
-  LIST_FOR_SALE_FIELD;
 
 export const getBuySchema = (intl: any, maxQuantity: number) => {
   return object().shape({
@@ -12,12 +10,12 @@ export const getBuySchema = (intl: any, maxQuantity: number) => {
       .positive(
         intl.formatMessage({
           id: "NFT.quantity.error.positive",
-        })
+        }),
       )
       .required(
         intl.formatMessage({
           id: "NFT.quantity.error.required",
-        })
+        }),
       )
       .max(
         maxQuantity,
@@ -25,8 +23,8 @@ export const getBuySchema = (intl: any, maxQuantity: number) => {
           {
             id: "NFT.quantity.error.max",
           },
-          { number: formatCurrency(maxQuantity) }
-        )
+          { number: formatCurrency(maxQuantity) },
+        ),
       ),
   });
 };

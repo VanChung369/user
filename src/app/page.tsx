@@ -1,11 +1,15 @@
 import LayoutPublic from "@/components/Layout/Public";
 import style from "./index.module.scss";
 import Banner from "@/components/pages/home/Banner";
-import Collections from "@/components/pages/home/Collections";
-import Tag from "@/components/pages/home/Tag";
-import NFTs from "@/components/pages/home/NFTs";
-import Work from "@/components/pages/home/Works";
-import JoinUs from "@/components/pages/home/JoinUs";
+import dynamic from "next/dynamic";
+
+const Collections = dynamic(
+  () => import("@/components/pages/home/Collections"),
+);
+const Tag = dynamic(() => import("@/components/pages/home/Tag"));
+const NFTs = dynamic(() => import("@/components/pages/home/NFTs"));
+const Work = dynamic(() => import("@/components/pages/home/Works"));
+const JoinUs = dynamic(() => import("@/components/pages/home/JoinUs"));
 
 export default function Home() {
   return (

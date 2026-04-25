@@ -7,7 +7,7 @@ import { Col, Row } from "antd";
 import { TYPE_INPUT } from "@/constants/input";
 import FormWrapper from "@/components/FormWrapper";
 import { useChangeAddress } from "@/hooks/hook-customs/useChangeAddress";
-import { trim } from "lodash";
+import trim from "lodash/trim";
 import style from "./index.module.scss";
 import { initialValues, KEY_SEARCH } from "..";
 
@@ -28,9 +28,9 @@ const Search = ({ onSubmit, params }: SearchProps) => {
       setFieldValue: (
         field: string,
         value: any,
-        shouldValidate?: boolean
+        shouldValidate?: boolean,
       ) => void,
-      field: string
+      field: string,
     ) =>
     (value: string) => {
       setFieldValue(field, isString(value) ? trim(value) : value);
@@ -70,7 +70,7 @@ const Search = ({ onSubmit, params }: SearchProps) => {
                   })}
                   onSearch={handleChangeField(
                     setFieldValue,
-                    KEY_SEARCH.KEYWORD
+                    KEY_SEARCH.KEYWORD,
                   )}
                   typeInput={TYPE_INPUT.SEARCH_DEBOUNCE}
                   autoComplete="off"

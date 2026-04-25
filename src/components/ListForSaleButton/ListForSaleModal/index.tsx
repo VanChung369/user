@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { Form, Formik } from "formik";
 import { Col, Row } from "antd";
-import classNames from "classnames";
 import {
   LIST_FOR_SALE_FIELD,
   LIST_FOR_SALE_STEPS,
@@ -9,8 +8,6 @@ import {
 } from "@/constants/nft";
 import { useIntl } from "react-intl";
 import { useGetConfig } from "@/hooks/hook-customs/useGetConfig";
-import { useAppSelector } from "@/hooks";
-import selectedAddress from "@/redux/address/selector";
 import MetamaskService from "@/services/blockchain";
 import formatMessage from "@/components/FormatMessage";
 import { useSigner } from "@thirdweb-dev/react";
@@ -67,7 +64,6 @@ const ListForSaleModal = ({
 }: ListForSaleModalProps) => {
   const intl = useIntl();
   const { currency } = useGetConfig();
-  const { address } = useAppSelector(selectedAddress.getAddress);
   const [loading, setLoading] = useState(false);
   const wallet = new MetamaskService().getInstance();
   const signer = useSigner();
@@ -127,7 +123,7 @@ const ListForSaleModal = ({
         </span>
       </ItemWithLabel>
     ),
-    [is721Standard]
+    [is721Standard],
   );
 
   const handleSetMaxQuantity = (setFieldValue: any, field: string) => () =>
@@ -209,7 +205,7 @@ const ListForSaleModal = ({
                             }
                             onClick={handleSetMaxQuantity(
                               setFieldValue,
-                              QUANTITY
+                              QUANTITY,
                             )}
                             variant="primary"
                           />

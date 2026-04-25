@@ -5,7 +5,7 @@ import { initialValues, KEY_SEARCH } from "../..";
 import LoadingWrapper from "@/components/LoadingWrapper";
 import { Col, Row } from "antd";
 import { Formik } from "formik";
-import { noop } from "lodash";
+import noop from "lodash/noop";
 import style from "./index.module.scss";
 import PaginationCustom from "@/components/Pagination";
 import CollectionItem from "@/components/CollectionItem";

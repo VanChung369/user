@@ -14,7 +14,6 @@ import NumberWrapper from "@/components/NumberWrapper";
 import { EMPTY_DEFAULT_TEXT } from "@/constants/input";
 import AppLink from "@/components/AppLink";
 import { initFormValues } from "..";
-import ItemWithLabel from "@/components/ItemWithLabel";
 import List from "../List";
 import Search from "../search";
 import style from "./index.module.scss";
@@ -78,7 +77,7 @@ const SaleHistory = ({ values, onSubmit }: SaleHistoryProps) => {
       ellipsis: true,
       render: (_value: any, row?: any) => {
         const standard = NFT_STANDARD.find(
-          (type) => type?.value === row?.nft?.token?.standard
+          (type) => type?.value === row?.nft?.token?.standard,
         ) as any;
         return intl.formatMessage({
           id: standard?.label || "common.null.text",

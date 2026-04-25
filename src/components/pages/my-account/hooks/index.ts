@@ -2,7 +2,9 @@ import { useAppSelector } from "@/hooks";
 import selectedAddress from "@/redux/address/selector";
 import { getNfts } from "@/services/api/nft";
 import { useQuery } from "@tanstack/react-query";
-import { get, omit, pick } from "lodash";
+import get from "lodash/get";
+import omit from "lodash/omit";
+import pick from "lodash/pick";
 import { useGetNFTSize } from "@/hooks/hook-customs/useGetNFTSize";
 import { ORDERS } from "@/constants";
 import { NFTS_SORTER } from "@/constants/marketplace";
@@ -15,16 +17,8 @@ import { getEndDateTimestamp, getStartDateTimestamp } from "@/utils/utils";
 import { getPurchaseHistory, getSaleHistory } from "@/services/api/transaction";
 const { FIELD, ORDER, ASC, DESC } = ORDERS;
 const { FROM, UNTIL, SORT, KEYWORD } = NFT_ACTIVITIES_FIELDS;
-const {
-  CREATED_AT,
-  QUANTITY,
-  UNIT_PRICE,
-  SUB_TOTAL,
-  NFT_NAME,
-  DEFAULT,
-  PROFIT,
-  REVENUE,
-} = NFT_ACTIVITIES_FIELD_SORTER;
+const { CREATED_AT, QUANTITY, UNIT_PRICE, SUB_TOTAL, NFT_NAME, DEFAULT } =
+  NFT_ACTIVITIES_FIELD_SORTER;
 
 export const useGetListNFTs = (params?: any, isOwned?: boolean) => {
   const { address } = useAppSelector(selectedAddress.getAddress);
@@ -38,7 +32,7 @@ export const useGetListNFTs = (params?: any, isOwned?: boolean) => {
   }
 
   const sorter = NFTS_SORTER.find(
-    (sorter) => sorter?.value === params?.[KEY_SEARCH.SORT]
+    (sorter) => sorter?.value === params?.[KEY_SEARCH.SORT],
   );
 
   newParams[`${KEY_SEARCH.SORT}[${sorter?.field}]`] = sorter?.order;

@@ -9,9 +9,9 @@ import React, {
 } from "react";
 import { useIntl } from "react-intl";
 import classNames from "classnames";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
-import { useGetListing, useGetNftDetail, useGetOwned } from "./hooks";
+import { useGetNftDetail, useGetOwned } from "./hooks";
 import Header from "./Header";
 import General from "./General";
 import { useAppDispatch, useAppSelector } from "@/hooks";
@@ -26,7 +26,7 @@ import {
   handleSetListForSaleStep,
   handleSetRemoveFromSaleStep,
 } from "@/redux/action/slice";
-import { noop } from "lodash";
+import noop from "lodash/noop";
 import selectedAddress from "@/redux/address/selector";
 import { useAddress } from "@thirdweb-dev/react";
 import ROUTES_PATH, { EXTERNAL_URL } from "@/constants/routesPath";
@@ -58,7 +58,6 @@ const {
 
 const NFTDetail = () => {
   const intl = useIntl();
-  const router = useRouter();
   const queryClient = useQueryClient();
   const dispatch = useAppDispatch();
   const account = useAddress();
@@ -66,8 +65,8 @@ const NFTDetail = () => {
   const nftId = Array.isArray(id) ? id[0] : id;
   const [isRefreshSaleOrder, setIsRefreshSaleOrder] = useState(false);
   const [selectedNFT, setSelectedNFT] = useState<any>({});
-  const { loading, data } = useGetNftDetail(nftId);
-  const { data: listOwned, loading: loadingOwned } = useGetOwned(nftId);
+  const { data } = useGetNftDetail(nftId);
+  useGetOwned(nftId);
 
   const { buyStep, listForSaleStep, removeFromSaleStep, transactionHash } =
     useAppSelector(selectedAction.getAction);
@@ -78,7 +77,6 @@ const NFTDetail = () => {
   const isSuccessBuy = buySuccessful === buyStep;
   const isFailedBuy = [buyCancel, buyFailed].includes(buyStep as number);
   const isCompletedBuy = [buyFailed, buySuccessful].includes(buyStep as number);
-  const nftType = data?.token.standard;
   const renderMintSuccessText = useMemo(
     () => (
       <Fragment>
@@ -86,7 +84,7 @@ const NFTDetail = () => {
           dangerouslySetInnerHTML={{
             __html: intl.formatMessage(
               { id: "NFT.detail.buy.susscess" },
-              { name: data?.name }
+              { name: data?.name },
             ),
           }}
         />
@@ -112,7 +110,7 @@ const NFTDetail = () => {
         </div>
       </Fragment>
     ),
-    [transactionHash, name, isCompletedBuy]
+    [transactionHash, name, isCompletedBuy],
   );
 
   const handleCloseBuy = () => dispatch(handleSetBuyStep(buyStart));
@@ -169,7 +167,7 @@ const NFTDetail = () => {
             dangerouslySetInnerHTML={{
               __html: intl.formatMessage(
                 { id: "NFT.detail.listed.susscess" },
-                { name: data?.name }
+                { name: data?.name },
               ),
             }}
           />
@@ -180,7 +178,7 @@ const NFTDetail = () => {
             dangerouslySetInnerHTML={{
               __html: intl.formatMessage(
                 { id: "NFT.detail.removed.susscess" },
-                { name: data?.name }
+                { name: data?.name },
               ),
             }}
           />

@@ -1,6 +1,5 @@
 import { NFT_TRANSACTION_TYPE, REMOVE_FROM_SALE_STEPS } from "@/constants/nft";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { useGetConfig } from "@/hooks/hook-customs/useGetConfig";
 import selectedAction from "@/redux/action/selector";
 import selectedAddress from "@/redux/address/selector";
 import React, { Fragment, ReactNode, useEffect, useState } from "react";
@@ -13,10 +12,14 @@ import {
 import { handleSetConnectModal } from "@/redux/connection/slice";
 import { useSocket } from "@/hooks/hook-customs/useSocket";
 import { SOCKET_EVENT } from "@/constants";
-import MetamaskService from "@/services/blockchain";
 import { useSigner } from "@thirdweb-dev/react";
 import ButtonWrapper from "../ButtonWrapper";
 import RemoveFromSaleModal from "./RemoveFromSaleModal";
+
+const getWallet = async () => {
+  const { default: MetamaskService } = await import("@/services/blockchain");
+  return new MetamaskService().getInstance();
+};
 
 type RemoveFromSaleButtonProps = {
   nft?: any;
@@ -45,13 +48,11 @@ const RemoveFromSaleButton = ({
   const signer = useSigner();
 
   const { removeFromSaleStep, transactionId } = useAppSelector<any>(
-    selectedAction.getAction
+    selectedAction.getAction,
   );
 
-  const { loading: loadingCreateTransaction, onCreateTransaction } =
-    useCreateTransaction();
-  const { loading: loadingUpdateTransaction, onUpdateTransaction } =
-    useUpdateTransaction();
+  const { onCreateTransaction } = useCreateTransaction();
+  const { onUpdateTransaction } = useUpdateTransaction();
 
   const [visible, setVisible] = useState(false);
   const [isCompletedRemoveFromSale, setIsCompletedRemoveFromSale] =
@@ -93,7 +94,7 @@ const RemoveFromSaleButton = ({
 
   const handleCompletedRemoveFromSale = (
     transactionId: string,
-    data: { hash: string; status: string }
+    data: { hash: string; status: string },
   ) => {
     onUpdateTransaction({
       id: transactionId,
@@ -117,7 +118,7 @@ const RemoveFromSaleButton = ({
 
   const handleFailedContractRemoveFromSale = (
     transactionId: string,
-    data: any
+    data: any,
   ) => {
     onUpdateTransaction({
       id: transactionId,
@@ -134,10 +135,10 @@ const RemoveFromSaleButton = ({
 
   const handleTransactionSuccessfulCreation = async (
     transactionId: string,
-    data?: any
+    data?: any,
   ) => {
     dispatch(handleSetTransactionId(transactionId));
-    const wallet = new MetamaskService().getInstance();
+    const wallet = await getWallet();
 
     await wallet.cancelSellOrder({
       signer,

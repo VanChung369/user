@@ -4,7 +4,6 @@ import { Tooltip } from "antd";
 import { TYPE_INPUT } from "@/constants/input";
 import { FormkWrapperProps } from "./typings";
 import cx from "classnames";
-import _ from "lodash";
 import styleLess from "./index.module.scss";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import InputText from "./components/inputText";

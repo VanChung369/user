@@ -9,7 +9,7 @@ import { TYPE_INPUT } from "@/constants/input";
 import LoadingWrapper from "@/components/LoadingWrapper";
 import { Col, Row } from "antd";
 import { Formik } from "formik";
-import { noop } from "lodash";
+import noop from "lodash/noop";
 import NFTItem from "@/components/NFTItem";
 import style from "./index.module.scss";
 import PaginationCustom from "@/components/Pagination";

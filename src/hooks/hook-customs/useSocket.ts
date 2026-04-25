@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { isArray } from "lodash";
+import isArray from "lodash/isArray";
 import useAppSelector from "./useAppSelector";
 import selectedAddress from "@/redux/address/selector";
 import Socket from "@/services/socket";

@@ -6,8 +6,6 @@ import {
   NOTIFICATION_EVENT,
   SOCKET_EVENT,
 } from "@/constants";
-import { useAppSelector } from "@/hooks";
-import selectedAddress from "@/redux/address/selector";
 import {
   FORMAT_DATE_PICKER,
   FORMAT_TIME_PICKER,
@@ -40,21 +38,15 @@ const {
 
 const Notice: React.FC = () => {
   const intl = useIntl();
-  const { address } = useAppSelector(selectedAddress.getAddress);
   const router = useRouter();
   const [totalUnread, setTotalUnread] = useState(ZERO_VALUE);
   const [totalNotification, setTotalNotification] = useState(ZERO_VALUE);
   const [notices, setNotices] = useState([]) as Array<any>;
-  const {
-    listNotificationtHasNextPage,
-    listFetchNextPage,
-    isSuccess,
-    data,
-    refetch,
-  } = useGetListNotification({
-    page: DEFAULT_PAGE,
-    limit: DEFAULT_PAGE_SIZE,
-  });
+  const { listNotificationtHasNextPage, listFetchNextPage, isSuccess, data } =
+    useGetListNotification({
+      page: DEFAULT_PAGE,
+      limit: DEFAULT_PAGE_SIZE,
+    });
 
   const handleNotificationtSusscess = (data: any) => {
     const {
@@ -125,7 +117,7 @@ const Notice: React.FC = () => {
               name: nftName,
               price: formatCurrency(price),
               currency,
-            }
+            },
           ),
           text: intl.formatMessage(
             { id: "notification.admin.put.on.sale" },
@@ -133,7 +125,7 @@ const Notice: React.FC = () => {
               name: nftName,
               price: formatCurrency(price),
               currency,
-            }
+            },
           ),
           router: `${ROUTES_PATH.NFT_DETAIL}/${notification?.nftId}`,
         };
@@ -147,7 +139,7 @@ const Notice: React.FC = () => {
               price: formatCurrency(price),
               currency,
               wallet: shortenAddress(buyerAddress),
-            }
+            },
           ),
           text: intl.formatMessage(
             { id: "notification.buy.from.user" },
@@ -156,7 +148,7 @@ const Notice: React.FC = () => {
               price: formatCurrency(price),
               currency,
               wallet: shortenAddress(buyerAddress),
-            }
+            },
           ),
           router: `${ROUTES_PATH.NFT_DETAIL}/${notification?.nftId}`,
         };
@@ -166,13 +158,13 @@ const Notice: React.FC = () => {
             { id: "notification.active.sellorder.tooltip" },
             {
               name: nftName,
-            }
+            },
           ),
           text: intl.formatMessage(
             { id: "notification.active.sellorder" },
             {
               name: nftName,
-            }
+            },
           ),
           router: `${ROUTES_PATH.NFT_DETAIL}/${notification?.nftId}`,
         };
@@ -182,13 +174,13 @@ const Notice: React.FC = () => {
             { id: "notification.deactivate.sellorder.tooltip" },
             {
               name: nftName,
-            }
+            },
           ),
           text: intl.formatMessage(
             { id: "notification.deactivate.sellorder" },
             {
               name: nftName,
-            }
+            },
           ),
           router: `${ROUTES_PATH.NFT_DETAIL}/${notification?.nftId}`,
         };
@@ -198,13 +190,13 @@ const Notice: React.FC = () => {
             { id: "notification.deactivate.sellorder.admin.tooltip" },
             {
               name: nftName,
-            }
+            },
           ),
           text: intl.formatMessage(
             { id: "notification.deactivate.sellorder.admin" },
             {
               name: nftName,
-            }
+            },
           ),
           router: `${ROUTES_PATH.NFT_DETAIL}/${notification?.nftId}`,
         };
@@ -258,7 +250,7 @@ const Notice: React.FC = () => {
                     className={styles.notification_card__group}
                     onClick={handleClickNotification(
                       notification,
-                      content?.router as string
+                      content?.router as string,
                     )}
                   >
                     <div className={styles.notification_card__group_content}>

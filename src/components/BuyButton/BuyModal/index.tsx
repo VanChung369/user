@@ -1,8 +1,7 @@
 import { BUY_FIELD, BUY_STEPS, NFT_STANDARD } from "@/constants/nft";
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppSelector } from "@/hooks";
 import { useGetConfig } from "@/hooks/hook-customs/useGetConfig";
 import selectedAddress from "@/redux/address/selector";
-import { useQueryClient } from "@tanstack/react-query";
 import { useSigner } from "@thirdweb-dev/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useIntl } from "react-intl";
@@ -27,7 +26,6 @@ import {
   TYPE_INPUT,
   ZERO_VALUE,
 } from "@/constants/input";
-import classNames from "classnames";
 import FormWrapper from "@/components/FormWrapper";
 import ButtonWrapper from "@/components/ButtonWrapper";
 import NumberFormatWrapper from "@/components/NumberFormatWrapper";
@@ -227,7 +225,7 @@ const BuyModal = ({
                           className={style.buy_modal_form_input_button_max}
                           onClick={handleSetMaxQuantity(
                             setFieldValue,
-                            QUANTITY
+                            QUANTITY,
                           )}
                           variant="primary"
                         />

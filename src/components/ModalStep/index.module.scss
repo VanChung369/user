@@ -1,0 +1,34 @@
+@import "@/styles/variables.scss";
+
+.modal_step {
+  text-align: center;
+  color: $text-color-white;
+
+  &__icon {
+    &__failed {
+      font-size: 80px !important;
+      color: $error-color;
+      margin-bottom: 24px;
+      padding: 50px 47px;
+    }
+
+    &__successful {
+      font-size: 80px !important;
+      color: $success-color;
+      margin-bottom: 24px;
+    }
+    &__processing {
+      font-size: 80px !important;
+      color: $color-violet;
+      margin-bottom: 24px;
+      animation: spin 1s linear infinite;
+
+      @keyframes spin {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
+}

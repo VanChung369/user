@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import AppProvider from "@/components/AppProvider";
 import "../styles/globals.scss";
 import "antd/dist/reset.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
 import { FC } from "react";
 

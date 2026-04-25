@@ -1,5 +1,5 @@
-import { throttle } from "lodash";
-import axios from "axios";
+import throttle from "lodash/throttle";
+import axios, { AxiosRequestConfig, AxiosResponse, Method } from "axios";
 import { HEADERS, HEADERS_MULTIPLE_PART } from "@/constants/api";
 import HTTP_STATUS_CONTSTANTS from "@/constants/status";
 import formatMessage from "@/components/FormatMessage";
@@ -10,6 +10,19 @@ import {
 } from "@/redux/address/slice";
 import { handleSetAuthenticationToken } from "@/redux/authentication/slice";
 import { store } from "@/redux/configStore";
+
+type ApiOptions = AxiosRequestConfig & {
+  isHideErrorMessage?: boolean;
+};
+
+type ApiRequestConfig = {
+  endpoint: string;
+  params?: any;
+  options?: ApiOptions;
+  headers?: any;
+};
+
+export const excludeResponse = ["empty_response"];
 
 const getFullUrl = (url: string) => {
   if (!url.startsWith("/")) {
@@ -34,21 +47,14 @@ const throttledResetToLogin = throttle(resetToLogin, 500, {
 const checkErrorNetwork = (err: any) => {
   if (err?.toJSON() && err.toJSON().message === "Network Error") {
     return formatMessage({
-      descriptor: { id: "codeMessage.E103" },
+      msgContent: "Server error. Please try again!",
       type: "error",
     });
   }
   return err;
 };
 
-export const excludeResponse = ["empty_response"];
-
-const checkErrorStatus = (
-  response: any,
-  options?: {
-    isHideErrorMessage?: any;
-  }
-) => {
+const checkErrorStatus = (response: any, options?: ApiOptions) => {
   if (
     response?.status >= HTTP_STATUS_CONTSTANTS.ERROR &&
     !excludeResponse.includes(response?.data?.code)
@@ -56,17 +62,15 @@ const checkErrorStatus = (
     if (HTTP_STATUS_CONTSTANTS.SERVER_ERROR !== response?.data?.code) {
       !options?.isHideErrorMessage &&
         formatMessage({
-          descriptor: {
-            id: response?.data?.code
-              ? `codeMessage.${response?.data?.code}`
-              : `codeMessage.${response?.code}`,
-          },
+          msgContent: response?.data?.code
+            ? `codeMessage.${response?.data?.code}`
+            : `codeMessage.${response?.code}`,
           type: "error",
         });
     } else {
       !options?.isHideErrorMessage &&
         formatMessage({
-          descriptor: { id: response?.meta?.msg },
+          msgContent: response?.meta?.msg,
           type: "error",
         });
     }
@@ -82,242 +86,81 @@ const checkExpiredOrAuthorization = (response: any) => {
   return HTTP_STATUS_CONTSTANTS.ERROR_CODE_401 === response?.status;
 };
 
+const handleSuccessResponse = (
+  response: AxiosResponse,
+  options?: ApiOptions,
+) => {
+  if (checkExpiredOrAuthorization(response)) {
+    throttledResetToLogin();
+    return response?.data;
+  }
+  return checkErrorStatus(response, options);
+};
+
+const handleErrorResponse = (err: any, options?: ApiOptions) => {
+  return checkErrorStatus(err?.response, options) || checkErrorNetwork(err);
+};
+
+const requestApi = ({
+  method,
+  endpoint,
+  params,
+  options,
+  headers,
+}: ApiRequestConfig & { method: Method }) => {
+  const config: AxiosRequestConfig = {
+    headers: headers || HEADERS,
+    validateStatus,
+    ...(options || {}),
+  };
+
+  if (method === "GET" || method === "DELETE") {
+    config.params = params ? { ...params } : undefined;
+  }
+
+  const data = method === "GET" || method === "DELETE" ? undefined : params;
+
+  return axios
+    .request({
+      ...config,
+      method,
+      url: getFullUrl(endpoint),
+      data,
+    })
+    .then(
+      (response) => handleSuccessResponse(response, options),
+      (err) => handleErrorResponse(err, options),
+    )
+    .catch((response: any) => response.data);
+};
+
+const requestMultipart = (
+  method: "POST" | "PATCH",
+  endpoint: string,
+  params?: any,
+  options?: ApiOptions,
+) => {
+  return requestApi({
+    method,
+    endpoint,
+    params,
+    headers: HEADERS_MULTIPLE_PART,
+    options,
+  });
+};
+
 const api = {
-  get: ({
-    endpoint,
-    params,
-    options,
-    headers,
-  }: {
-    endpoint: string;
-    params?: any;
-    options?: { [key: string]: any };
-    headers?: any;
-  }) => {
-    return axios
-      .get(getFullUrl(endpoint), {
-        headers: headers || HEADERS,
-        params: {
-          ...params,
-        },
-        validateStatus: (status: any) => validateStatus(status),
-        ...(options || {}),
-      })
-      .then(
-        (response: any) => {
-          if (checkExpiredOrAuthorization(response)) {
-            throttledResetToLogin(endpoint, params, response);
-            return checkErrorStatus(response?.data, options);
-          }
-          return checkErrorStatus(response, options);
-        },
-        (err: any) => {
-          return (
-            checkErrorStatus(err?.response, options) || checkErrorNetwork(err)
-          );
-        }
-      )
-      .catch((response: any) => {
-        return response.data;
-      });
-  },
-
-  post: ({
-    endpoint,
-    params,
-    options,
-    headers,
-  }: {
-    endpoint: string;
-    params?: any;
-    options?: { [key: string]: any };
-    headers?: any;
-  }) => {
-    return axios
-      .post(getFullUrl(endpoint), params, {
-        headers: headers || HEADERS,
-        validateStatus: (status: any) => validateStatus(status),
-      })
-      .then(
-        (response: any) => {
-          if (checkExpiredOrAuthorization(response)) {
-            throttledResetToLogin(endpoint, params, response);
-            return response?.data;
-          }
-          return checkErrorStatus(response, options);
-        },
-        (err: any) => {
-          return (
-            checkErrorStatus(err?.response, options) || checkErrorNetwork(err)
-          );
-        }
-      )
-      .catch((response: any) => {
-        return response.data;
-      });
-  },
-
-  put: ({
-    endpoint,
-    params,
-    options,
-    headers,
-  }: {
-    endpoint: string;
-    params?: any;
-    options?: { [key: string]: any };
-    headers?: any;
-  }) => {
-    return axios
-      .put(getFullUrl(endpoint), params, {
-        headers: headers || HEADERS,
-        validateStatus: (status: any) => validateStatus(status),
-        ...(options || {}),
-      })
-      .then(
-        (response: any) => {
-          if (checkExpiredOrAuthorization(response)) {
-            throttledResetToLogin(endpoint, params, response);
-            return checkErrorStatus(response?.data, options);
-          }
-          return checkErrorStatus(response, options);
-        },
-        (err: any) => {
-          return (
-            checkErrorStatus(err?.response, options) || checkErrorNetwork(err)
-          );
-        }
-      )
-      .catch((response: any) => {
-        return response.data;
-      });
-  },
-
-  postMultiplePart: (endpoint: string, params?: any, options?: any) => {
-    return axios
-      .post(getFullUrl(endpoint), params, {
-        headers: HEADERS_MULTIPLE_PART,
-        validateStatus: (status: any) => validateStatus(status),
-      })
-      .then(
-        (response: any) => {
-          if (checkExpiredOrAuthorization(response)) {
-            throttledResetToLogin(endpoint, params, response);
-            return response?.data;
-          }
-          return checkErrorStatus(response, options);
-        },
-        (err: any) => {
-          return (
-            checkErrorStatus(err?.response, options) || checkErrorNetwork(err)
-          );
-        }
-      )
-      .catch((response: any) => {
-        return response.data;
-      });
-  },
-
-  patch: ({
-    endpoint,
-    params,
-
-    options,
-    headers,
-  }: {
-    endpoint: string;
-    params?: any;
-
-    options?: { [key: string]: any };
-    headers?: any;
-  }) => {
-    return axios
-      .patch(getFullUrl(endpoint), params, {
-        headers: headers || HEADERS,
-        validateStatus: (status: any) => validateStatus(status),
-      })
-      .then(
-        (response: any) => {
-          if (checkExpiredOrAuthorization(response)) {
-            throttledResetToLogin(endpoint, params, response);
-            return checkErrorStatus(response?.data, options);
-          }
-          return checkErrorStatus(response, options);
-        },
-        (err: any) => {
-          return (
-            checkErrorStatus(err?.response, options) || checkErrorNetwork(err)
-          );
-        }
-      )
-      .catch((response: any) => {
-        return response.data;
-      });
-  },
-
-  patchMultipart: (endpoint: string, params?: any, options?: any) => {
-    return axios
-      .patch(getFullUrl(endpoint), params, {
-        headers: HEADERS_MULTIPLE_PART,
-        validateStatus: (status: any) => validateStatus(status),
-      })
-      .then(
-        (response: any) => {
-          if (checkExpiredOrAuthorization(response)) {
-            throttledResetToLogin(endpoint, params, response);
-            return checkErrorStatus(response?.data, options);
-          }
-          return checkErrorStatus(response, options);
-        },
-        (err: any) => {
-          return (
-            checkErrorStatus(err?.response, options) || checkErrorNetwork(err)
-          );
-        }
-      )
-      .catch((response: any) => {
-        return response.data;
-      });
-  },
-
-  delete: ({
-    endpoint,
-    params,
-    options,
-    headers,
-  }: {
-    endpoint: string;
-    params?: any;
-    options?: { [key: string]: any };
-    headers?: any;
-  }) => {
-    return axios
-      .patch(getFullUrl(endpoint), {
-        headers: headers || HEADERS,
-        params: {
-          ...params,
-        },
-        validateStatus: (status: any) => validateStatus(status),
-        ...(options || {}),
-      })
-      .then(
-        (response: any) => {
-          if (checkExpiredOrAuthorization(response)) {
-            throttledResetToLogin(endpoint, params, response);
-            return response?.data;
-          }
-          return checkErrorStatus(response, options);
-        },
-        (err: any) => {
-          return (
-            checkErrorStatus(err?.response, options) || checkErrorNetwork(err)
-          );
-        }
-      )
-      .catch((response: any) => {
-        return response.data;
-      });
-  },
+  get: (config: ApiRequestConfig) => requestApi({ ...config, method: "GET" }),
+  post: (config: ApiRequestConfig) => requestApi({ ...config, method: "POST" }),
+  put: (config: ApiRequestConfig) => requestApi({ ...config, method: "PUT" }),
+  patch: (config: ApiRequestConfig) =>
+    requestApi({ ...config, method: "PATCH" }),
+  delete: (config: ApiRequestConfig) =>
+    requestApi({ ...config, method: "DELETE" }),
+  postMultiplePart: (endpoint: string, params?: any, options?: ApiOptions) =>
+    requestMultipart("POST", endpoint, params, options),
+  patchMultipart: (endpoint: string, params?: any, options?: ApiOptions) =>
+    requestMultipart("PATCH", endpoint, params, options),
 };
 
 export { api };

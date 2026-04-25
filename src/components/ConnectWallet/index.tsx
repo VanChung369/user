@@ -1,4 +1,3 @@
-"use client";
 import { SUPPORTED_CHAIN_IDS } from "@/constants/connect";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { useConnectWallet } from "@/hooks/hook-customs/useConnectWallet";
@@ -26,32 +25,34 @@ import {
   useSigner,
 } from "@thirdweb-dev/react";
 import { FC, Fragment, useEffect } from "react";
-import { message } from "antd";
 import ModalWrongNetwork from "../ModalWrongNetwork";
 import ModalConnectWallet from "../ModalConnectWallet";
-import selectedConnection from "@/redux/connection/selector";
-import MetamaskService from "@/services/blockchain";
 import { useLogin } from "./hook";
+import formatMessage from "@/components/FormatMessage";
+import { useIntl } from "react-intl";
+
+const getWallet = async () => {
+  const { default: MetamaskService } = await import("@/services/blockchain");
+  return new MetamaskService().getInstance();
+};
 
 const ConnectWalletWrapper: FC<{
   children: any;
 }> = ({ children }) => {
   const dispatch = useAppDispatch();
+  const intl = useIntl();
   const connectionStatus = useConnectionStatus();
   const chainId = useChainId();
   const account = useAddress();
   const signer = useSigner();
+
   const disconnectWallet = useDisconnect();
   const { handleConnect } = useConnectWallet();
-  const [messageApi, contextHolder] = message.useMessage();
   const { onLogin } = useLogin();
 
   const { address, listAddress } = useAppSelector(selectedAddress.getAddress);
   const { authenticationToken } = useAppSelector(
-    selectAuthentication.getAuthenticationToken
-  );
-  const { isConnectingWallet } = useAppSelector(
-    selectedConnection.getConnection
+    selectAuthentication.getAuthenticationToken,
   );
 
   useGetAppConfig();
@@ -76,14 +77,14 @@ const ConnectWalletWrapper: FC<{
         handleSetAddressNetwork({
           chainId,
           address: address,
-        })
+        }),
       );
   }, [authenticationToken, chainId]);
 
   useEffect(() => {
     const setUpAddress = async () => {
       if (account) {
-        const wallet = new MetamaskService().getInstance();
+        const wallet = await getWallet();
         const isAdmin = await handleCheckIsAdmin(wallet);
 
         if (!isAdmin) {
@@ -101,7 +102,7 @@ const ConnectWalletWrapper: FC<{
     }
   }, [account]);
 
-  const handleCheckIsAdmin = async (wallet: MetamaskService) => {
+  const handleCheckIsAdmin = async (wallet: any) => {
     const isAdmin = await wallet.isAdmin(account as string);
     if (isAdmin) {
       handleCancelLoadingMetamask();
@@ -133,14 +134,15 @@ const ConnectWalletWrapper: FC<{
 
   const handleLoginFailed = () => {
     handleDisconnect();
-    messageApi.open({
+    dispatch(handleSetLoadingMetamask(false));
+
+    formatMessage({
+      msgContent: intl.formatMessage({ id: "codeMessage.E2" }),
       type: "error",
-      content:
-        "Your wallet has been registered as admin, thus you cannot access the system.",
     });
   };
 
-  const handleLoginForFirstTime = async (wallet: MetamaskService) => {
+  const handleLoginForFirstTime = async (wallet: any) => {
     const signature = (await wallet.verifyLoginSignature({
       signer,
       creator: account as string,
@@ -159,13 +161,13 @@ const ConnectWalletWrapper: FC<{
             handleAddAddressNetWork({
               address: account,
               signature,
-            })
+            }),
           );
           dispatch(
             handleSetAddressNetwork({
               chainId,
               address: account,
-            })
+            }),
           );
           dispatch(handleSetLoadingMetamask(false));
         },
@@ -183,7 +185,7 @@ const ConnectWalletWrapper: FC<{
           handleSetAddressNetwork({
             chainId,
             address: account,
-          })
+          }),
         );
         dispatch(handleSetLoadingMetamask(false));
       },
@@ -217,7 +219,6 @@ const ConnectWalletWrapper: FC<{
 
   return (
     <Fragment>
-      {contextHolder}
       {children}
       <ModalWrongNetwork />
       <ModalConnectWallet />

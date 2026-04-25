@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { omit } from 'lodash';
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import omit from "lodash/omit";
 
 export interface Address {
   address: string;
@@ -8,13 +8,13 @@ export interface Address {
 }
 
 const initialState: Address = {
-  address: '',
+  address: "",
   chainId: null,
   listAddress: {},
 };
 
 export const AddressSlice = createSlice({
-  name: 'address',
+  name: "address",
   initialState,
   reducers: {
     handleSetAddressNetwork: (state: Address, action: PayloadAction<any>) => {
@@ -26,12 +26,15 @@ export const AddressSlice = createSlice({
       };
     },
 
-    handleRemoveAddressNetwork: (state: Address, action: PayloadAction<any>) => {
+    handleRemoveAddressNetwork: (
+      state: Address,
+      action: PayloadAction<any>,
+    ) => {
       const { address } = action.payload;
       return {
         ...state,
         listAddress: omit(state?.listAddress, [address]),
-        address: '',
+        address: "",
         chainId: null,
       };
     },
@@ -54,9 +57,12 @@ export const AddressSlice = createSlice({
   },
 });
 
-export const { handleSetAddressNetwork, handleAddAddressNetWork, handleRemoveAddressNetwork } =
-  AddressSlice.actions;
+export const {
+  handleSetAddressNetwork,
+  handleAddAddressNetWork,
+  handleRemoveAddressNetwork,
+} = AddressSlice.actions;
 
-export const namespace = 'AddressSlice';
+export const namespace = "AddressSlice";
 
 export default AddressSlice.reducer;

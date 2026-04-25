@@ -19,6 +19,8 @@ import ConnectWalletButton from "@/components/ConnectWalletButton";
 import styles from "./index.module.scss";
 import classNames from "classnames";
 import { useIntl } from "react-intl";
+import Image from "next/image";
+import ROUTES_PATH from "@/constants/routesPath";
 
 const Desktop = () => {
   const intl = useIntl();
@@ -49,21 +51,16 @@ const Desktop = () => {
               className={styles.desktop_menu__address}
             />
           </div>
-          <AppLink href={"#"}>
+          <AppLink href={ROUTES_PATH.MY_ACCOUNT}>
             <div className={styles.item}>
               <span>{intl.formatMessage({ id: "header.user.account" })}</span>
-            </div>
-          </AppLink>
-          <AppLink href={"#"}>
-            <div className={styles.item}>
-              <span>{intl.formatMessage({ id: "header.user.history" })}</span>
             </div>
           </AppLink>
           <div
             className={classNames(styles.item, "border-bottom-none")}
             onClick={handleDisconnect}
           >
-            <img src={DisconnectIcon.src} />
+            <Image src={DisconnectIcon} alt={"disconnect icon"} />
             <span className={styles.disconnect}>
               {intl.formatMessage({ id: "header.user.disconnect" })}
             </span>

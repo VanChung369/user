@@ -1,0 +1,35 @@
+@import "@/styles/variables.scss";
+
+.work {
+    margin-top: 50px;
+
+    .work_box {
+        :gloabl {
+            .ant-row {
+                align-items: center;
+            }
+        }
+
+        background-color: transparent;
+        flex: 1;
+        color: $text-color-white;
+        letter-spacing: 0px;
+        line-height: 45.6px;
+        margin-top: -1px;
+        mix-blend-mode: normal;
+        position: relative;
+        text-align: left;
+        white-space: nowrap;
+
+        &__title {
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+        &__title_content {
+            font-size: 16px;
+            font-weight: 300;
+            color: #c8cacc;
+        }
+    }
+}

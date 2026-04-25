@@ -1,0 +1,59 @@
+name: Deploy NFT User
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: deploy-user-main
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Ensure deploy folder exists
+        run: |
+          mkdir -p /home/vanchung/deploy/nft-user
+
+      - name: Sync user source
+        run: |
+          rsync -av --delete \
+            --exclude ".git" \
+            --exclude "node_modules" \
+            --exclude ".next" \
+            ./ /home/vanchung/deploy/nft-user/
+
+      - name: Write user build env file
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > /home/vanchung/deploy/nft-user/.env
+
+      - name: Remove old user container
+        run: |
+          docker rm -f nft-user || true
+
+      - name: Build user image
+        run: |
+          docker build -t nft-user:latest /home/vanchung/deploy/nft-user
+
+      - name: Run user container
+        run: |
+          docker run -d \
+            --name nft-user \
+            --restart unless-stopped \
+            -p 3001:3000 \
+            nft-user:latest
+
+      - name: Health check user
+        run: |
+          sleep 8
+          curl -I http://localhost:3001 || curl http://localhost:3001
+
+      - name: Cleanup dangling images
+        run: |
+          docker image prune -f

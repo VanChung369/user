@@ -1,0 +1,17 @@
+export default {
+  "footer.nft.treasure": "NFT treasure",
+  "footer.about": "Giới thiệu",
+  "footer.ecosystem": "Hệ sinh thái",
+  "footer.contact": "Liên hệ",
+  "footer.ecosystem.landing.page": "Trang đích",
+  "footer.ecosystem.minting": "Minting",
+  "footer.ecosystem.rankings": "Xếp hạng",
+  "footer.join.our": "Tham gia cộng đồng của chúng tôi",
+  "footer.title": "Giao diện chợ NFT được tạo ra với Anima cho Figma.",
+  "footer.about.terms.of.service": "Điều khoản Dịch vụ",
+  "footer.about.privacy.policy": "Chính sách Bảo mật",
+  "footer.about.faqs": "Câu hỏi thường gặp",
+  "footer.contact.email": "vanchung917@gmail.com",
+  "footer.contact.phone": "84-74-688-410",
+  "footer.copy.right": "©2025 NFT treasure. Bảo lưu tất cả quyền lợi.",
+};

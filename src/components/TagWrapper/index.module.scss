@@ -1,0 +1,36 @@
+.tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 30px;
+  padding: 5px 18px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 12px;
+  text-align: center;
+  border-radius: 5px;
+
+  &:global(.ant-tag.ant-tag-green) {
+    color: #6abe39;
+    background: #162312;
+    border-color: #274916;
+  }
+
+  &:global(.ant-tag.ant-tag-red) {
+    color: #e84749;
+    background: #2a1215;
+    border-color: #58181c;
+  }
+
+  &:global(.ant-tag.ant-tag-blue) {
+    color: #3c89e8;
+    background: #111a2c;
+    border-color: #15325b;
+  }
+
+  &:global(.ant-tag.ant-tag-cyan) {
+    color: #33bcb7;
+    background: #112123;
+    border-color: #144848;
+  }
+}

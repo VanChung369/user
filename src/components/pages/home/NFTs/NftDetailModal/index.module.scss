@@ -1,0 +1,86 @@
+@import "@/styles/variables.scss";
+
+.nft_detail {
+    text-align: center;
+    color: $text-color-white;
+
+    .nft_detail_name {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .nft_detail_content {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+
+        .nft_detail_content_item {
+            display: flex;
+            font-weight: 500;
+            line-height: 21px;
+            flex-direction: column;
+            align-items: flex-start;
+            flex: 0 0 75%;
+
+            .nft_detail_content_item_label {
+                color: $text-color-white;
+                font-size: 15px;
+                font-weight: 700;
+                margin-bottom: 5px;
+            }
+
+            .nft_detail_content_item_value {
+                color: $text-color-white;
+
+                .nft_detail_content_item_value_status {
+                    line-height: 17px;
+                    margin-bottom: 14px;
+                    width: fit-content;
+                }
+            }
+        }
+    }
+
+    :global {
+        .ant-modal-content {
+            background-color: $background-disabled !important;
+            border-radius: 15px;
+            max-height: 100vh;
+            padding: 20px 47px;
+        }
+
+        .ant-modal-close {
+            color: $text-color-white;
+
+            &:hover {
+                color: $color-violet;
+                opacity: 0.6;
+                background: none;
+            }
+        }
+
+        .ant-modal-body {
+            @media screen and (max-width: $breakpoint_tablet_max) {
+                padding: 25px;
+            }
+            .ant-image {
+                max-width: 100%;
+                border-radius: 3px;
+                width: 100%;
+                aspect-ratio: 1/1;
+                padding-top: 100%;
+                position: relative;
+
+                img {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translateX(-50%) translateY(-50%);
+                    max-width: 100%;
+                    width: 100%;
+                    border-radius: 20px;
+                }
+            }
+        }
+    }
+}

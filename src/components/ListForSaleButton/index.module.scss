@@ -1,0 +1,30 @@
+@import "@/styles/variables.scss";
+
+.list_for_sale_button_sale {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    min-width: 135px;
+    border-radius: 25px;
+    border: none;
+    text-transform: uppercase;
+    padding: 7px 24px;
+    background: transparent;
+    color: $color-violet;
+    border: 2px solid $color-violet;
+
+    &:focus,
+    &:active,
+    &:hover {
+        background: transparent !important;
+        color: $color-violet !important;
+        border: 2px solid $color-violet !important;
+        opacity: 0.8;
+    }
+}

@@ -4,7 +4,6 @@ import { Dropdown } from "antd";
 import type { DropDownProps } from "antd/es/dropdown";
 import classNames from "classnames";
 import React from "react";
-import styles from "./index.module.scss";
 
 export type HeaderDropdownProps = {
   overlayClassName?: string;

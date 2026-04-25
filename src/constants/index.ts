@@ -7,7 +7,7 @@ export const PERCENTAGE_SUFFIX = "%";
 
 export const TOKEN_SUPPORT = {
   symbol: "UDC",
-  icon: "https://firebasestorage.googleapis.com/v0/b/nft-marketplace-85e49.appspot.com/o/symbol%2Fcoin_icon.png?alt=media&token=13c90550-0cb1-4e0e-b43a-7eacdf88a8c0",
+  icon: "https://ik.imagekit.io/ez873u6hh/coin_icon.png?updatedAt=1773461191597",
   value: "udc",
 };
 
@@ -52,6 +52,7 @@ export const SOCKET_EVENT = {
   NOTIFICATION: "notification",
   REMOVE_FROM_SALE: "removeFromSale",
   ADMIN_MINT: "adminMint",
+  BUY_NFT: "buyNFT",
 };
 
 export const NOTIFICATION_EVENT = {
@@ -64,3 +65,5 @@ export const NOTIFICATION_EVENT = {
 };
 
 export const KEY_STORAGE = "cookies-token";
+export const MAX_ALLOWANCE =
+  "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";

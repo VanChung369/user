@@ -1,0 +1,26 @@
+@import "@/styles/variables.scss";
+
+.sale_hisory_card {
+    padding: 30px;
+    border-radius: 20px;
+    background: $background-color;
+
+    .nft_name {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: $text-color-white;
+        :global {
+            .ant-image .ant-image-img {
+                width: 50px;
+                height: unset;
+                border-radius: 3px;
+            }
+        }
+    }
+
+    .total_profit {
+        color: $text-color-white;
+        margin-top: 20px;
+    }
+}

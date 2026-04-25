@@ -1,0 +1,17 @@
+@import "@/styles/variables.scss";
+
+.no_data {
+    text-align: center;
+    margin-top: 100px;
+    color: $text-color-white;
+    .no_data_image {
+    }
+
+    .no_data_text {
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 30px;
+        letter-spacing: 0.015em;
+        margin-top: 20px;
+    }
+}

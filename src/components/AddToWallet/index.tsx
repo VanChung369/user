@@ -8,6 +8,7 @@ import WalletConnectLogo from "@public/svg/WalletConnect.svg";
 import CoinBaseLogo from "@public/svg/Coinbase.svg";
 import NextIcon from "@public/svg/next-icon-white.svg";
 import { WALLET_TYPE } from "@/constants/wallet";
+import Image from "next/image";
 
 const AddToWallet: FC<AddToWalletProps> = ({
   afterIcon,
@@ -38,10 +39,18 @@ const AddToWallet: FC<AddToWalletProps> = ({
         {...props}
       >
         <div>
-          <img src={wallet.src} className={style.button__icon} />
+          <Image
+            src={wallet}
+            className={style.button__icon}
+            alt={"wallet icon"}
+          />
           <span className={style.button__text}>{text}</span>
         </div>
-        <img src={NextIcon.src} className={style.button__icon} />
+        <Image
+          src={NextIcon}
+          className={style.button__icon}
+          alt={"next icon"}
+        />
         {afterIcon}
       </Button>
     </div>

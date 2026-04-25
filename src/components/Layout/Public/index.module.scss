@@ -23,4 +23,19 @@
             width: 24px;
         }
     }
+    :global {
+        .ant-float-btn-body {
+            border: 0px;
+            border-radius: 10px;
+            box-shadow: rgba(14, 14, 44, 0.4) 0px -1px 0px 0px inset;
+            line-height: 1;
+            background-color: $color-violet;
+            width: 48px;
+            height: 48px;
+
+            &:hover {
+                background-color: $color-violet !important;
+            }
+        }
+    }
 }

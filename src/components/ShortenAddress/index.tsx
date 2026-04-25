@@ -24,11 +24,11 @@ const ShortenAddress: FC<{
   admin,
   ...props
 }) => {
-  const addressShorten = shortenIfAddress(address, extraShort);
+  const addressShorten = shortenIfAddress(address || ADDRESS_ZERO, extraShort);
   const intl = useIntl();
   return (
     <div className={classNames(className)} {...props}>
-      {addressShorten ? addressShorten : ADDRESS_ZERO}
+      {addressShorten}
       {admin && <EllipsisText text={admin} />}
       {isCopy && (
         <CopyOutlined

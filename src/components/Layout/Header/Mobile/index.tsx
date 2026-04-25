@@ -4,7 +4,7 @@ import CloseIcon from "@public/svg/close-icon.svg";
 import DisconnectIcon from "@public/svg/disconnect-icon.svg";
 import MenuIcon from "@public/svg/menu-icon.svg";
 import UserIcon from "@public/images/no-profile-md.png";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import AppLink from "@/components/AppLink";
 import ShortenAddress from "@/components/ShortenAddress";
 import ButtonWrapper from "@/components/ButtonWrapper";
@@ -18,12 +18,17 @@ import {
 import { handleSetAuthenticationToken } from "@/redux/authentication/slice";
 import { useAddress, useDisconnect } from "@thirdweb-dev/react";
 import selectedConnection from "@/redux/connection/selector";
-import AddToWallet from "@/components/AddToWallet";
-import { WALLET_TYPE } from "@/constants/wallet";
+import Image from "next/image";
+import { useIntl } from "react-intl";
+import style from "./index.module.scss";
+import classNames from "classnames";
+import ConnectWalletButton from "@/components/ConnectWalletButton";
+import ROUTES_PATH from "@/constants/routesPath";
 
 const { SubMenu } = Menu;
 
 const Mobile = () => {
+  const intl = useIntl();
   const dispatch = useAppDispatch();
   const account = useAddress();
   const { isConnected } = useAppSelector(selectedConnection.getConnection);
@@ -51,42 +56,50 @@ const Mobile = () => {
   const docsMenus = [
     {
       key: "whitepaper",
-      label: "whitepaper",
+      label: intl.formatMessage({ id: "header.docs.whitepaper" }),
       href: "#",
     },
     {
       key: "terms-of-service",
-      label: "terms-of-service",
+      label: intl.formatMessage({ id: "header.docs.terms.of.service" }),
       href: "#",
     },
     {
       key: "privacy-policy",
-      label: "privacy-policy",
+      label: intl.formatMessage({ id: "header.docs.privacy.policy" }),
       href: "#",
     },
     {
       key: "faqs",
-      label: "faqs",
+      label: intl.formatMessage({ id: "header.docs.faqs" }),
       href: "#",
     },
   ];
 
   const listMenus = [
     {
-      label: "home",
+      label: intl.formatMessage({ id: "header.home" }),
       isLink: true,
-      href: "",
+      href: "#",
     },
     {
-      label: "landing page",
+      label: intl.formatMessage({ id: "header.marketplace" }),
+      isLink: true,
+      href: ROUTES_PATH.MARKETPLACE,
+    },
+    {
+      label: intl.formatMessage({ id: "footer.ecosystem.landing.page" }),
       isLink: true,
       href: "#",
     },
     {
       content: (
-        <Menu mode="inline">
-          <SubMenu key="docs-menu" title={"docs"}>
-            {docsMenus.map((menuItem, index) => (
+        <Menu>
+          <SubMenu
+            key="docs-menu"
+            title={intl.formatMessage({ id: "header.docs" })}
+          >
+            {docsMenus.map((menuItem) => (
               <Menu.Item key={menuItem.key}>
                 <AppLink href={menuItem.href}>{menuItem.label}</AppLink>
               </Menu.Item>
@@ -101,16 +114,16 @@ const Mobile = () => {
 
   const renderHeaderDrawer = () => {
     return (
-      <div className="header-menu">
-        <div className="close-btn">
-          <img src={CloseIcon.src} alt="close icon" onClick={handleCloseMenu} />
+      <div className={style.header_menu}>
+        <div className={style.close_btn}>
+          <Image src={CloseIcon} alt="close icon" onClick={handleCloseMenu} />
         </div>
         <div className="container">
-          <div className="menu">
+          <div className={style.menu}>
             {listMenus.map((menu, index) => {
               const { href, label, content } = menu;
               return (
-                <div key={index} className="item">
+                <div key={index} className={style.item}>
                   <AppLink href={href}>{content ?? label}</AppLink>
                 </div>
               );
@@ -123,30 +136,19 @@ const Mobile = () => {
 
   const renderAccountDrawer = () => {
     return (
-      <div className="header-overlay">
-        <div className="account-button">
-          <div className="item header-overlay__address border-bottom-none">
-            <ShortenAddress address={account} />
-          </div>
+      <div className={style.header_overlay}>
+        <div
+          className={classNames(
+            style.item,
+            style.border_bottom_none,
+            style.header_overlay__address,
+          )}
+        >
+          <ShortenAddress address={account} />
         </div>
-        <AppLink href={"#"}>
-          <div className="item">
-            <span>account</span>
-          </div>
-        </AppLink>
-        <AppLink href={"#"}>
-          <div className="item">
-            <span>inventory</span>
-          </div>
-        </AppLink>
-        <AppLink href={"#"}>
-          <div className="item">
-            <span>redemption</span>
-          </div>
-        </AppLink>
-        <AppLink href={"#"}>
-          <div className="item">
-            <span>history</span>
+        <AppLink href={ROUTES_PATH.MY_ACCOUNT}>
+          <div className={style.item}>
+            <span>{intl.formatMessage({ id: "header.user.account" })}</span>
           </div>
         </AppLink>
       </div>
@@ -154,18 +156,22 @@ const Mobile = () => {
   };
 
   return (
-    <div className="mobile-header">
+    <div className={style.mobile_header}>
       {isConnected && (
-        <img
-          src={UserIcon.src}
-          className="mobile-header__icon"
+        <Image
+          src={UserIcon}
+          className={style.mobile_header__icon}
           onClick={handleOpenAccountMenu}
+          alt="user icon"
+          height={25}
+          width={25}
         />
       )}
-      <img
-        src={MenuIcon.src}
-        className="mobile-header__icon menu-icon"
+      <Image
+        src={MenuIcon}
+        className={classNames(style.mobile_header__icon, style.menu_icon)}
         onClick={handleOpenMenu}
+        alt="menu icon"
       />
 
       <Drawer
@@ -173,21 +179,11 @@ const Mobile = () => {
         open={visible}
         closable={false}
         placement="right"
-        className="mobile-drawer"
+        className={style.mobile_drawer}
         onClose={handleCloseMenu}
       >
-        <div className="connect-wallet-mobile">
-          {!isConnected && (
-            <AddToWallet
-              className="connect-wallet-mobile"
-              walletType={WALLET_TYPE.METAMASK}
-              text={
-                <Fragment>
-                  <span>{"conncet metamask"}</span>
-                </Fragment>
-              }
-            />
-          )}
+        <div className={style.connect_wallet_mobile}>
+          {!isConnected && <ConnectWalletButton />}
         </div>
       </Drawer>
 
@@ -196,14 +192,19 @@ const Mobile = () => {
         open={visibleAccountMenu}
         closable={false}
         placement="right"
-        className="mobile-drawer mobile-drawer_account"
+        className={classNames(style.mobile_drawer, style.mobile_drawer_account)}
         onClose={handleCloseAccountMenu}
       >
         <ButtonWrapper
           text={
-            <div className="item border-bottom-none" onClick={handleDisconnect}>
-              <img src={DisconnectIcon.src} />
-              <span className="disconnect">disconnect</span>
+            <div
+              className={classNames(style.item, style.border_bottom_none)}
+              onClick={handleDisconnect}
+            >
+              <Image src={DisconnectIcon} alt="disconnect icon" />
+              <span className={style.disconnect}>
+                {intl.formatMessage({ id: "login.disconnect.wallet" })}
+              </span>
             </div>
           }
           variant="default"

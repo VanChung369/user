@@ -6,8 +6,6 @@ import {
   NOTIFICATION_EVENT,
   SOCKET_EVENT,
 } from "@/constants";
-import { useAppSelector } from "@/hooks";
-import selectedAddress from "@/redux/address/selector";
 import {
   FORMAT_DATE_PICKER,
   FORMAT_TIME_PICKER,
@@ -23,9 +21,10 @@ import NotFoundNotice from "@public/svg/not-found-notice.svg";
 import NoticeIcon from "@public/svg/notification-icon.svg";
 import InfiniteScroll from "react-infinite-scroll-component";
 import HeaderDropdown from "../HeaderDropdown";
-import { Badge } from "antd";
+import { Badge, MenuProps } from "antd";
 import { useIntl } from "react-intl";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } = LENGTH_CONSTANTS;
 const {
@@ -39,21 +38,15 @@ const {
 
 const Notice: React.FC = () => {
   const intl = useIntl();
-  const { address } = useAppSelector(selectedAddress.getAddress);
   const router = useRouter();
   const [totalUnread, setTotalUnread] = useState(ZERO_VALUE);
   const [totalNotification, setTotalNotification] = useState(ZERO_VALUE);
   const [notices, setNotices] = useState([]) as Array<any>;
-  const {
-    listNotificationtHasNextPage,
-    listFetchNextPage,
-    isSuccess,
-    data,
-    refetch,
-  } = useGetListNotification({
-    page: DEFAULT_PAGE,
-    limit: DEFAULT_PAGE_SIZE,
-  });
+  const { listNotificationtHasNextPage, listFetchNextPage, isSuccess, data } =
+    useGetListNotification({
+      page: DEFAULT_PAGE,
+      limit: DEFAULT_PAGE_SIZE,
+    });
 
   const handleNotificationtSusscess = (data: any) => {
     const {
@@ -61,7 +54,7 @@ const Notice: React.FC = () => {
       totalDocs = 0,
       totalUnread = 0,
       page,
-    } = data?.pages?.slice(-1)[0] || {};
+    } = data?.pages?.slice(-1)[0]?.data || {};
     setNotices(page === DEFAULT_PAGE ? [...docs] : [...notices, ...docs]);
     setTotalNotification(totalDocs);
     setTotalUnread(totalUnread);
@@ -124,7 +117,7 @@ const Notice: React.FC = () => {
               name: nftName,
               price: formatCurrency(price),
               currency,
-            }
+            },
           ),
           text: intl.formatMessage(
             { id: "notification.admin.put.on.sale" },
@@ -132,7 +125,7 @@ const Notice: React.FC = () => {
               name: nftName,
               price: formatCurrency(price),
               currency,
-            }
+            },
           ),
           router: `${ROUTES_PATH.NFT_DETAIL}/${notification?.nftId}`,
         };
@@ -146,7 +139,7 @@ const Notice: React.FC = () => {
               price: formatCurrency(price),
               currency,
               wallet: shortenAddress(buyerAddress),
-            }
+            },
           ),
           text: intl.formatMessage(
             { id: "notification.buy.from.user" },
@@ -155,7 +148,7 @@ const Notice: React.FC = () => {
               price: formatCurrency(price),
               currency,
               wallet: shortenAddress(buyerAddress),
-            }
+            },
           ),
           router: `${ROUTES_PATH.NFT_DETAIL}/${notification?.nftId}`,
         };
@@ -165,13 +158,13 @@ const Notice: React.FC = () => {
             { id: "notification.active.sellorder.tooltip" },
             {
               name: nftName,
-            }
+            },
           ),
           text: intl.formatMessage(
             { id: "notification.active.sellorder" },
             {
               name: nftName,
-            }
+            },
           ),
           router: `${ROUTES_PATH.NFT_DETAIL}/${notification?.nftId}`,
         };
@@ -181,13 +174,13 @@ const Notice: React.FC = () => {
             { id: "notification.deactivate.sellorder.tooltip" },
             {
               name: nftName,
-            }
+            },
           ),
           text: intl.formatMessage(
             { id: "notification.deactivate.sellorder" },
             {
               name: nftName,
-            }
+            },
           ),
           router: `${ROUTES_PATH.NFT_DETAIL}/${notification?.nftId}`,
         };
@@ -197,13 +190,13 @@ const Notice: React.FC = () => {
             { id: "notification.deactivate.sellorder.admin.tooltip" },
             {
               name: nftName,
-            }
+            },
           ),
           text: intl.formatMessage(
             { id: "notification.deactivate.sellorder.admin" },
             {
               name: nftName,
-            }
+            },
           ),
           router: `${ROUTES_PATH.NFT_DETAIL}/${notification?.nftId}`,
         };
@@ -230,73 +223,86 @@ const Notice: React.FC = () => {
       }
     };
 
-  const menu = () => (
-    <div className={styles.notification_card}>
-      <p className={styles.notification_card__title}>
-        {intl.formatMessage({ id: "notification.title" })}
-      </p>
-      {totalNotification > ZERO_VALUE ? (
-        <InfiniteScroll
-          dataLength={notices?.length}
-          next={getMoreNotification}
-          hasMore={notices?.length < totalNotification}
-          loader={null}
-          scrollableTarget="scrollableDiv"
-          height="80%"
-        >
-          {notices?.map((notification: any) => {
-            const createdDate = notification?.createdAt;
-            const content = renderNotificationContent(notification);
+  const items: MenuProps["items"] = [
+    {
+      key: "1",
+      label: (
+        <div className={styles.notification_card}>
+          <p className={styles.notification_card__title}>
+            {intl.formatMessage({ id: "notification.title" })}
+          </p>
+          {totalNotification > ZERO_VALUE ? (
+            <InfiniteScroll
+              dataLength={notices?.length}
+              next={getMoreNotification}
+              hasMore={notices?.length < totalNotification}
+              loader={null}
+              scrollableTarget="scrollableDiv"
+              height="80%"
+            >
+              {notices?.map((notification: any) => {
+                const createdDate = notification?.createdAt;
+                const content = renderNotificationContent(notification);
 
-            return (
-              <div
-                key={notification?._id}
-                className={styles.notification_card__group}
-                onClick={handleClickNotification(
-                  notification,
-                  content?.router as string
-                )}
-              >
-                <div className={styles.notification_card__group_content}>
-                  <EllipsisText
-                    text={content?.text}
-                    className={styles.notification_card__group_content_text}
-                    innerHtml
-                    tooltipText={content?.tooltipText}
-                  />
-                  <p
-                    className={styles.notification_card__group_content_sub_text}
+                return (
+                  <div
+                    key={notification?._id}
+                    className={styles.notification_card__group}
+                    onClick={handleClickNotification(
+                      notification,
+                      content?.router as string,
+                    )}
                   >
-                    <span>{formatDate(createdDate, FORMAT_DATE_PICKER)}</span>
-                    <span>{formatDate(createdDate, FORMAT_TIME_PICKER)}</span>
-                  </p>
-                </div>
-                <div className={styles.notification_card__group_content_effect}>
-                  {!notification?.isRead ? (
+                    <div className={styles.notification_card__group_content}>
+                      <EllipsisText
+                        text={content?.text}
+                        className={styles.notification_card__group_content_text}
+                        innerHtml
+                        tooltipText={content?.tooltipText}
+                      />
+                      <p
+                        className={
+                          styles.notification_card__group_content_sub_text
+                        }
+                      >
+                        <span>
+                          {formatDate(createdDate, FORMAT_DATE_PICKER)}
+                        </span>
+                        <span>
+                          {formatDate(createdDate, FORMAT_TIME_PICKER)}
+                        </span>
+                      </p>
+                    </div>
                     <div
-                      className={
-                        styles.notification_card__group_content_effect_dot
-                      }
-                    />
-                  ) : null}
-                </div>
-              </div>
-            );
-          })}
-        </InfiniteScroll>
-      ) : (
-        <div className={styles.notFound}>
-          <img src={NotFoundNotice.src} alt="not found" />
-          <div>{intl.formatMessage({ id: "notification.empty" })}</div>
+                      className={styles.notification_card__group_content_effect}
+                    >
+                      {!notification?.isRead ? (
+                        <div
+                          className={
+                            styles.notification_card__group_content_effect_dot
+                          }
+                        />
+                      ) : null}
+                    </div>
+                  </div>
+                );
+              })}
+            </InfiniteScroll>
+          ) : (
+            <div className={styles.notFound}>
+              <Image src={NotFoundNotice} alt="not found" />
+              <div>{intl.formatMessage({ id: "notification.empty" })}</div>
+            </div>
+          )}
         </div>
-      )}
-    </div>
-  );
+      ),
+    },
+  ];
 
   return (
     <HeaderDropdown
       placement="bottomRight"
-      overlay={menu}
+      menu={{ items }}
       overlayClassName={styles.popover}
       trigger={["click"]}
     >
@@ -304,7 +310,11 @@ const Notice: React.FC = () => {
         className={styles.notification_badge}
         count={totalUnread ? totalUnread : null}
       >
-        <img src={NoticeIcon.src} className={styles.notification_icon} />
+        <Image
+          src={NoticeIcon}
+          className={styles.notification_icon}
+          alt={"notification icon"}
+        />
       </Badge>
     </HeaderDropdown>
   );

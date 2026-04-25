@@ -1,6 +1,6 @@
 "use client";
 import React, { FC } from "react";
-import { Typography, Modal, Image } from "antd";
+import { Typography, Modal } from "antd";
 import { useAppSelector } from "@/hooks";
 import style from "./index.module.scss";
 import selectedConnection from "@/redux/connection/selector";
@@ -10,6 +10,7 @@ import PolygonIcon from "@public/images/polygon_icon.png";
 import NextIcon from "@public/svg/next-icon.svg";
 import { outLogin } from "@/services/api/auth";
 import { useIntl } from "react-intl";
+import Image from "next/image";
 
 const { Paragraph } = Typography;
 
@@ -53,27 +54,20 @@ const ModalWrongNetwork: FC<ModalWrongNetworkProps> = () => {
         <div className={style.wrong_network__image}>
           <Image
             className={style.wrong_network__icon}
-            preview={false}
             height={150}
             width={200}
-            src={PanBunnyIcon.src}
+            src={PanBunnyIcon}
             alt="loading"
           />
         </div>
 
         <div className={style.wrong_network__switch}>
-          <img
+          <Image
             className={style.wrong_network__switch_icon}
-            src={NextIcon.src}
+            src={NextIcon}
             alt="next"
           />
-          <Image
-            width={24}
-            height={24}
-            preview={false}
-            src={PolygonIcon.src}
-            alt="loading"
-          />
+          <Image width={24} height={24} src={PolygonIcon} alt="loading" />
           <Paragraph className={style.wrong_network__switch_title}>
             {intl.formatMessage({
               id: "login.wrong.network.switch",

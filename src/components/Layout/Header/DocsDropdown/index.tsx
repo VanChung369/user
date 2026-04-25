@@ -5,6 +5,7 @@ import DropdownWrapper from "@/components/DropdownWrapper";
 import { useIntl } from "react-intl";
 import styles from "./index.module.scss";
 import classNames from "classnames";
+import Image from "next/image";
 
 const DocsDropdown = () => {
   const intl = useIntl();
@@ -51,7 +52,7 @@ const DocsDropdown = () => {
     <DropdownWrapper menu={{ items }}>
       <Space style={{ cursor: "pointer" }} className={styles.docs}>
         {intl.formatMessage({ id: "header.docs" })}
-        <img src={DropdownIcon.src} />
+        <Image src={DropdownIcon} alt={"dropdown icon"} />
       </Space>
     </DropdownWrapper>
   );

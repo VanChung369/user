@@ -1,7 +1,4 @@
 .item {
-  display: flex;
-  align-items: center;
-
   &__label {
     font-weight: 700;
     font-size: 16px;
@@ -11,6 +8,7 @@
   }
 
   &__content {
+    display: flex;
     font-size: 16px;
     line-height: 16px;
   }

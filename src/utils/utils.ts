@@ -7,7 +7,6 @@ import {
   TINY_NUM,
 } from "./consts";
 import {
-  FlattedElement,
   IArrayFormat,
   IObject,
   OpenCloseCharacter,
@@ -26,18 +25,14 @@ import {
   NFT_DECIMAL_SCALE,
   ZERO_VALUE,
 } from "@/constants/input";
-import {
-  EMPTY_TEXT,
-  LENGTH_CONSTANTS,
-  MAX_CODE_LENGTH,
-  TOKEN_SUPPORT,
-} from "@/constants";
+import { EMPTY_TEXT, LENGTH_CONSTANTS, MAX_CODE_LENGTH } from "@/constants";
 import { shortenIfAddress } from "@thirdweb-dev/react";
 import moment from "moment";
 import { DATE_FORMAT } from "@/constants/date";
 import BigNumber from "bignumber.js";
 // import { NFT_ATTRIBUTE_CREATED_FIELD, NFT_CREATE_FIELD } from '@/pages/nft/constants';
 import { ethers } from "ethers";
+import { SALE_STATUS_ORDER_VALUE } from "@/constants/saleOrder";
 
 // const {
 //   FILE,
@@ -123,6 +118,45 @@ export const isAddress = (address: string) => {
 //   return JSON.stringify(prevNft) !== JSON.stringify(newNft);
 // };
 
+export const compareDate = (date1: any, date2: any) => {
+  if (moment(date1).isBefore(date2)) {
+    return -1;
+  }
+  if (moment(date1).isAfter(date2)) {
+    return 1;
+  }
+  return 0;
+};
+
+export const compareSaleOrder = (firstSaleOrder: any, secondSaleOrder: any) => {
+  if (firstSaleOrder.status === secondSaleOrder.status) {
+    const sortDate =
+      firstSaleOrder.status === SALE_STATUS_ORDER_VALUE.COMING_SOON
+        ? compareDate(firstSaleOrder?.startDate, secondSaleOrder?.startDate)
+        : compareDate(firstSaleOrder?.endDate, secondSaleOrder?.endDate);
+    if (sortDate === 0) {
+      return firstSaleOrder?.name?.localeCompare(secondSaleOrder?.name);
+    }
+    return sortDate;
+  }
+
+  if (firstSaleOrder.status === SALE_STATUS_ORDER_VALUE.LISTED) {
+    return -1;
+  }
+
+  if (firstSaleOrder.status === SALE_STATUS_ORDER_VALUE.LISTED) {
+    return 1;
+  }
+
+  if (firstSaleOrder.status === SALE_STATUS_ORDER_VALUE.COMING_SOON) {
+    return -1;
+  }
+
+  if (firstSaleOrder.status === SALE_STATUS_ORDER_VALUE.COMING_SOON) {
+    return 1;
+  }
+};
+
 export const checkValueChange = (preVal: object, newVal: object) => {
   return JSON.stringify(preVal) !== JSON.stringify(newVal);
 };
@@ -137,7 +171,7 @@ export const getAttributeFieldNFTValues = (values: any) => {
       acc[key.toUpperCase()] = key;
       return acc;
     },
-    {}
+    {},
   );
 
   return Object.values(NFT_ATTRIBUTE).reduce(
@@ -146,7 +180,7 @@ export const getAttributeFieldNFTValues = (values: any) => {
         values?.attributes?.[field]?.text || values?.attributes?.[field];
       return acc;
     },
-    {}
+    {},
   );
 };
 
@@ -285,6 +319,37 @@ export const disabledSaleOrderEndDate =
 
 export const getValueAttribute = (attributes: any, field: string) =>
   attributes?.[field]?.text || attributes?.[field];
+export const convertPriceBigNumber = (value: any, coinDecimal = 18) => {
+  BigNumber.config({
+    EXPONENTIAL_AT: 100,
+  });
+  return new BigNumber(value).multipliedBy(
+    new BigNumber(Math.pow(10, coinDecimal)),
+  );
+};
+
+export const isLessThanOfTenPowerByCap = (value: any, dicimal: 8) => {
+  BigNumber.config({
+    EXPONENTIAL_AT: 100,
+  });
+  return (
+    value > 0 && new BigNumber(value).lt(new BigNumber(Math.pow(10, dicimal)))
+  );
+};
+
+export const multipleTwoBigNumber = (first: any, second: any) => {
+  if (!first || !second) {
+    return 0;
+  }
+  BigNumber.config({
+    EXPONENTIAL_AT: 100,
+  });
+  return new BigNumber(first).multipliedBy(new BigNumber(second)).toString();
+};
+
+export const convertToNumber = (value: any) => {
+  return value ? new BigNumber(value).toNumber() : ZERO_VALUE;
+};
 
 export const formatCurrency = (
   value: any,
@@ -292,7 +357,7 @@ export const formatCurrency = (
     isNotCompare?: boolean;
     decimal?: number;
     isNotFormatDecimal?: boolean;
-  } = {}
+  } = {},
 ) => {
   BigNumber.config({
     EXPONENTIAL_AT: 100,
@@ -417,7 +482,7 @@ export function throttle(num: number, unit?: number) {
 export function findIndex<T>(
   arr: T[],
   callback: (element: T, index: number, arr: T[]) => any,
-  defaultIndex: number = -1
+  defaultIndex: number = -1,
 ): number {
   const length = arr.length;
 
@@ -451,7 +516,7 @@ export const formatText = (value: any) => {
 export function find<T>(
   arr: T[],
   callback: (element: T, index: number, arr: T[]) => any,
-  defalutValue?: T
+  defalutValue?: T,
 ): T | undefined {
   const index = findIndex(arr, callback);
 
@@ -488,7 +553,7 @@ function isEqualSeparator(character: string, separator: string) {
 function findIgnore(
   character: OpenCloseCharacter,
   texts: string[],
-  index: number
+  index: number,
 ) {
   if (!character.ignore) {
     return null;
@@ -503,7 +568,7 @@ function findOpen(
   texts: string[],
   index: number,
   length: number,
-  openCloseCharacters: OpenCloseCharacter[]
+  openCloseCharacters: OpenCloseCharacter[],
 ) {
   const isIgnore = findIgnore(openCharacter, texts, index);
 
@@ -513,7 +578,7 @@ function findOpen(
       texts,
       index + 1,
       length,
-      openCloseCharacters
+      openCloseCharacters,
     );
   }
   return index;
@@ -524,7 +589,7 @@ function findClose(
   texts: string[],
   index: number,
   length: number,
-  openCloseCharacters: OpenCloseCharacter[]
+  openCloseCharacters: OpenCloseCharacter[],
 ) {
   for (let i = index; i < length; ++i) {
     const character = texts[i].trim();
@@ -539,7 +604,7 @@ function findClose(
     // re open
     const openCharacter = find(
       openCloseCharacters,
-      ({ open }) => open === character
+      ({ open }) => open === character,
     );
 
     if (openCharacter) {
@@ -548,7 +613,7 @@ function findClose(
         texts,
         i,
         length,
-        openCloseCharacters
+        openCloseCharacters,
       );
     }
     if (nextIndex === -1) {
@@ -561,7 +626,7 @@ function findClose(
 
 export function splitText(
   text: string,
-  splitOptions: string | SplitOptions
+  splitOptions: string | SplitOptions,
 ): string[] {
   const {
     separator = ",",
@@ -604,11 +669,11 @@ export function splitText(
 
     const openCharacter = find(
       openCloseCharacters,
-      ({ open }) => open === character
+      ({ open }) => open === character,
     );
     const closeCharacter = find(
       openCloseCharacters,
-      ({ close }) => close === character
+      ({ close }) => close === character,
     );
 
     if (openCharacter) {
@@ -617,7 +682,7 @@ export function splitText(
         texts,
         i,
         length,
-        openCloseCharacters
+        openCloseCharacters,
       );
 
       if (nextIndex !== -1 && isSeparateOpenClose) {
@@ -637,7 +702,7 @@ export function splitText(
 
       nextOpenCloseCharacters.splice(
         openCloseCharacters.indexOf(closeCharacter),
-        1
+        1,
       );
 
       return splitText(text, {
@@ -713,7 +778,7 @@ export function decamelize(str: string, separator: string = "-") {
   //eslint-disable-line
   return str.replace(
     /([a-z])([A-Z])/g,
-    (all, letter, letter2) => `${letter}${separator}${letter2.toLowerCase()}`
+    (all, letter, letter2) => `${letter}${separator}${letter2.toLowerCase()}`,
   );
 }
 
@@ -727,7 +792,7 @@ export function now() {
 
 export const formatDate = (
   date: moment.MomentInput | any,
-  type = DATE_FORMAT
+  type = DATE_FORMAT,
 ) => {
   return moment(date).format(type);
 };
@@ -735,7 +800,7 @@ export const formatDate = (
 export function findLastIndex<T>(
   arr: T[],
   callback: (element: T, index: number, arr: T[]) => any,
-  defaultIndex: number = -1
+  defaultIndex: number = -1,
 ): number {
   const length = arr.length;
 
@@ -750,7 +815,7 @@ export function findLastIndex<T>(
 export function findLast<T>(
   arr: T[],
   callback: (element: T, index: number, arr: T[]) => any,
-  defalutValue?: T
+  defalutValue?: T,
 ): T | undefined {
   const index = findLastIndex(arr, callback);
 
@@ -823,7 +888,7 @@ export function getEntries(obj: IObject<any>): [string, any][] {
 
 export function sortOrders(
   keys: Array<string | number>,
-  orders: Array<string | number> = []
+  orders: Array<string | number> = [],
 ) {
   keys.sort((a, b) => {
     const index1 = orders.indexOf(a);
@@ -844,7 +909,7 @@ export function sortOrders(
 
 export function convertUnitSize(
   pos: string,
-  size: number | IObject<((pos: number) => number) | number>
+  size: number | IObject<((pos: number) => number) | number>,
 ) {
   const { value, unit } = splitUnit(pos);
 
@@ -874,7 +939,7 @@ export function checkBoundSize(
   targetSize: number[],
   compareSize: number[],
   isMax: boolean,
-  ratio = targetSize[0] / targetSize[1]
+  ratio = targetSize[0] / targetSize[1],
 ) {
   return (
     [
@@ -894,7 +959,7 @@ export function checkBoundSize(
         return isMax
           ? value <= defaultSize || value <= throttledSize
           : value >= defaultSize || value >= throttledSize;
-      })
+      }),
     )[0] || targetSize
   );
 }
@@ -903,7 +968,7 @@ export function calculateBoundSize(
   size: number[],
   minSize: number[],
   maxSize: number[],
-  keepRatio?: number | boolean
+  keepRatio?: number | boolean,
 ): number[] {
   if (!keepRatio) {
     return size.map((value, i) => between(value, minSize[i], maxSize[i]));
@@ -923,104 +988,6 @@ export function calculateBoundSize(
     height = maxHeight;
   }
   return [width, height];
-}
-
-export function sum(nums: number[]): number {
-  const length = nums.length;
-  let total = 0;
-
-  for (let i = length - 1; i >= 0; --i) {
-    total += nums[i];
-  }
-  return total;
-}
-
-export function average(nums: number[]) {
-  const length = nums.length;
-  let total = 0;
-
-  for (let i = length - 1; i >= 0; --i) {
-    total += nums[i];
-  }
-  return length ? total / length : 0;
-}
-
-export function getRad(pos1: number[], pos2: number[]): number {
-  const distX = pos2[0] - pos1[0];
-  const distY = pos2[1] - pos1[1];
-  const rad = Math.atan2(distY, distX);
-
-  return rad >= 0 ? rad : rad + Math.PI * 2;
-}
-
-export function getCenterPoint(points: number[][]): number[] {
-  return [0, 1].map((i) => average(points.map((pos) => pos[i])));
-}
-
-export function getShapeDirection(points: number[][]): 1 | -1 {
-  const center = getCenterPoint(points);
-  const pos1Rad = getRad(center, points[0]);
-  const pos2Rad = getRad(center, points[1]);
-
-  return (pos1Rad < pos2Rad && pos2Rad - pos1Rad < Math.PI) ||
-    (pos1Rad > pos2Rad && pos2Rad - pos1Rad < -Math.PI)
-    ? 1
-    : -1;
-}
-
-export function getDist(a: number[], b?: number[]) {
-  return Math.sqrt(
-    Math.pow((b ? b[0] : 0) - a[0], 2) + Math.pow((b ? b[1] : 0) - a[1], 2)
-  );
-}
-
-export function throttleArray(nums: number[], unit?: number) {
-  nums.forEach((_, i) => {
-    nums[i] = throttle(nums[i], unit);
-  });
-  return nums;
-}
-
-export function counter(num: number): number[] {
-  const nums: number[] = [];
-
-  for (let i = 0; i < num; ++i) {
-    nums.push(i);
-  }
-
-  return nums;
-}
-
-export function replaceOnce(
-  text: string,
-  fromText: RegExp | string,
-  toText: string | ((...args: any[]) => string)
-): string {
-  let isOnce = false;
-  return text.replace(fromText, (...args: any[]) => {
-    if (isOnce) {
-      return args[0];
-    }
-    isOnce = true;
-    return isString(toText) ? toText : toText(...args);
-  });
-}
-
-export function flat<Type>(arr: Type[][]): Type[] {
-  return arr.reduce((prev, cur) => {
-    return prev.concat(cur);
-  }, []);
-}
-
-export function deepFlat<T extends any[]>(arr: T): Array<FlattedElement<T[0]>> {
-  return arr.reduce((prev, cur) => {
-    if (isArray(cur)) {
-      prev.push(...deepFlat(cur));
-    } else {
-      prev.push(cur);
-    }
-    return prev;
-  }, [] as any[]);
 }
 
 export function removeNullProperties(obj: any): { [key: string]: any } {

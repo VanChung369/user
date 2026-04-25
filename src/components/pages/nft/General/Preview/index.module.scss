@@ -1,0 +1,44 @@
+@import "@/styles/variables.scss";
+
+.preview_image {
+    border-radius: 16px;
+    box-shadow:
+        0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 hsla(0, 0%, 0%, 0.19);
+    height: 440px;
+    position: relative;
+
+    @media screen and (max-width: $breakpoint_laptop_max) {
+        height: 400px;
+    }
+
+    @media screen and (max-width: $breakpoint_tablet_max) {
+        height: 380px;
+        border-radius: 14px;
+        box-shadow:
+            0 3px 6px 0 rgba(0, 0, 0, 0.2),
+            0 5px 15px 0 hsla(0, 0%, 0%, 0.19);
+    }
+
+    @media screen and (max-width: $breakpoint_mobile_max) {
+        height: 320px;
+        border-radius: 12px;
+        box-shadow:
+            0 2px 4px 0 rgba(0, 0, 0, 0.2),
+            0 4px 12px 0 hsla(0, 0%, 0%, 0.19);
+    }
+
+    img {
+        object-fit: fill;
+        overflow: hidden;
+        border-radius: 20px;
+
+        @media screen and (max-width: $breakpoint_tablet_max) {
+            border-radius: 14px;
+        }
+
+        @media screen and (max-width: $breakpoint_mobile_max) {
+            border-radius: 12px;
+        }
+    }
+}

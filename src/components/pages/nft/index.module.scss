@@ -1,0 +1,64 @@
+@import "@/styles/variables.scss";
+
+.nft_detail {
+    color: $text-color-white;
+    height: 100%;
+}
+
+.buy_successful_button_view_nft {
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    height: 40px;
+    width: 80px;
+    border-radius: 10px;
+    border: none;
+    text-transform: uppercase;
+    padding: 7px 24px;
+    background: $color-violet;
+    color: $text-color-white;
+    border: 1px solid $color-violet;
+
+    &:focus,
+    &:active,
+    &:hover {
+        background: $color-violet !important;
+        color: $text-color-white !important;
+        opacity: 0.8;
+    }
+}
+
+.buy_successful_button_view_ploygon {
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    height: 40px;
+    width: 80px;
+    border-radius: 10px;
+    border: none;
+    text-transform: uppercase;
+    padding: 7px 24px;
+    background: unset;
+    color: $color-violet;
+    border: 1px solid $color-violet;
+
+    &:focus,
+    &:active,
+    &:hover {
+        background: unset !important;
+        color: $color-violet !important;
+        opacity: 0.8;
+    }
+}

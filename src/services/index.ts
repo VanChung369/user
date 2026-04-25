@@ -24,11 +24,27 @@ type ApiRequestConfig = {
 
 export const excludeResponse = ["empty_response"];
 
+const getApiBaseUrl = () => {
+  const apiUrl = process.env.NEXT_PUBLIC_APP_API || "";
+
+  if (!apiUrl) {
+    return "";
+  }
+
+  const normalizedApiUrl = apiUrl.replace(/\/+$/, "");
+
+  if (/^https?:\/\//i.test(normalizedApiUrl)) {
+    return normalizedApiUrl;
+  }
+
+  return `https://${normalizedApiUrl}`;
+};
+
 const getFullUrl = (url: string) => {
   if (!url.startsWith("/")) {
     url = "/" + url;
   }
-  return `${process.env.NEXT_PUBLIC_APP_API}` + url;
+  return `${getApiBaseUrl()}${url}`;
 };
 
 const resetToLogin = () => {
